@@ -350,9 +350,9 @@ const F = {
   PRAD001: "1wpLHIYrezFi3dd1L8hzdLI7IstnYMhpt", PRAD004: "1jlAy53hk5ubFMn3GR-lbS_UBx7FzHEio",  PRAD013: "1oayjCfXa3otvozNCfjWRvNQ3drCink9H",
   PRAD011: "1g4xHYINyZN1S6deOuRW7mQagRuaREjZO", PRAD003: "1CtNlrxv4OboWviMX06Umi6FikZHD-MAV", PRAD006: "1_b6EY1FwK4EqVoefhEIcpOEZk8TbpVSM", PRAD007: "1cKlBTr6CP-AjbzCvZjILp34mkUt2dCDN",
   PF_JOV: "1R7BvsK6G7X0Jih1eWuiMXvDKELc0k_lG", PF_TRA: "1FmiAdO9Pg7B5gm5R4tkMWI2ndSTHHsiP", PF_AUX: "1h0X5fkbU9-7xGoDOgcny7ZZAVSUfYP36", PF_AE: "1m5Qghv03M95P1LV5_uqIOhXJ8HGJszkb",
-  PF_AT: "1vx951hEnzp16Mpg1Nk0xMO3-OmBnG5ND", PF_TL: "1Kfgu6s4NtitiJas6Y8BN5IhXAS9C-jKV", PF_REC: "1XmTyf5gpwLYGUO-_HUKuBxR5YOJMh27k", PF_ADM: "1oy_2Q4rIs42E41dPjfuDvt3FEat2spJ1"
+  PF_AT: "1vx951hEnzp16Mpg1Nk0xMO3-OmBnG5ND", PF_TL: "1Kfgu6s4NtitiJas6Y8BN5IhXAS9C-jKV", PF_REC: "1XmTyf5gpwLYGUO-_HUKuBxR5YOJMh27k", PF_ADM: "1oy_2Q4rIs42E41dPjfuDvt3FEat2spJ1",
+  PF_FON: "1mPq_GBv5J5u3jOH5--IlO715MneBavh3", PF_MKT: "1R12Zg9kCr1Chyk7UtD9JkzNSKhOX-KiF", PF_MAN: "1QPII9bQsbhi9kvoWNWYLRM4CANVetmyc", PF_INT: "1FZ1hHIEC_gynZpusyN4OAkPZBVApLfWq"
 };
-const PERFILES = "https://drive.google.com/drive/folders/16Iygm0qrKYx36QX65ERi4LInXJLCSa02";
 const url = k => k.startsWith("http") ? k : `https://drive.google.com/file/d/${F[k]}/view`;
 const PROG = {
   transitorio: { n: "Transitorio", proc: ["PR-AC-003 Transitorio", "PRAC003"], perfil: "PF_TRA", ev: [["FO-AC-016 Evaluación de inicio", "FOAC016"], ["FO-AC-037 Evaluación de escritura", "FOAC037"]], plan: ["FO-AC-021 Planeación quincenal", "FOAC021"] },
@@ -364,50 +364,53 @@ const PROG = {
 };
 const PUESTO = {
   recepcion: { n: "Recepción", proc: ["PR-AD-001 Cobranza de ingresos", "PRAD001", "«Cuotas de recuperación», pasos 2 a 5"], perfil: "PF_REC", falta: "FO-AD-001 y DS-AD-001" },
-  fondos: { n: "Procuración de fondos", proc: ["PR-AD-004 Procuración de fondos", "PRAD004", "«Seguimiento de donativo»"], perfil: PERFILES, falta: "FO-AD-020 y FO-AD-057" },
-  mkt: { n: "Mercadotecnia", proc: ["PR-AD-003 Mercadotecnia", "PRAD003", "«Eventos»"], perfil: PERFILES, falta: "ninguno" },
-  mantenimiento: { n: "Mantenimiento y chofer", proc: ["PR-AD-006 Mensajería y traslados", "PRAD006", "«Mensajería y traslados»"], perfil: PERFILES, falta: "FO-AD-044 y FO-AD-030" },
-  intendencia: { n: "Intendencia", proc: ["PR-AD-007 Mantenimiento y limpieza", "PRAD007", "Desarrollo"], perfil: PERFILES, falta: "FO-AD-029 y FO-AD-040" }
+  fondos: { n: "Procuración de fondos", proc: ["PR-AD-004 Procuración de fondos", "PRAD004", "«Seguimiento de donativo»"], perfil: "PF_FON", falta: "FO-AD-020 y FO-AD-057" },
+  mkt: { n: "Mercadotecnia", proc: ["PR-AD-003 Mercadotecnia", "PRAD003", "«Eventos»"], perfil: "PF_MKT", falta: "ninguno" },
+  mantenimiento: { n: "Mantenimiento y chofer", proc: ["PR-AD-006 Mensajería y traslados", "PRAD006", "«Mensajería y traslados»"], perfil: "PF_MAN", falta: "FO-AD-044 y FO-AD-030" },
+  intendencia: { n: "Intendencia", proc: ["PR-AD-007 Mantenimiento y limpieza", "PRAD007", "Desarrollo"], perfil: "PF_INT", falta: "FO-AD-029 y FO-AD-040" }
 };
 const COMUN = [
   { id: "c1", m: "antes", t: "Conoce la misión y los programas de TEDI", a: "Revisa la presentación institucional y lee el mensaje de la Dirección General y la misión.", w: "Administración", d: "Explicas en una frase la misión y nombras los tres campus.", r: [["Presentación institucional", "PRES", "láminas 3 a 10"], ["Manual del colaborador", "MAN", "Mensaje y Misión"]], s: "doc" },
-  { id: "c2", m: "antes", t: "Prepara tu documentación de ingreso", a: "Reúne tu papelería, confirma tu horario y vestimenta, y ten lista tu cuenta de Google.", w: "Administración", d: "Entregas tu papelería completa el día 1.", r: [["PR-AD-002 Reclutamiento y selección", "PRAD002", "Selección de candidatos"], ["Manual del colaborador", "MAN", "Uniforme y vestimenta"]], s: "val", n: "Ningún documento enlista la papelería. Material nuevo: mensaje de bienvenida con la lista." },
-  { id: "c3", m: "d1", t: "Formaliza tu ingreso", a: "Firmas tu contrato, recorres las instalaciones, registras tu huella en el reloj checador y ubicas el botiquín.", w: "Administración", d: "Registraste entrada y salida con tu huella.", r: [["PR-AD-002 Reclutamiento y selección", "PRAD002", "Integración e inducción"], ["Manual del colaborador", "MAN", "Asistencia y seguridad"]], s: "doc" },
+  { id: "c2", m: "antes", t: "Prepara tu documentación de ingreso", a: "Reúne tu papelería, confirma tu horario y vestimenta, y ten lista tu cuenta de Google.", w: "Administración", d: "Entregas tu papelería completa el día 1.", r: [["Manual del colaborador", "MAN", "Uniforme y vestimenta"]], s: "val", n: "Ningún documento enlista la papelería. Material nuevo: mensaje de bienvenida con la lista." },
+  { id: "c3", m: "d1", t: "Formaliza tu ingreso", a: "Firmas tu contrato, recorres las instalaciones, registras tu huella en el reloj checador y ubicas el botiquín.", w: "Administración", d: "Registraste entrada y salida con tu huella.", r: [["Manual del colaborador", "MAN", "Asistencia y seguridad"]], s: "doc" },
   { id: "c4", m: "d1", t: "Ubica tu puesto en el organigrama", a: "Identifica a tu jefa inmediata y a tu equipo, y lee de tu perfil solo las secciones A, B y C.", w: "Tu jefa inmediata", d: "Señalas a tu jefa, a tu equipo y tus tres primeras funciones.", r: [["Organigrama 26-27", "ORG", ""], ["Perfil de tu puesto", "PERFIL", "secciones A, B y C"]], s: "val", n: "Varios perfiles reportan a puestos que el organigrama no muestra." },
   { id: "c5", m: "d1", t: "Integra los canales de comunicación", a: "Te agregan a tus grupos de WhatsApp institucionales y abres el Drive desde tu celular.", w: "Tu jefa inmediata", d: "Respondiste un aviso y abriste un documento del Drive.", r: [["Manual del colaborador", "MAN", "Comunicación"]], s: "doc" },
   { id: "c6", m: "s1", t: "Conoce las políticas esenciales", a: "Lee tres apartados del manual y resuelve cinco casos prácticos: trato al alumno, fotos y redes, confidencialidad, uso del celular y relación con padres.", w: "Tu jefa inmediata", d: "Respondes correctamente los cinco casos.", r: [["Manual del colaborador", "MAN", "Código ético, Confidencialidad y Comunicación con alumnos y padres"]], s: "doc", n: "Material nuevo: formulario de cinco casos." },
   { id: "c7", m: "s1", t: "Aprende a localizar documentos", a: "Aprende a leer los códigos de documento y localiza tres documentos de tu puesto.", w: "Calidad", d: "Encuentras los tres en menos de cinco minutos.", r: [["PR-TEDI-002 Asignación de códigos", "PRTEDI002", "tablas de tipo y área"]], s: "new", n: "Material nuevo: tarjeta de códigos y carpeta de vigentes.", codes: true },
   { id: "c8", m: "s1", t: "Conoce el procedimiento de permisos", a: "Lee el procedimiento de faltas y permisos y ubica el formato correspondiente.", w: "Tu jefa inmediata", d: "Sabes a quién avisar y dónde está el formato.", r: [["PR-AD-008 Faltas y permisos", "PRAD008", "pasos 1 a 4"], ["Manual del colaborador", "MAN", "Puntualidad y asistencia"]], s: "val", n: "El formato FO-AD-033 no está en la carpeta." },
-  { id: "c9", m: "s2", t: "Solicita material y comprueba un gasto", a: "Llena una solicitud de material y revisa los datos que debe traer una factura.", w: "Administración", d: "Entregas una solicitud correctamente llenada.", r: [["PR-AD-015 Solicitud de materiales", "PRAD015", "pasos 1 a 4"], ["IN-AD-003 Caja chica", "INAD003", "Desarrollo"]], s: "val", n: "FO-AD-058, 059 y 038 no están en la carpeta." },
+  { id: "c9", m: "s2", t: "Solicita material para tu trabajo", a: "Pide en Administración el formato de solicitud de materiales, llénalo, fírmalo y entrégalo.", w: "Administración", d: "Entregas una solicitud correctamente llenada.", r: [["PR-AD-015 Solicitud de materiales", "PRAD015", "Desarrollo, pasos 1 a 4"]], s: "val", n: "FO-AD-058 y 059 no están en la carpeta." },
   { id: "c10", m: "s2", t: "Conoce tus prestaciones", a: "Lee las fechas de pago, descansos y periodo vacacional.", w: "Administración", d: "Conoces tus días de pago y tu periodo vacacional.", r: [["Manual del colaborador", "MAN", "Beneficios"]], s: "doc" },
   { id: "c11", m: "s2", t: "Reunión de seguimiento del día 15", a: "Conversación de 15 minutos con tu jefa: qué no encontraste y qué no quedó claro.", w: "Tu jefa inmediata", d: "Quedan registrados tus pendientes y quién los atiende.", r: [], s: "new", n: "Material nuevo: guion de cinco preguntas." },
-  { id: "c12", m: "d30", t: "Conoce cómo se evalúa tu desempeño", a: "Revisa la rúbrica de tu perfil y las secciones D y E de tu perfil de puesto. Se aplica la evaluación de periodo de prueba.", w: "Tu jefa y Administración", d: "Evaluación aplicada y encuesta de 30 días respondida.", r: [["PR-AD-014 Evaluación al personal", "PRAD014", "Desarrollo"], ["Rúbrica de evaluación", "RUBRICA", "12 competencias"], ["PR-AD-005 Capacitación", "PRAD005", ""]], s: "val", n: "FO-AD-005 no está y ningún documento indica cuánto dura el periodo de prueba." }
+  { id: "c12", m: "d30", t: "Conoce cómo se evalúa tu desempeño", a: "Revisa con tu jefa la rúbrica y las secciones D y E de tu perfil: tus indicadores y cada cuándo se revisan. Se aplica tu evaluación de periodo de prueba.", w: "Tu jefa y Administración", d: "Evaluación aplicada y encuesta de 30 días respondida.", r: [["Rúbrica de evaluación", "RUBRICA", "12 competencias"], ["Perfil de tu puesto", "PERFIL", "secciones D y E"]], s: "val", n: "FO-AD-005 no está y ningún documento indica cuánto dura el periodo de prueba." }
 ];
 const DOCENTE = [
   { id: "d1", m: "antes", t: "Conoce tu programa", a: "Lee solo Objetivo, Alcance y Glosario del procedimiento de tu programa.", w: "Tu coordinadora", d: "Describes la edad que atiende y el propósito del programa.", r: [["PROC", "PROC", "Objetivo, Alcance y Glosario"]], s: "doc" },
   { id: "d2", m: "d1", t: "Conoce a tus alumnos y tu horario", a: "Recibe tu horario y tu lista; revisa el último programa y reporte de cada alumno.", w: "Tu coordinadora", d: "Tienes tu horario y revisaste cada expediente.", r: [["FO-AC-009 Horario de terapias", "FOAC009", ""], ["Manual del colaborador", "MAN", "Comunicación sobre un alumno"]], s: "val", n: "Los programas viven en el «Drive de maestros», fuera de esta carpeta." },
   { id: "d3", m: "d1", t: "Revisa tus responsabilidades", a: "Lee la sección Responsabilidades de tu procedimiento y las reglas de guardia y salida.", w: "Tu coordinadora", d: "Enumeras tus cuatro entregables del semestre.", r: [["PROC", "PROC", "Responsabilidades"], ["Manual del colaborador", "MAN", "Personal docente"]], s: "doc" },
   { id: "d4", m: "s1", t: "Observa dos sesiones", a: "Observa dos sesiones de un docente con experiencia, con una guía de observación.", w: "Tu docente par", d: "Entregas tus notas de observación.", r: [["FO-AC-041 Guía de observación", "FOAC041", ""]], s: "val", n: "El formato se diseñó para escuelas regulares; hay que validarlo aquí." },
-  { id: "d5", m: "s1", t: "Prepara tu primera sesión", a: "Elabora tu planeación a partir del programa de un alumno. Tu coordinadora la revisa.", w: "Tu coordinadora", d: "Tu planeación cuenta con visto bueno.", r: [["PLAN", "PLAN", ""], ["FO-AC-003 Programa semestral", "FOAC003", ""]], s: "new", n: "Material nuevo: un ejemplo llenado de cada formato." },
+  { id: "d5", m: "s1", solo: ["transitorio", "jovenes", "apoyo", "at", "lenguaje"], t: "Prepara tu primera sesión", a: "Elabora tu planeación a partir del programa de un alumno. Tu coordinadora la revisa.", w: "Tu coordinadora", d: "Tu planeación cuenta con visto bueno.", r: [["PLAN", "PLAN", ""], ["FO-AC-003 Programa semestral", "FOAC003", ""]], s: "new", n: "Material nuevo: un ejemplo llenado de cada formato." },
+  { id: "d5a", m: "s1", solo: ["auxiliar"], t: "Prepara una actividad con tu titular", a: "Con la planeación de tu titular, prepara la actividad que dirigirás en la sesión.", w: "Tu titular", d: "Tu titular aprobó tu actividad.", r: [["PLAN", "PLAN", ""]], s: "doc" },
   { id: "d6", m: "s1", key: true, t: "Imparte tu primera sesión", a: "Imparte tu sesión con tu docente par presente y registra la asistencia.", w: "Tu docente par", d: "Sesión impartida, asistencia registrada y 10 minutos de retroalimentación.", r: [["PROC", "PROC", "Ejecución del programa"], ["FO-AC-008 Registro de asistencia", "ENTREGA", ""]], s: "val", n: "La copia del Drive trae nombres de alumnos de un ciclo anterior." },
-  { id: "d7", m: "s2", t: "Aplica una evaluación de inicio", a: "Evalúa a un alumno con el instrumento de tu programa.", w: "Tu coordinadora", d: "Una evaluación aplicada y revisada.", r: [["EVAL", "EVAL", ""]], s: "new", n: "Material nuevo: guía de llenado; las siglas no están definidas." },
+  { id: "d7", m: "s2", solo: ["transitorio", "jovenes", "apoyo", "at", "lenguaje"], t: "Aplica una evaluación de inicio", a: "Evalúa a un alumno con el instrumento de tu programa.", w: "Tu coordinadora", d: "Una evaluación aplicada y revisada.", r: [["EVAL", "EVAL", ""]], s: "new", n: "Material nuevo: guía de llenado; las siglas no están definidas." },
   { id: "d8", m: "s2", t: "Recibe retroalimentación de tu práctica", a: "Tu coordinadora observa una de tus clases y acuerdan dos puntos de mejora.", w: "Tu coordinadora", d: "Retroalimentación por escrito con dos acuerdos.", r: [["Rúbrica docente", "RUBRICA", "competencia 9"]], s: "new", n: "Material nuevo: guía de observación de una página." },
-  { id: "d9", m: "s34", t: "Elabora un programa", a: "Redacta o ajusta el programa de un alumno con tu coordinadora y el terapeuta de lenguaje.", w: "Tu coordinadora", d: "Un programa aprobado.", r: [["FO-AC-003 Programa semestral", "FOAC003", ""], ["FO-AC-026 Registro de lectura", "FOAC026", ""], ["Capacitación de Matemáticas", "MATE", ""], ["Capacitación de CLyH", "CLYH", "diapositivas 4 a 12"]], s: "val", n: "Los programas curriculares no están en la carpeta." },
+  { id: "d9", m: "s34", solo: ["transitorio", "jovenes", "apoyo", "at", "lenguaje"], t: "Elabora un programa", a: "Redacta o ajusta, con tu coordinadora, el programa de un alumno.", w: "Tu coordinadora", d: "Un programa aprobado.", r: [["FO-AC-003 Programa", "FOAC003", ""], ["FO-AC-026 Registro de lectura", "FOAC026", "", ["transitorio", "jovenes", "apoyo"]], ["Capacitación de Matemáticas", "MATE", "", ["transitorio", "jovenes", "apoyo"]], ["Capacitación de CLyH", "CLYH", "diapositivas 4 a 12", ["transitorio", "jovenes", "apoyo", "lenguaje"]]], s: "val", n: "Los programas curriculares no están en la carpeta." },
+  { id: "d9a", m: "s34", solo: ["auxiliar"], t: "Apoya a tu titular con un programa", a: "Prepara con tu titular el material de las actividades del programa de un alumno.", w: "Tu titular", d: "Preparaste el material de una semana con tu titular.", r: [["PLAN", "PLAN", ""]], s: "doc" },
   { id: "d10", m: "s34", t: "Participa en una reunión con familia", a: "Acompaña a la titular en una entrega de programa o junta con padres.", w: "Tu coordinadora", d: "Explicaste un objetivo a una familia.", r: [["PROC", "PROC", "Entrega de programa"], ["DS-AC-005 Reglamento a padres", "DSAC005", ""]], s: "doc" },
-  { id: "d11", m: "s34", t: "Registra tu trabajo en el Drive", a: "Sube asistencias, planeaciones y programas al Drive de maestros.", w: "Tu coordinadora", d: "Tu carpeta contiene la asistencia del mes y dos planeaciones.", r: [["PR-AC-010 Inclusión", "PRAC010", "Seguimiento"]], s: "val", n: "Solo un perfil lo pide por escrito." },
+  { id: "d11", m: "s34", t: "Registra tu trabajo en el Drive", a: "Sube asistencias, planeaciones y programas al Drive de maestros.", w: "Tu coordinadora", d: "Tu carpeta contiene la asistencia del mes y dos planeaciones.", r: [], s: "val", n: "Solo un perfil lo pide por escrito. Tu coordinadora te da acceso a tu carpeta." },
   { id: "d12", m: "d30", t: "Segunda observación y cierre", a: "Tu coordinadora observa otra clase y cierran juntas tu primer mes.", w: "Tu coordinadora", d: "Dos observaciones registradas.", r: [["Rúbrica docente", "RUBRICA", "competencias 9 y 11"]], s: "val", n: "Depende del cierre de la evaluación de periodo de prueba." }
 ];
 const ADMIN = [
-  { id: "a1", m: "antes", t: "Conoce cómo se financia TEDI", a: "Lee cómo ingresan las cuotas y los donativos.", w: "Administración", d: "Distingues cuota de recuperación, donativo y beca.", r: [["PR-AD-001 Cobranza de ingresos", "PRAD001", "Objetivo y Alcance"], ["PR-AD-004 Procuración de fondos", "PRAD004", "Fuentes de ingreso"]], s: "doc" },
-  { id: "a2", m: "d1", t: "Conoce el alcance de tu puesto", a: "Lee las secciones A, B y C de tu perfil y qué áreas dependen de Administración.", w: "Administración", d: "Identificas las áreas que te solicitarán apoyo.", r: [["Perfil de tu puesto", "PERFIL", "secciones A, B y C"], ["Perfil de Coordinación Administrativa", "PF_ADM", "sección C, punto 1"]], s: "val", n: "El jefe aparece como «Administración» y como «Coordinación Administrativa»." },
-  { id: "a3", m: "d1", t: "Recibe tus accesos", a: "Recibe tus usuarios: sistema contable, reloj checador y WhatsApp institucional, según tu puesto.", w: "Administración", d: "Ingresas a cada sistema que utilizarás.", r: [["PR-AD-001 Cobranza de ingresos", "PRAD001", "Glosario"]], s: "new", n: "Material nuevo: lista de accesos por puesto." },
+  { id: "a1", m: "antes", solo: ["recepcion", "fondos", "mkt"], t: "Conoce cómo se financia TEDI", a: "Lee cómo ingresan las cuotas y los donativos.", w: "Administración", d: "Distingues cuota de recuperación, donativo y beca.", r: [["PR-AD-001 Cobranza de ingresos", "PRAD001", "Objetivo y Alcance"], ["PR-AD-004 Procuración de fondos", "PRAD004", "Fuentes de ingreso"]], s: "doc" },
+  { id: "a2", m: "d1", t: "Conoce a quién darás servicio", a: "Revisa qué áreas dependen de Administración y cuáles te pedirán apoyo.", w: "Administración", d: "Identificas las áreas que te solicitarán apoyo.", r: [["Perfil de Coordinación Administrativa", "PF_ADM", "sección C, punto 1"]], s: "val", n: "El jefe aparece como «Administración» y como «Coordinación Administrativa»." },
+  { id: "a3", m: "d1", t: "Recibe tus accesos", a: "Recibe tus usuarios: sistema contable, reloj checador y WhatsApp institucional, según tu puesto.", w: "Administración", d: "Ingresas a cada sistema que utilizarás.", r: [["PR-AD-001 Cobranza de ingresos", "PRAD001", "Glosario", ["recepcion", "fondos"]]], s: "new", n: "Material nuevo: lista de accesos por puesto." },
   { id: "a4", m: "s1", t: "Observa el proceso de tu puesto", a: "Observa dos veces cómo se realiza el proceso clave de tu puesto.", w: "Tu compañera de área", d: "Describes los pasos en orden.", r: [["PROCESO", "PROCESO", ""]], s: "doc" },
   { id: "a5", m: "s1", key: true, t: "Realiza tu primer proceso", a: "Realiza el proceso con un caso real y tu compañera de área al lado. Administración lo revisa.", w: "Tu compañera de área", d: "Un caso completo y revisado sin correcciones de fondo.", r: [["PROCESO", "PROCESO", ""]], s: "val", n: "FALTA" },
-  { id: "a6", m: "s2", t: "Atiende una solicitud de informes", a: "Registra una solicitud de informes de una familia y agenda una cita de evaluación.", w: "Responsable de Admisiones", d: "Un registro y una cita realizados.", r: [["PR-AC-001 Ingreso", "PRAC001", "Solicitud, Beca e Ingreso"], ["PR-AD-011 Becas", "PRAD011", "pasos 1 y 4"]], s: "val", n: "Falta definir quién es Admisiones." },
-  { id: "a7", m: "s2", t: "Tramita caja chica y materiales", a: "Tramita una solicitud de material y un vale de caja.", w: "Administración", d: "Un trámite de cada tipo cerrado con comprobante.", r: [["IN-AD-003 Caja chica", "INAD003", "Desarrollo"], ["PR-AD-015 Solicitud de materiales", "PRAD015", "políticas de compra"]], s: "val", n: "IN-AD-003 es de 2021." },
+  { id: "a6", m: "s2", solo: ["recepcion"], t: "Atiende una solicitud de informes", a: "Registra una solicitud de informes de una familia y agenda una cita de evaluación.", w: "Responsable de Admisiones", d: "Un registro y una cita realizados.", r: [["PR-AC-001 Ingreso", "PRAC001", "Solicitud, Beca e Ingreso"], ["PR-AD-011 Becas", "PRAD011", "pasos 1 y 4"]], s: "val", n: "Falta definir quién es Admisiones." },
+  { id: "a7", m: "s2", t: "Tramita un vale de caja chica", a: "Tramita un vale de caja chica y entrega su factura a tiempo.", w: "Administración", d: "Un vale cerrado con su factura.", r: [["IN-AD-003 Caja chica", "INAD003", "Desarrollo"]], s: "val", n: "IN-AD-003 es de 2021." },
   { id: "a8", m: "s34", t: "Realiza el proceso de forma autónoma", a: "Repite tu proceso clave por tu cuenta; la revisión es posterior.", w: "Administración", d: "Segundo caso correcto a la primera.", r: [["PROCESO", "PROCESO", ""]], s: "doc" },
-  { id: "a9", m: "s34", t: "Elabora tu calendario mensual", a: "Registra lo que ocurre cada quincena y cada mes en tu puesto: pagos, conciliación y reportes.", w: "Administración", d: "Calendario revisado por tu jefa.", r: [["PR-AD-013 Pagos", "PRAD013", "Conciliación"]], s: "doc" },
-  { id: "a10", m: "d30", t: "Revisa tus indicadores y cierre", a: "Revisa las secciones D y E de tu perfil y la rúbrica; reunión de cierre.", w: "Administración", d: "Evaluación de periodo de prueba aplicada.", r: [["Perfil de tu puesto", "PERFIL", "secciones D y E"], ["Rúbrica administrativa", "RUBRICA", "competencias 11 y 12"]], s: "val", n: "Depende del cierre de la evaluación de periodo de prueba." }
+  { id: "a9", m: "s34", solo: ["recepcion", "fondos"], t: "Elabora tu calendario mensual", a: "Registra lo que ocurre cada quincena y cada mes en tu puesto: pagos, conciliación y reportes.", w: "Administración", d: "Calendario revisado por tu jefa.", r: [["PR-AD-013 Pagos", "PRAD013", "Conciliación"]], s: "doc" },
+  { id: "a9a", m: "s34", solo: ["mkt", "mantenimiento", "intendencia"], t: "Organiza tu calendario de trabajo", a: "Anota qué haces cada día, cada semana y cada mes en tu puesto, y revísalo con Administración.", w: "Administración", d: "Calendario revisado por Administración.", r: [["PROCESO", "PROCESO", ""]], s: "doc" },
+  { id: "a10", m: "d30", t: "Reunión de cierre con Administración", a: "Revisan juntos tu primer mes: los procesos que ya haces por tu cuenta y los pendientes que quedan.", w: "Administración", d: "Cierre registrado con tus pendientes y quién los atiende.", r: [["Rúbrica administrativa", "RUBRICA", "competencia 12"]], s: "val", n: "Depende del cierre de la evaluación de periodo de prueba." }
 ];
 Object.assign(F, { PF_CCLYH: "19osxj5sl2eIftLxGFyLkxfmhNAB2yGtu", PF_CACAD: "1HafRkENha5E8t0W8MLrrix0jXdIWPhGB", PF_CINC: "1IDJNgRXtjYvjFzXqdurKczpxm8vDLXOY", PF_CAPO: "1gPVMn7rj_WZhDZep4cvCg5RDN23WHrHh", PF_CSUR: "12DMMp6X3I1Q2RjrjDno16QzZdoIM8oCa", PF_CAL: "1KZzd4xB7rICQD_QOUNKyTEJaHd70Xjue", PF_DIRED: "1hx7U0Uoo9I9A6TRwVQaJxDZvpunO8B6H", PRDG002: "1fdhTdoRV4Neo6NSwwZJKhaVx2PsLrHKm", PRDG003: "1Jp4QZZx7Lrie1UPgTm-Kec48XYGVVU9r", PRTEDI003: "1vSj1VgtxCYxCzff6qfyeHMmxcYoNJ7Z_", FOTEDI002: "1i2nz2kC_mfKkrUqHAKkMVql9WMjsRhmf" });
 const COORDS = {
@@ -470,8 +473,8 @@ const Q = {
     { t: "Si faltas por enfermedad, ¿qué justifica tu ausencia?", o: ["Un mensaje a tu jefa", "La incapacidad del IMSS o un comprobante médico válido", "No necesita justificación"], a: 1, why: "Otro comprobante queda a criterio de la Dirección General." }
   ],
   c9: [
-    { t: "¿Cuál es el monto máximo de un gasto por caja chica?", o: ["$500", "$2,000", "$10,000"], a: 1, why: "Son gastos menores a $2,000 pesos, con vale provisional o reembolso." },
-    { t: "¿En cuántos días debes entregar la factura de un vale de caja provisional?", type: "text", accept: ["15", "quince"], show: "15 días", why: "Si no se entrega en ese plazo, se descuenta vía nómina." }
+    { t: "¿Quién autoriza tu solicitud de material?", o: ["Tu docente par", "Dirección", "Recepción"], a: 1, why: "Administración recibe tu solicitud firmada y la pasa a Dirección para su revisión y autorización." },
+    { t: "Cuando recibes el material, ¿qué firmas? Completa: «firma de ______».", type: "text", accept: ["recibido", "de recibido", "firma de recibido"], show: "Firma de recibido", why: "Es el formato FO-AD-060; después el material se da de alta en el inventario." }
   ],
   c10: [
     { t: "¿Qué días se paga la nómina?", o: ["El 1 y el 15 de cada mes", "El 15 y el 30 de cada mes", "Cada viernes"], a: 1, why: "El pago es por depósito bancario." },
@@ -531,9 +534,9 @@ const Q = {
   a2: [
     { t: "¿A qué área reportan recepción, intendencia y mantenimiento?", type: "text", accept: ["administracion"], show: "Administración", why: "Administración también lleva asistencia, permisos y material." }
   ],
-  a3: [
+  a3: () => (["recepcion", "fondos"].includes(S.puesto) ? [
     { t: "¿En qué sistema se registra la contabilidad?", type: "text", accept: ["contpaq", "contpaqi"], show: "CONTPAQi", why: "Ahí se capturan ingresos y gastos." }
-  ],
+  ] : []),
   a4: () => ({
     recepcion: [{ t: "Una familia paga su cuota. ¿Qué sigue después de recibir el pago?", o: ["Registrarlo en el control de pagos, facturar y capturarlo en CONTPAQi", "Guardar el efectivo hasta fin de mes", "Avisar a la maestra"], a: 0, why: "Luego se deposita y se verifica en el estado de cuenta." }],
     fondos: [{ t: "Cuando un donativo se autoriza, ¿a qué área se informa para registrar el ingreso?", o: ["A Administración", "A Mercadotecnia", "A Calidad"], a: 0, why: "Después Procuración de Fondos envía la encuesta de satisfacción al donante." }],
@@ -548,7 +551,8 @@ const Q = {
     { t: "Una familia pide informes. ¿Dónde se registra la solicitud?", o: ["En el registro de alumno nuevo", "En el registro de asistencia", "En el control de becas"], a: 0, why: "Después se agenda la entrevista y la evaluación de inicio." }
   ],
   a7: [
-    { t: "¿Cuál es el tope en pesos de un gasto por caja chica? Escribe solo el número.", type: "text", accept: ["2000", "2 000", "dos mil"], show: "$2,000", why: "Para montos mayores se usa la solicitud de materiales y compras." }
+    { t: "¿Cuál es el tope en pesos de un gasto por caja chica? Escribe solo el número.", type: "text", accept: ["2000", "2 000", "dos mil"], show: "$2,000", why: "Para montos mayores se usa la solicitud de materiales y compras." },
+    { t: "¿En cuántos días debes entregar la factura de un vale de caja provisional?", type: "text", accept: ["15", "quince"], show: "15 días", why: "Si no se entrega en ese plazo, se descuenta vía nómina." }
   ],
   a9: [
     { t: "¿Cada cuánto se concilian los pagos, como mínimo?", o: ["Una vez al mes", "Una vez al año", "Cada día"], a: 0, why: "Así se detectan diferencias entre lo registrado y lo pagado." }
@@ -626,7 +630,8 @@ function trailSvg() {
     <g class="flagp"><path d="M328 17V2h12l-3 4 3 4h-12" fill="#F1D08A"/></g></svg>`;
 }
 
-const route = () => S.perfil === "docente" ? DOCENTE : S.perfil === "administracion" ? ADMIN : S.perfil === "coordinacion" ? COORD : [];
+const fits = (x, e) => !x || x.includes(e);
+const route = () => (S.perfil === "docente" ? DOCENTE : S.perfil === "administracion" ? ADMIN : S.perfil === "coordinacion" ? COORD : []).filter(s => fits(s.solo, espKey()));
 const acts = k => [...COMUN.filter(s => s.m === k), ...route().filter(s => s.m === k)];
 const all = () => LEVELS.flatMap(L => acts(L.k));
 const lvDone = k => acts(k).every(s => S.done[s.id]);
@@ -647,12 +652,13 @@ const lvOf = st => LEVELS.findIndex(L => L.k === st.m);
 const hasAccess = p => S.dir || !!S.ok[p];
 function refs(st) {
   const out = [];
-  for (const [lab, key, sec] of st.r) {
+  for (const [lab, key, sec, solo] of st.r) {
+    if (!fits(solo, espKey())) continue;
     if (key === "PROC") { const p = S.perfil === "coordinacion" ? COORDS[S.coord].proc : PROG[S.prog].proc; out.push([p[0], url(p[1]), sec]); }
     else if (key === "PLAN") { const p = PROG[S.prog].plan; out.push([p[0], url(p[1]), sec]); }
     else if (key === "EVAL") PROG[S.prog].ev.forEach(e => out.push([e[0], url(e[1]), ""]));
     else if (key === "PROCESO") { const p = PUESTO[S.puesto].proc; out.push([p[0], url(p[1]), p[2]]); }
-    else if (key === "PERFIL") { const k = S.perfil === "docente" ? PROG[S.prog].perfil : S.perfil === "administracion" ? PUESTO[S.puesto].perfil : S.perfil === "coordinacion" ? COORDS[S.coord].perfil : PERFILES; out.push([lab, url(k), sec]); }
+    else if (key === "PERFIL") { const k = S.perfil === "docente" ? PROG[S.prog].perfil : S.perfil === "administracion" ? PUESTO[S.puesto].perfil : COORDS[S.coord].perfil; out.push([lab, url(k), sec]); }
     else if (key === "RUBRICA") out.push([S.perfil === "administracion" ? "Rúbrica de evaluación administrativa" : "Rúbrica de evaluación docente", "", `Te la muestra tu jefa inmediata, en blanco${sec ? ` · ${sec}` : ""}`]);
     else if (key === "ENTREGA") out.push([lab, "", "Plantilla en blanco: te la entrega tu coordinadora"]);
     else out.push([lab, url(key), sec]);
@@ -743,7 +749,7 @@ const V = {
     return `<div><p class="kicker">Documentos</p><h1>Documentos de tu ruta</h1></div>
       ${callout(`Has consultado <b>${got} de ${items.length}</b> documentos de tu ruta.`)}
       <div class="stagger" style="display:flex;flex-direction:column;gap:8px">${items.map(row).join("")}</div>
-      <section class="panel"><h2>Biblioteca institucional</h2><p class="small muted">Los ${DOCS.length} documentos vigentes que utilizan todas las rutas.</p><input type="search" id="bq" placeholder="Buscar por nombre o tema" aria-label="Buscar en la biblioteca"><div id="blist" style="display:flex;flex-direction:column;gap:8px"></div></section>`;
+      ${S.perfil === "coordinacion" ? `<section class="panel"><h2>Biblioteca institucional</h2><p class="small muted">Los ${DOCS.length} documentos vigentes que utilizan todas las rutas.</p><input type="search" id="bq" placeholder="Buscar por nombre o tema" aria-label="Buscar en la biblioteca"><div id="blist" style="display:flex;flex-direction:column;gap:8px"></div></section>` : ""}`;
   },
   avance() {
     const ms = all(), d = ms.filter(s => S.done[s.id]).length, open = Object.keys(S.opened).length;
@@ -957,7 +963,7 @@ function backupCode() {
   return (S.perfil === "docente" ? "D" : S.perfil === "coordinacion" ? "C" : "A") + idx + "-" + bits.toString(36).toUpperCase() + "-" + localDay().toString(36).toUpperCase();
 }
 const localDay = (ts = Date.now()) => Math.floor((ts - new Date(ts).getTimezoneOffset() * 60000) / 864e5);
-const routeFor = p => LEVELS.flatMap(L => [...COMUN.filter(s => s.m === L.k), ...(p === "docente" ? DOCENTE : p === "coordinacion" ? COORD : ADMIN).filter(s => s.m === L.k)]);
+const routeFor = (p, e) => LEVELS.flatMap(L => [...COMUN.filter(s => s.m === L.k), ...(p === "docente" ? DOCENTE : p === "coordinacion" ? COORD : ADMIN).filter(s => s.m === L.k && fits(s.solo, e))]);
 const espOf = (p, k) => espTable(p)[k].n;
 /* codigo de respaldo: perfil + programa o puesto, actividades hechas (bits) y dia del reporte */
 function decodeBackup(raw) {
@@ -967,7 +973,7 @@ function decodeBackup(raw) {
   const esp = Object.keys(espTable(perfil))[+m[2]];
   const bits = parseInt(m[3], 36);
   if (!esp || !Number.isFinite(bits)) return null;
-  const list = routeFor(perfil), done = new Set();
+  const list = routeFor(perfil, esp), done = new Set();
   list.forEach((s, j) => { if (Math.floor(bits / Math.pow(2, j)) % 2 === 1) done.add(s.id); });
   return { perfil, esp, list, done, day: m[4] ? parseInt(m[4], 36) : null };
 }
@@ -1063,7 +1069,7 @@ function render(animate = false) {
   const nav = $("nav");
   nav.hidden = solo;
   nav.innerHTML = solo ? "" : navHtml(view);
-  if (view === "documentos") { drawLib(); $("bq").addEventListener("input", drawLib); }
+  if (view === "documentos" && $("bq")) { drawLib(); $("bq").addEventListener("input", drawLib); }
   if (view === "inicio" && (S.step === "code" || S.step === "dircode")) { const f = $("codeform"); f.addEventListener("submit", submitCode); setTimeout(() => ($("nombre") && !$("nombre").value ? $("nombre") : $("code")).focus(), 80); }
   if (view === "equipo") $("addform").addEventListener("submit", addPerson);
   if (!solo) settle(); else { lastPct = null; lastPts = null; }
