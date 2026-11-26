@@ -1,0 +1,1180 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Tu primer mes en TEDI, paso a paso.">
+<meta property="og:title" content="Incorporación TEDI"><meta property="og:description" content="Tu primer mes en TEDI, paso a paso.">
+<meta name="theme-color" content="#0F6E6A"><meta name="robots" content="noindex">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg" type="image/svg+xml">
+<style>html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
+</head><body>
+<title>Incorporación TEDI</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: una columna para celular (hasta 560px). Portada con banda institucional y ruta animada; acceso con codigo; ruta de 6 etapas; fichas tipo cajon que suben desde abajo; navegacion fija abajo. Tema institucional claro, unico a proposito. */
+:root {
+  --bg: #F3F5F7; --card: #FFFFFF; --ink: #12263A; --muted: #55667A; --line: #DCE3EA;
+  --teal: #0F6E6A; --teal-d: #0A524F; --teal-dd: #083B39; --teal-l: #DCEFEC; --gold: #B8862A; --gold-l: #F6EEDB;
+  --navy: #12263A; --navy-l: #E4E9EF; --lock: #9AA9B8; --lock-l: #E9EDF1; --violet: #4C4AA8; --violet-l: #ECECF8; --red: #B3402E; --red-l: #FBE9E5;
+  --display: "Space Grotesk", "Inter", system-ui, sans-serif; --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1); --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1); --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { background: var(--bg); }
+body { color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.5; -webkit-tap-highlight-color: transparent; }
+button { font: inherit; color: inherit; }
+a { color: var(--teal-d); }
+:focus-visible { outline: 3px solid var(--violet); outline-offset: 2px; border-radius: 8px; }
+.app { max-width: 560px; margin: 0 auto; min-height: 100vh; padding-block: 12px 108px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; flex-direction: column; gap: 16px; }
+.app.bare { padding-bottom: 32px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 600; margin: 0; line-height: 1.15; text-wrap: balance; letter-spacing: -0.01em; }
+h1 { font-size: clamp(26px, 7vw, 34px); }
+h2 { font-size: 21px; }
+p { margin: 0; }
+.muted { color: var(--muted); }
+.small { font-size: 14px; }
+.kicker { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.ic { width: 22px; height: 22px; flex: none; }
+
+/* entrada de cada vista: escalonada, solo al cambiar de pantalla */
+.view-in > * { animation: rise 420ms var(--ease-out) both; }
+.view-in > *:nth-child(2) { animation-delay: 50ms; } .view-in > *:nth-child(3) { animation-delay: 100ms; } .view-in > *:nth-child(4) { animation-delay: 150ms; }
+.view-in > *:nth-child(5) { animation-delay: 200ms; } .view-in > *:nth-child(6) { animation-delay: 250ms; } .view-in > *:nth-child(n+7) { animation-delay: 300ms; }
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.stagger > * { animation: rise 380ms var(--ease-out) both; }
+.stagger > *:nth-child(2) { animation-delay: 45ms; } .stagger > *:nth-child(3) { animation-delay: 90ms; } .stagger > *:nth-child(4) { animation-delay: 135ms; }
+.stagger > *:nth-child(5) { animation-delay: 180ms; } .stagger > *:nth-child(6) { animation-delay: 225ms; } .stagger > *:nth-child(n+7) { animation-delay: 270ms; }
+
+/* portada */
+.cover { position: relative; overflow: hidden; border-radius: 22px; background: linear-gradient(160deg, var(--teal) 0%, var(--teal-dd) 100%); color: #fff; padding: 22px 20px 20px; display: flex; flex-direction: column; gap: 10px; }
+.cover .brandline { display: flex; align-items: center; gap: 10px; }
+.brandmark { width: 38px; height: 38px; border-radius: 10px; background: #fff; color: var(--teal-d); display: grid; place-items: center; font-family: var(--display); font-weight: 700; font-size: 14px; letter-spacing: .02em; }
+.cover .tag { font-size: 12px; font-weight: 600; background: rgba(255,255,255,.16); color: #fff; border-radius: 999px; padding: 3px 10px; }
+.cover h1 { font-size: clamp(28px, 8vw, 36px); color: #fff; }
+.cover p { color: #CFE8E5; max-width: 40ch; }
+.cover svg.trail { width: 100%; height: auto; margin-top: 4px; }
+.trail .line { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1400ms var(--ease-in-out) 200ms forwards; }
+.trail .dot { transform-box: fill-box; transform-origin: center; opacity: 0; animation: dot 420ms var(--ease-out) forwards; }
+.trail .flagp { opacity: 0; animation: fade 400ms var(--ease-out) 1500ms forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes dot { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }
+@keyframes fade { to { opacity: 1; } }
+.facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.facts div { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; }
+.facts b { display: block; font-family: var(--display); font-size: 22px; font-weight: 600; }
+.facts span { font-size: 12px; color: var(--muted); }
+
+/* tarjetas y botones */
+.panel { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; cursor: pointer; border-radius: 12px; padding: 13px 20px; font-weight: 600; font-size: 16px; text-decoration: none; background: var(--teal); color: #fff; min-height: 50px; transition: transform 160ms var(--ease-out), background-color 200ms ease; }
+.btn:active { transform: scale(0.97); }
+.btn.ghost { background: var(--card); color: var(--teal-d); border: 1px solid var(--line); }
+.btn.wide { width: 100%; }
+.btn[disabled] { cursor: default; }
+.linkbtn { background: none; border: 0; color: var(--teal-d); font-weight: 600; cursor: pointer; padding: 10px 4px; text-decoration: underline; text-underline-offset: 3px; align-self: center; min-height: 44px; }
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover { background: var(--teal-d); }
+  .btn.ghost:hover { background: var(--teal-l); }
+  .char:hover, .act:hover, .item:hover { border-color: var(--teal); }
+}
+.tile { width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; flex: none; background: var(--teal-l); color: var(--teal-d); }
+.iconbtn { width: 44px; height: 44px; border-radius: 10px; border: 1px solid var(--line); background: var(--card); display: grid; place-items: center; cursor: pointer; flex: none; color: var(--ink); transition: transform 160ms var(--ease-out); }
+.iconbtn:active { transform: scale(0.94); }
+
+/* perfil */
+.chars { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.char { border: 1px solid var(--line); background: var(--card); border-radius: 16px; padding: 18px 14px; cursor: pointer; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; text-align: left; transition: border-color 200ms ease, box-shadow 200ms ease, transform 160ms var(--ease-out); }
+.char:active { transform: scale(0.98); }
+.char .tile { width: 48px; height: 48px; border-radius: 12px; transition: background-color 200ms ease, color 200ms ease; }
+.char .tile .ic { width: 26px; height: 26px; }
+.char b { font-family: var(--display); font-size: 18px; font-weight: 600; }
+.char span { font-size: 13px; color: var(--muted); }
+.char[aria-pressed="true"] { border-color: var(--teal); box-shadow: 0 0 0 1px var(--teal), 0 6px 18px rgba(15, 110, 106, .14); }
+.char[aria-pressed="true"] .tile { background: var(--teal); color: #fff; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 9px 14px; font-weight: 500; cursor: pointer; font-size: 15px; min-height: 44px; transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease, transform 160ms var(--ease-out); }
+.chip:active { transform: scale(0.96); }
+.chip[aria-pressed="true"] { background: var(--teal); border-color: var(--teal); color: #fff; }
+
+/* acceso */
+.gate { text-align: left; }
+.gate .lockicon { width: 52px; height: 52px; border-radius: 14px; background: var(--navy); color: #fff; display: grid; place-items: center; }
+.codefield { display: flex; flex-direction: column; gap: 6px; }
+.codefield label { font-size: 13px; font-weight: 600; color: var(--muted); }
+.codefield input { font: inherit; font-family: var(--display); font-size: 22px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; text-align: center; color: var(--ink); background: var(--bg); border: 2px solid var(--line); border-radius: 12px; padding: 12px; width: 100%; min-height: 56px; transition: border-color 180ms ease, background-color 180ms ease; }
+.codefield input:focus { border-color: var(--teal); background: #fff; outline: none; }
+.codefield.err input { border-color: var(--red); background: var(--red-l); }
+.codefield.err { animation: shake 320ms var(--ease-out); }
+.codefield input.namein { font-family: var(--body); font-size: 17px; font-weight: 500; letter-spacing: 0; text-transform: none; text-align: left; margin-bottom: 8px; }
+input.txt { font: inherit; color: var(--ink); background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; width: 100%; min-height: 46px; }
+.bcode { font-family: var(--display); letter-spacing: .06em; }
+.report { margin: 0; white-space: pre-wrap; font-family: var(--body); font-size: 13px; line-height: 1.5; color: var(--muted); background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 12px; max-height: 220px; overflow: auto; user-select: text; -webkit-user-select: text; }
+.person { display: flex; gap: 12px; width: 100%; text-align: left; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px; cursor: pointer; transition: border-color 200ms ease, transform 160ms var(--ease-out); }
+.person:active { transform: scale(0.98); }
+.pav { width: 44px; height: 44px; border-radius: 50%; background: var(--navy-l); color: var(--navy); display: grid; place-items: center; font-weight: 700; font-size: 15px; flex: none; }
+.pt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.pt b { font-weight: 600; font-size: 16px; }
+.pt > span { font-size: 13px; color: var(--muted); }
+.pt .bar { margin: 6px 0 2px; }
+.pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.s-late { background: var(--red-l); color: var(--red); }
+.s-none { background: var(--navy-l); color: var(--muted); }
+.addform { display: flex; flex-direction: column; gap: 8px; }
+.addform label { font-size: 13px; font-weight: 600; color: var(--muted); }
+.addform textarea { font: inherit; font-size: 14px; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; width: 100%; resize: vertical; min-height: 96px; }
+.tipbox { display: flex; flex-direction: column; gap: 6px; background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--gold); border-radius: 12px; padding: 12px 14px; font-size: 14px; }
+.tipbox span { color: var(--muted); }
+.tipbox.warn { border-left-color: var(--red); background: var(--red-l); }
+.tipbox.warn span { color: var(--ink); }
+.tipbox .linkbtn { align-self: flex-start; padding: 4px 0; min-height: 36px; }
+/* preguntas */
+.quiz { border-color: var(--teal); }
+.qhead { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); font-weight: 600; }
+.qdots { display: flex; gap: 4px; }
+.qdots i { width: 18px; height: 4px; border-radius: 2px; background: var(--lock-l); }
+.qdots i.on { background: var(--teal); } .qdots i.cur { background: var(--gold); }
+.qtext { font-weight: 600; font-size: 16px; line-height: 1.4; }
+.qopts { display: flex; flex-direction: column; gap: 8px; }
+.qopt { display: flex; align-items: flex-start; gap: 10px; width: 100%; text-align: left; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 11px 12px; cursor: pointer; font-size: 15px; min-height: 48px; transition: border-color 180ms ease, background-color 180ms ease, transform 160ms var(--ease-out); }
+.qopt:active { transform: scale(0.98); }
+.qopt .qk { width: 24px; height: 24px; border-radius: 50%; background: var(--card); border: 1px solid var(--line); display: grid; place-items: center; font-size: 12px; font-weight: 700; flex: none; }
+.qopt.sel { border-color: var(--teal); background: var(--teal-l); } .qopt.sel .qk { background: var(--teal); color: #fff; border-color: var(--teal); }
+.qopt.right { border-color: var(--teal); background: var(--teal-l); } .qopt.right .qk { background: var(--teal); color: #fff; border-color: var(--teal); }
+.qopt.wrong { border-color: var(--red); background: var(--red-l); } .qopt.wrong .qk { background: var(--red); color: #fff; border-color: var(--red); }
+.qopt[disabled] { cursor: default; }
+.qin { font-size: 16px; }
+.qin.right { border-color: var(--teal); background: var(--teal-l); }
+.qin.wrong { border-color: var(--red); background: var(--red-l); }
+.qfb { font-size: 14px; border-radius: 10px; padding: 0; min-height: 0; display: flex; gap: 8px; align-items: flex-start; }
+.qfb:empty { display: none; }
+.qfb.ok { background: var(--teal-l); color: var(--teal-dd); padding: 10px 12px; animation: rise 260ms var(--ease-out) both; }
+.qfb.err { background: var(--red-l); color: var(--red); padding: 10px 12px; animation: rise 260ms var(--ease-out) both; }
+.qfb .ic { width: 18px; height: 18px; flex: none; margin-top: 1px; }
+.qform { margin: 0; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.btn[disabled] { background: var(--lock-l); color: var(--muted); }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.wide2 { grid-column: 1 / -1; }
+.char.wide2 { flex-direction: row; align-items: center; gap: 14px; }
+.char.wide2 .ctext { display: flex; flex-direction: column; gap: 4px; min-width: 0; font-size: 13px; color: var(--muted); }
+.char.wide2 .ctext b { display: block; color: var(--ink); }
+.stagelist { display: flex; flex-direction: column; gap: 6px; }
+.stagelist div { display: flex; justify-content: space-between; gap: 10px; font-size: 14px; padding: 6px 0; border-bottom: 1px solid var(--line); }
+.stagelist div:last-child { border-bottom: 0; }
+@media (hover: hover) and (pointer: fine) { .person:hover { border-color: var(--teal); } }
+.codefield .msg { font-size: 14px; color: var(--red); font-weight: 500; min-height: 21px; }
+.codefield .hint { font-size: 13px; color: var(--muted); }
+@keyframes shake { 0%,100% { transform: none; } 20% { transform: translateX(-8px); } 40% { transform: translateX(7px); } 60% { transform: translateX(-5px); } 80% { transform: translateX(3px); } }
+.okmark { width: 72px; height: 72px; border-radius: 50%; background: var(--teal); color: #fff; display: grid; place-items: center; align-self: center; animation: dot 360ms var(--ease-out) both; }
+.okmark svg { width: 38px; height: 38px; }
+.okmark path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 420ms var(--ease-out) 160ms forwards; }
+
+/* barra de avance */
+.hud { display: flex; align-items: center; gap: 12px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; box-shadow: 0 2px 8px rgba(18, 38, 58, .06); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 21; background: var(--bg); }
+.hud .who { min-width: 0; flex: 1; }
+.hud .name { font-weight: 600; font-size: 14px; line-height: 1.2; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hud .meta { font-size: 12px; color: var(--muted); margin-top: 1px; font-variant-numeric: tabular-nums; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar { height: 6px; background: var(--lock-l); border-radius: 999px; overflow: hidden; margin-top: 6px; }
+.bar i { display: block; height: 100%; width: 100%; background: var(--teal); border-radius: 999px; transform-origin: left center; transform: scaleX(var(--p, 0)); transition: transform 700ms var(--ease-out); }
+.pts { font-family: var(--display); font-weight: 600; font-size: 15px; color: var(--gold); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.junta { font-size: 13px; font-weight: 600; color: var(--violet); background: var(--violet-l); border-radius: 10px; padding: 8px 12px; }
+
+/* resumen de ruta */
+.summary { display: flex; align-items: center; gap: 16px; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px; }
+.ring { width: 84px; height: 84px; flex: none; position: relative; }
+.ring svg { width: 84px; height: 84px; transform: rotate(-90deg); }
+.ring .track { stroke: var(--lock-l); }
+.ring .val { stroke: var(--teal); stroke-linecap: round; transition: stroke-dashoffset 900ms var(--ease-out); }
+.ring b { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--display); font-size: 20px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.summary .st { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.summary .st b { color: var(--teal-d); }
+
+/* ruta */
+.map { position: relative; }
+.map.reveal .path { clip-path: inset(0 0 100% 0); animation: unclip 900ms var(--ease-in-out) 120ms forwards; }
+@keyframes unclip { to { clip-path: inset(0 0 0 0); } }
+.map svg.path { position: absolute; inset: 0; width: 100%; pointer-events: none; overflow: visible; }
+.map.reveal .node, .map.reveal .label, .map.reveal .here-tag { animation: rise 420ms var(--ease-out) both; animation-delay: calc(200ms + var(--i) * 110ms); }
+.node { position: absolute; transform: translate(-50%, -50%); width: 68px; height: 68px; border-radius: 50%; border: 0; cursor: pointer; display: grid; place-items: center; font-family: var(--display); font-size: 24px; font-weight: 700; color: #fff; background: var(--teal); box-shadow: 0 0 0 5px var(--bg), 0 4px 12px rgba(18, 38, 58, .18); transition: transform 160ms var(--ease-out); }
+.map.reveal .node { animation-name: nodein; }
+@keyframes nodein { from { opacity: 0; transform: translate(-50%, -50%) scale(.85); } to { opacity: 1; transform: translate(-50%, -50%); } }
+.node:active { transform: translate(-50%, -50%) scale(.95); }
+.node.done { background: var(--gold); }
+.node.locked { background: var(--lock-l); color: var(--lock); box-shadow: 0 0 0 5px var(--bg); }
+.node .ic { width: 28px; height: 28px; }
+.halo { position: absolute; width: 68px; height: 68px; border-radius: 50%; transform: translate(-50%, -50%); background: var(--teal); opacity: 0; pointer-events: none; animation: halo 2400ms var(--ease-out) 1200ms infinite; }
+@keyframes halo { 0% { opacity: .28; transform: translate(-50%, -50%) scale(1); } 70%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.6); } }
+.here-tag { position: absolute; transform: translate(-50%, -100%); background: var(--navy); color: #fff; font-weight: 600; font-size: 12px; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+.map.reveal .here-tag { animation-name: tagin; }
+@keyframes tagin { from { opacity: 0; transform: translate(-50%, calc(-100% + 6px)); } to { opacity: 1; transform: translate(-50%, -100%); } }
+.label { position: absolute; transform: translateY(-50%); width: calc(50% - 64px); min-width: 120px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 8px 12px; cursor: pointer; text-align: left; transition: border-color 200ms ease; }
+.map.reveal .label { animation-name: labelin; }
+@keyframes labelin { from { opacity: 0; transform: translateY(calc(-50% + 8px)); } to { opacity: 1; transform: translateY(-50%); } }
+.label b { display: block; font-family: var(--display); font-size: 16px; font-weight: 600; line-height: 1.2; }
+.label span { display: block; font-size: 12px; color: var(--muted); font-weight: 500; }
+.label.locked { opacity: .7; }
+.dots { display: flex; gap: 3px; margin-top: 5px; }
+.dots i { width: 14px; height: 4px; border-radius: 2px; background: var(--lock-l); }
+.dots i.on { background: var(--gold); }
+
+/* etapa */
+.lvhead { display: flex; align-items: center; gap: 12px; }
+.lvnum { width: 52px; height: 52px; border-radius: 14px; background: var(--teal); color: #fff; display: grid; place-items: center; font-family: var(--display); font-size: 24px; font-weight: 700; flex: none; }
+.callout { display: flex; gap: 12px; align-items: flex-start; background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--teal); border-radius: 12px; padding: 14px; }
+.callout .tile { width: 36px; height: 36px; }
+.callout p { flex: 1; min-width: 0; }
+.callout b { color: var(--teal-d); }
+.act { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 12px; cursor: pointer; transition: border-color 200ms ease, transform 160ms var(--ease-out); }
+.act:active { transform: scale(0.98); }
+.act .ai { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; flex: none; background: var(--teal-l); color: var(--teal-d); transition: background-color 300ms ease, color 300ms ease; }
+.act .at { flex: 1; min-width: 0; }
+.act .at b { display: block; font-weight: 600; font-size: 15px; line-height: 1.3; }
+.act .at span { font-size: 13px; color: var(--muted); }
+.act .ap { font-family: var(--display); font-weight: 600; font-size: 13px; color: var(--gold); white-space: nowrap; }
+.act.done .ai { background: var(--teal); color: #fff; }
+.act.done .at b { color: var(--muted); }
+.act.just .ai { animation: pop 420ms var(--ease-out); }
+.act.just .ai path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 380ms var(--ease-out) 120ms forwards; }
+@keyframes pop { 0% { transform: scale(.85); } 100% { transform: none; } }
+.act.keyact { border: 2px solid var(--gold); padding: 11px; background: #FFFCF5; }
+.act.keyact .ai { background: var(--gold-l); color: var(--gold); }
+.act.keyact.done .ai { background: var(--teal); color: #fff; }
+.keytag { display: block; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--gold); }
+
+/* cajones y avisos */
+.scrim { position: fixed; inset: 0; background: rgba(18, 38, 58, .42); z-index: 40; display: flex; align-items: flex-end; justify-content: center; opacity: 0; transition: opacity 300ms var(--ease-out); }
+.scrim.open { opacity: 1; }
+.scrim.middle { align-items: center; }
+.sheet { background: var(--bg); width: 100%; max-width: 560px; max-height: 92vh; overflow-y: auto; border-radius: 20px 20px 0 0; padding: 10px max(16px, env(safe-area-inset-left, 0px)) calc(20px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-right, 0px)); display: flex; flex-direction: column; gap: 12px; transform: translateY(100%); transition: transform 450ms var(--ease-drawer); }
+.scrim.open .sheet { transform: none; }
+.scrim.closing .sheet { transition-duration: 260ms; }
+.scrim.closing { transition-duration: 260ms; }
+.grab { width: 40px; height: 5px; border-radius: 999px; background: var(--line); align-self: center; flex: none; margin-bottom: 4px; }
+.sheet.center { border-radius: 20px; margin: auto 16px; max-width: 420px; text-align: center; align-items: center; padding: 26px 20px 20px; transform: scale(0.96); opacity: 0; transition: transform 250ms var(--ease-out), opacity 250ms var(--ease-out); }
+.scrim.open .sheet.center { transform: none; opacity: 1; }
+.sheettop { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.box { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+.box h3 { font-family: var(--body); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.npc { display: flex; align-items: center; gap: 12px; }
+.npc .av { width: 40px; height: 40px; border-radius: 50%; background: var(--navy-l); color: var(--navy); display: grid; place-items: center; font-weight: 700; font-size: 14px; flex: none; }
+.item { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; min-height: 52px; transition: border-color 200ms ease, transform 160ms var(--ease-out); }
+.item:active { transform: scale(0.98); }
+.item .ii { width: 36px; height: 36px; border-radius: 10px; background: var(--navy-l); color: var(--navy); display: grid; place-items: center; flex: none; transition: background-color 300ms ease, color 300ms ease; }
+.item .it { flex: 1; min-width: 0; }
+.item .it b { display: block; font-weight: 600; font-size: 14px; line-height: 1.3; overflow-wrap: anywhere; }
+.item .it span { font-size: 12px; color: var(--muted); }
+.item.opened .ii { background: var(--teal-l); color: var(--teal-d); }
+.item.lockeditem { opacity: .55; }
+.pill { display: inline-block; border-radius: 999px; padding: 2px 10px; font-size: 12px; font-weight: 600; }
+.s-doc { background: var(--teal-l); color: var(--teal-d); }
+.s-val { background: var(--gold-l); color: #7A5600; }
+.s-new { background: var(--violet-l); color: var(--violet); }
+.revbox { border: 1px dashed var(--violet); background: #F8F8FD; }
+.keyline { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: #7A5600; background: var(--gold-l); border-radius: 999px; padding: 4px 12px; }
+.keyline .ic { width: 16px; height: 16px; }
+.btn .draw path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 360ms var(--ease-out) forwards; }
+
+.toast { position: fixed; left: 50%; bottom: calc(92px + env(safe-area-inset-bottom, 0px)); background: var(--navy); color: #fff; font-weight: 600; font-size: 15px; padding: 10px 18px; border-radius: 999px; z-index: 60; white-space: nowrap; display: flex; align-items: center; gap: 8px; opacity: 1; transform: translate(-50%, 0); transition: opacity 400ms ease, transform 400ms ease; }
+@starting-style { .toast { opacity: 0; transform: translate(-50%, 100%); } }
+.toast.out { opacity: 0; transform: translate(-50%, 100%); }
+.toast .ic { width: 18px; height: 18px; color: #F1D08A; }
+
+/* cierre de etapa */
+.seal { position: relative; width: 132px; height: 132px; display: grid; place-items: center; }
+.seal svg.medal { width: 112px; height: 112px; animation: sealin 520ms var(--ease-out) 120ms both; }
+@keyframes sealin { from { opacity: 0; transform: scale(.88) rotate(-6deg); } to { opacity: 1; transform: none; } }
+.rays { position: absolute; inset: 0; }
+.rays i { position: absolute; left: 50%; top: 50%; width: 3px; height: 12px; margin: -6px 0 0 -1.5px; border-radius: 2px; background: var(--gold); opacity: 0; transform: rotate(var(--a)) translateY(-44px); animation: ray 760ms var(--ease-out) 380ms forwards; }
+@keyframes ray { 0% { opacity: 0; transform: rotate(var(--a)) translateY(-44px); } 30% { opacity: 1; } 100% { opacity: 0; transform: rotate(var(--a)) translateY(-66px); } }
+
+/* navegacion */
+.nav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; background: var(--card); border-top: 1px solid var(--line); padding: 6px max(8px, env(safe-area-inset-right, 0px)) calc(6px + env(safe-area-inset-bottom, 0px)) max(8px, env(safe-area-inset-left, 0px)); }
+.nav ul { list-style: none; margin: 0 auto; padding: 0; max-width: 560px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; }
+.nav button { width: 100%; border: 0; background: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 2px; border-radius: 12px; font-size: 12px; font-weight: 600; color: var(--muted); min-height: 54px; transition: background-color 200ms ease, color 200ms ease, transform 160ms var(--ease-out); }
+.nav button:active { transform: scale(0.95); }
+@media (max-width: 380px) { .nav button { font-size: 11px; letter-spacing: -0.01em; padding: 6px 0; } }
+.nav button[aria-current="page"] { color: var(--teal-d); background: var(--teal-l); }
+.nav .cont, .nav .cont[aria-current="page"] { background: var(--teal); color: #fff; }
+
+/* avance */
+.badges { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.badge { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 12px 6px; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
+.badge svg { width: 56px; height: 56px; }
+.badge b { font-size: 13px; font-weight: 600; line-height: 1.25; }
+.badge span { font-size: 12px; color: var(--muted); }
+.badge.off svg { filter: grayscale(1); opacity: .35; }
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.stat { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 12px; }
+.stat b { display: block; font-family: var(--display); font-size: 26px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--muted); }
+.toggle { display: flex; align-items: center; gap: 12px; justify-content: space-between; font-weight: 500; min-height: 44px; }
+.toggle input { width: 22px; height: 22px; accent-color: var(--teal); flex: none; }
+select, input[type="search"] { font: inherit; color: var(--ink); background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; width: 100%; min-height: 46px; }
+ol.plain, ul.plain { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+
+/* movimiento reducido: sin desplazamientos, se conservan los cambios de opacidad y color */
+@media (prefers-reduced-motion: reduce) {
+  .view-in > *, .stagger > *, .map.reveal .node, .map.reveal .label, .map.reveal .here-tag { animation: fade 200ms ease both !important; animation-delay: 0ms !important; }
+  .map.reveal .path { animation: none; clip-path: none; }
+  .trail .line { animation: none; stroke-dashoffset: 0; } .trail .dot, .trail .flagp { animation: fade 200ms ease forwards; }
+  .halo, .rays { display: none; }
+  .sheet, .sheet.center { transition: opacity 200ms ease; transform: none !important; }
+  .scrim .sheet { opacity: 0; } .scrim.open .sheet { opacity: 1; }
+  .codefield.err, .act.just .ai, .okmark, .seal svg.medal { animation: none; }
+  .okmark path, .act.just .ai path, .btn .draw path { animation: none; stroke-dashoffset: 0; }
+  .toast, .toast.out { transform: translate(-50%, 0); }
+  .bar i, .ring .val { transition-duration: 1ms; }
+}
+</style>
+
+<div class="app" id="app"></div>
+<nav class="nav" id="nav" aria-label="Navegación" hidden></nav>
+<div id="layer"></div>
+<script>
+const DOCS = [{"nombre": "FO-AD-003 Perfil de Calidad e innovación V003 (Enero 2026).docx", "enlace": "https://drive.google.com/file/d/1KZzd4xB7rICQD_QOUNKyTEJaHd70Xjue/view", "tema": "Perfil del área que mantiene los manuales (perfiles, procesos, inducción), aplica encuestas de satisfacción y capacita en trabajo por resultados.", "nivel": "3 · Administración"}, {"nombre": "FO-AD-003 Perfil de intendencia V002 (dic 2025).docx", "enlace": "https://drive.google.com/file/d/1FZ1hHIEC_gynZpusyN4OAkPZBVApLfWq/view", "tema": "Perfil del personal de limpieza de las instalaciones.", "nivel": "3 · Administración"}, {"nombre": "FO-AD-003 Perfil de Mantenimeinto y chofer V001 (dic 2025).docx", "enlace": "https://drive.google.com/file/d/1QPII9bQsbhi9kvoWNWYLRM4CANVetmyc/view", "tema": "Perfil que une mensajería, traslados y compras con apoyo a limpieza y cuidado del vehículo.", "nivel": "3 · Administración"}, {"nombre": "FO-AD-003 Perfil de Mercadotecnia Institucional  V004 (dic 25).docx", "enlace": "https://drive.google.com/file/d/1R12Zg9kCr1Chyk7UtD9JkzNSKhOX-KiF/view", "tema": "Perfil de comunicación y mercadotecnia: redes sociales, prensa, imagen de marca, campañas de captación de alumnos y de sensibilización.", "nivel": "3 · Administración"}, {"nombre": "FO-AD-003 Perfil de procuracion de fondos V004 (dic 2025).docx", "enlace": "https://drive.google.com/file/d/1mPq_GBv5J5u3jOH5--IlO715MneBavh3/view", "tema": "Perfil de quien busca donantes, convocatorias y fondos de gobierno, y mantiene el cultivo de donantes.", "nivel": "3 · Administración"}, {"nombre": "FO-AD-003 Perfil de Recaudación de fondos V001 (dic 2025).docx", "enlace": "https://drive.google.com/file/d/12vHBtPPyTuF-ML0sjSjrUpwR3VoKKOE-/view", "tema": "Perfil nuevo de recaudación: mismas tareas de procuración más el comité de becas y las campañas institucionales.", "nivel": "3 · Administración"}, {"nombre": "FO-AD-003 Perfil de Recepción  V001 (nov-25).docx", "enlace": "https://drive.google.com/file/d/1XmTyf5gpwLYGUO-_HUKuBxR5YOJMh27k/view", "tema": "Perfil de recepción: atención a familias por WhatsApp, constancias, cobro de colegiaturas, expedientes y citas de admisión.", "nivel": "3 · Administración"}, {"nombre": "FO-AD-003 Perfil de relaciones institucionales  V002 (nov 2025).docx", "enlace": "https://drive.google.com/file/d/1ioPwVNVIfm3xd95jDkCUEobBuTDFxs_A/view", "tema": "Perfil de quien lleva eventos institucionales, campañas, productos con causa, alianzas y el programa de voluntariado.", "nivel": "3 · Administración"}, {"nombre": "FO-AD-003 maestro de grupo Jóvenes V001 (febrero 2026).docx", "enlace": "https://drive.google.com/file/d/1R7BvsK6G7X0Jih1eWuiMXvDKELc0k_lG/view", "tema": "Perfil del maestro titular del programa de Jóvenes: programas individualizados, habilidades adaptativas y asesoría a las familias.", "nivel": "2 · Docentes"}, {"nombre": "FO-AD-003 maestro de grupo Transitorio V001 (enero 2026).docx", "enlace": "https://drive.google.com/file/d/1FmiAdO9Pg7B5gm5R4tkMWI2ndSTHHsiP/view", "tema": "Perfil del maestro titular del grupo Transitorio: programas individualizados y preparación del alumno para entrar a preescolar.", "nivel": "2 · Docentes"}, {"nombre": "FO-AD-003 Perfil de auxiliar de grupo V004 (enero 2026).docx", "enlace": "https://drive.google.com/file/d/1h0X5fkbU9-7xGoDOgcny7ZZAVSUfYP36/view", "tema": "Perfil del auxiliar de grupo: asiste al titular en la clase diaria, el material, la conducta del grupo y las necesidades personales del alumno.", "nivel": "2 · Docentes"}, {"nombre": "FO-AD-003 Perfil de maestro de apoyo escolar V004 (enero 2026).docx", "enlace": "https://drive.google.com/file/d/1m5Qghv03M95P1LV5_uqIOhXJ8HGJszkb/view", "tema": "Perfil vigente archivado como maestro de apoyo escolar, redactado como maestro de grupo genérico; es el único que pide subir la información de los alumnos al Drive de maestros.", "nivel": "2 · Docentes"}, {"nombre": "FO-AD-003 Perfil de puesto AT V004 (enero 2026).docx", "enlace": "https://drive.google.com/file/d/1vx951hEnzp16Mpg1Nk0xMO3-OmBnG5ND/view", "tema": "Perfil vigente del terapeuta de Atención Temprana: terapias personalizadas en los 3 primeros años de vida, programas trimestrales y orientación a padres.", "nivel": "2 · Docentes"}, {"nombre": "FO-AD-003 Perfil de terapeuta de lenguaje V004 (enero 2026).docx", "enlace": "https://drive.google.com/file/d/1Kfgu6s4NtitiJas6Y8BN5IhXAS9C-jKV/view", "tema": "Perfil vigente del terapeuta de lenguaje: programas individualizados de desarrollo del lenguaje y evaluaciones quincenales, bajo la Coordinación de Lenguaje.", "nivel": "2 · Docentes"}, {"nombre": "Copia de FO-AD-003 maestro de grupo APO V001.docx", "enlace": "https://drive.google.com/file/d/1pN_3mCsqqtAPye9HCXJT2U1LuSa6BCLe/view", "tema": "Copia para el campus Apodaca del perfil de maestro de grupo, con funciones de sede (material, decoración, apoyo a otros maestros) y horario vespertino.", "nivel": "2 · Docentes"}, {"nombre": "Copia de FO-AD-003 maestro de grupo Transitorio APO V001.docx", "enlace": "https://drive.google.com/file/d/1TN49BTQPn3OjaTJrKYy_qG5IkCrV1USg/view", "tema": "Copia para Apodaca del perfil de maestro de Transitorio, con sesiones de psicomotricidad y tareas de sede, en horario matutino.", "nivel": "2 · Docentes"}, {"nombre": "Copia de FO-AD-003 Perfil de intendencia APOV001.docx", "enlace": "https://drive.google.com/file/d/1Igr7M6I4d_vF6evExbbp0SEmauLFfj-I/view", "tema": "Perfil de intendencia del campus Apodaca: limpieza diaria, control de materiales y reporte de daños.", "nivel": "3 · Administración"}, {"nombre": "Copia de FO-AD-003 Perfil de puestoapoyoe  APOV001.docx", "enlace": "https://drive.google.com/file/d/1apSHh_Bsn9VcPmIGILxp8q63Gm1Pq5xU/view", "tema": "Copia para Apodaca del perfil de apoyo escolar: acompaña al alumno en su inclusión a escuela regular, reporta a Inclusión y orienta a padres, en horario vespertino.", "nivel": "2 · Docentes"}, {"nombre": "Copia de FO-AD-003 Perfil de puestoAT APO001.docx", "enlace": "https://drive.google.com/file/d/10R-eZgue7UqTyacjpSoi4kvXufxvCUkB/view", "tema": "Copia para Apodaca del perfil de terapeuta de Atención Temprana, que además planea y ejecuta psicomotricidad para el grupo de transitorio.", "nivel": "2 · Docentes"}, {"nombre": "Copia de FO-AD-003 Perfil de terapeuta de lenguaje APO V001.docx", "enlace": "https://drive.google.com/file/d/17EL85JYNIOoH2tlHx_OjIq_DAM-bvo60/view", "tema": "Copia para Apodaca del perfil de terapeuta de lenguaje, con doble turno y reporte a Coordinación Académica y a CLyH.", "nivel": "2 · Docentes"}, {"nombre": "FO-AD-003 Perfil de asistente general V002.docx", "enlace": "https://drive.google.com/file/d/1Ni9xomlKCCwZUSSbpLahR73sYD1YGgMu/view", "tema": "Perfil anterior que juntaba recepción con contabilidad, nómina, caja chica y cobro de cuotas.", "nivel": "3 · Administración"}, {"nombre": "PR-AC-001 Ingreso v006.docx", "enlace": "https://drive.google.com/file/d/1pVKDvvCriv6vQV7L2oTXeJ2W-EtAdTzN/view", "tema": "Procedimiento de ingreso de alumnos, versión 006: solicitud, evaluación, decisión, beca, ingreso y alta", "nivel": "1 · Todo el personal"}, {"nombre": "PR-AC-002 Atención Temprana.docx", "enlace": "https://drive.google.com/file/d/1aLvabWnXGG915AFIGxDZoUYH7IHNmsr_/view", "tema": "Procedimiento de Atención Temprana, versión vigente: responsabilidades, evaluación, programa trimestral y egreso", "nivel": "2 · Docentes"}, {"nombre": "PR-AC-003 Transitorio.docx", "enlace": "https://drive.google.com/file/d/1hL6N37xbL6oS0pbdfbZQe-Wkjf7Jpbr1/view", "tema": "Procedimiento de Transitorio: responsabilidades del maestro de grupo, programa semestral, ejecución, egreso", "nivel": "2 · Docentes"}, {"nombre": "PR-AC-004 Grupo jovenes TM.docx", "enlace": "https://drive.google.com/file/d/1xPY1Bfz22idZnAc18tZ6tqJNqri1eYD8/view", "tema": "Procedimiento del programa educativo de Jóvenes: horarios, evaluación inicial, programa, ejecución, egreso", "nivel": "2 · Docentes"}, {"nombre": "PR-AC-005 Apoyo Escolar.docx", "enlace": "https://drive.google.com/file/d/1wRqn4r_mKzkkv1Yj91kgUJBqtLoru4CM/view", "tema": "Procedimiento de Apoyo Escolar: modalidad individual o grupal, programa semestral, seguimiento de Inclusión", "nivel": "2 · Docentes"}, {"nombre": "PR-AC-007 terapia de lenguaje.docx", "enlace": "https://drive.google.com/file/d/1I2jFLlW1MPEZxQ5hWYIQOcUCjPAOqBWH/view", "tema": "Procedimiento de terapias de comunicación, lenguaje y habla, versión 004", "nivel": "2 · Docentes"}, {"nombre": "PR-AC-010 Inclusión.docx", "enlace": "https://drive.google.com/file/d/1PUc32a1IViPh4biZ2s-O7tIuWtkPwkUu/view", "tema": "Procedimiento de Inclusión: detección, alta, seguimiento con 3 visitas por ciclo, pláticas y egreso", "nivel": "2 · Docentes"}, {"nombre": "PR-AD-011 Asignación de Becas.docx", "enlace": "https://drive.google.com/file/d/1g4xHYINyZN1S6deOuRW7mQagRuaREjZO/view", "tema": "Procedimiento de asignación de becas: solicitud, entrevista, comité, convenio", "nivel": "3 · Administración"}, {"nombre": "Matemáticas capacitacion maestros.pptx", "enlace": "https://drive.google.com/file/d/1rffZ2lhuvmm16t50gk1mS0uqipkzEW6p/view", "tema": "Capacitación a maestros «Matemáticas en TEDI»: currículo de matemáticas, recursos disponibles, perfiles de logro por edad y cómo elegir los objetivos que se programan a cada alumno.", "nivel": "2 · Docentes"}, {"nombre": "Presentación Institucional .pdf", "enlace": "https://drive.google.com/file/d/1G9DeBsRDK-mJH9omP1JOElwd4xybE0W6/view", "tema": "Presentación institucional 2026: misión, visión, 4 objetivos, valores, 3 campus, programas y servicios", "nivel": "1 · Todo el personal"}, {"nombre": "PR-TEDI-001 Elaboración de documentos.docx", "enlace": "https://drive.google.com/file/d/10gNzDjzU5-JF4Abw5ICNNXS-HefhOnVR/view", "tema": "Cómo se elabora un documento: partes de un procedimiento, instructivo, formato y documento de soporte", "nivel": "1 · Todo el personal"}, {"nombre": "PR-TEDI-002 Asignación de códigos.docx", "enlace": "https://drive.google.com/file/d/1LlIYeTy2OOX9DNzdbq6dcpt0zjiUG71t/view", "tema": "Cómo se arma el código de un documento: tipo, área y consecutivo", "nivel": "1 · Todo el personal"}, {"nombre": "PR-TEDI-003 Control de Documentos y Registros V001.docx", "enlace": "https://drive.google.com/file/d/1vSj1VgtxCYxCzff6qfyeHMmxcYoNJ7Z_/view", "tema": "Control de documentos y registros: aprobación, revisión anual, resguardo por Calidad, leyendas de controlado y obsoleto", "nivel": "4 · Coordinación y dirección"}, {"nombre": "FO-AC-003 Programa semestral.docx", "enlace": "https://drive.google.com/file/d/1Evbd6KKOuRf0J0nsynMeuqJyfhKnlgOh/view", "tema": "Programa semestral del alumno: los objetivos que se trabajarán en el semestre, por área, firmado por titular de grupo, titular de lenguaje y Subdirección.", "nivel": "2 · Docentes"}, {"nombre": "FO-AC-011 Evaluación de jóvenes.docx", "enlace": "https://drive.google.com/file/d/1flvfICLeGXoW6TNgvTgXVfI4LclIOGFG/view", "tema": "Evaluación de ingreso al programa de Jóvenes: lista de cotejo de habilidades sociales, de autonomía, matemáticas funcionales, tecnología y afectividad.", "nivel": "2 · Docentes"}, {"nombre": "FO-AC-016 Evaluación de inicio.docx", "enlace": "https://drive.google.com/file/d/14tabK6CPtLFMuya8EucYwmqapELMo1dL/view", "tema": "Evaluación de inicio del alumno: observación general de comunicación y lenguaje, repertorio básico, articulación, lectura, matemáticas por nivel de edad, pre-escritura, escritura y conducta…", "nivel": "2 · Docentes"}, {"nombre": "FO-AC-021 FORMATO DE PLANEACION QUINCENALVO2.docx", "enlace": "https://drive.google.com/file/d/15bUszrRc05runc4Exm56w0-MUkf9-QRJ/view", "tema": "Planeación didáctica quincenal: lo que el docente va a trabajar con su grupo en la quincena, por campo y área, con espacio para observaciones de Coordinación.", "nivel": "2 · Docentes"}, {"nombre": "FO-AC-022 Palabras de lectura.docx", "enlace": "https://drive.google.com/file/d/1igtHAW3GjXCnGVXeRCHsbRauF1Th6J_Z/view", "tema": "Palabras de lectura: lista de las palabras de lectura que trabaja cada alumno, por periodo.", "nivel": "2 · Docentes"}, {"nombre": "FO-AC-026 REGISTRO MENSUAL DE LECTURA.docx", "enlace": "https://drive.google.com/file/d/1uy38WqSRQxT9nyJ3svB51x1epMUFquw2/view", "tema": "Registro mensual de lectura (interno): seguimiento, palabra por palabra, del avance de lectura del alumno durante seis meses.", "nivel": "2 · Docentes"}, {"nombre": "FO-AC-037 EV NIVEL 1.pptx", "enlace": "https://drive.google.com/file/d/1k1nkOwrD-QhLFnFfVlon5yA2UfpnDRHO/view", "tema": "Evaluación de escritura, Nivel I: cuadernillo en diapositivas que el alumno resuelve y donde quien examina registra lateralidad, postura y trazo.", "nivel": "2 · Docentes"}, {"nombre": "FO-AC-037 EV NIVEL 2.pptm", "enlace": "https://drive.google.com/file/d/1F8gOFxlURrGPNaTZecfcqtvM1TVt0z4X/view", "tema": "Evaluación de escritura, Nivel II: cuadernillo en diapositivas que el alumno resuelve y donde quien examina registra lateralidad, postura y trazo.", "nivel": "2 · Docentes"}, {"nombre": "FO-AC-037 EV. NIVEL 3.pptm", "enlace": "https://drive.google.com/file/d/1f309RhQM_esoVT_UlRZbOSXg6zlXqqkZ/view", "tema": "Evaluación de escritura, Nivel III: cuadernillo en diapositivas que el alumno resuelve y donde quien examina registra lateralidad, postura y trazo.", "nivel": "2 · Docentes"}, {"nombre": "FO-AC-017 EVALUACION PARA ALUMNOS DE PREESCOLAR.docx", "enlace": "https://drive.google.com/file/d/1v_bKrrpbszs25XmpqQ5eYDrKtRSWHl-s/view", "tema": "Evaluación de ingreso a preescolar: lista de cotejo de lo que el alumno necesita para incorporarse a un preescolar regular.", "nivel": "2 · Docentes"}, {"nombre": "FO-AC-039 EVALUACION PARA ALUMNOS DE PRIMARIA.docx", "enlace": "https://drive.google.com/file/d/1lFmRNEL7ySfyJKSSXliWxSjPNKgzWBo2/view", "tema": "Evaluación de ingreso a primaria: lista de cotejo de lo que el alumno necesita para incorporarse a una primaria regular.", "nivel": "2 · Docentes"}, {"nombre": "DS-AC-015 Evaluación de AT.docx", "enlace": "https://drive.google.com/file/d/1p2wSBdo29c-7VdB_nt_R4gE3KDAIIDWz/view", "tema": "Evaluación de Atención Temprana: lista de cotejo del desarrollo del bebé o niño pequeño en motricidad gruesa y fina, cognitivo y lenguaje, autoayuda y aspectos miofuncionales.", "nivel": "2 · Docentes"}, {"nombre": "FO-AC-030 planeación de lenguaje DE GRUPOS.doc", "enlace": "https://drive.google.com/file/d/15cV1HYryNktq1QtHrB3I2FdPKd4_w0fR/view", "tema": "Planeación y registro semanal para GRUPO de Comunicación, Lenguaje y Habla: objetivos por alumno y registro diario de si participó en cada uno.", "nivel": "2 · Docentes"}, {"nombre": "FO-AC-030 planeación de lenguaje.doc", "enlace": "https://drive.google.com/file/d/1Y7oiYdtfAkTw14nLoWNYPea0g-Gwma6U/view", "tema": "Planeación y registro quincenal INDIVIDUAL de Comunicación, Lenguaje y Habla: objetivos del alumno para la quincena y registro de intentos logrados en cada sesión.", "nivel": "2 · Docentes"}, {"nombre": "FO-AC-044 primeras 100 palabras nuevo.doc", "enlace": "https://drive.google.com/file/d/1FzXF13SFg8YCRpCdZOxsrve44cKEz-ip/view", "tema": "Vocabulario Comprensivo 1 (128 palabras): primera lista de vocabulario para registrar, con fecha, qué palabras entiende, imita, usa espontáneamente y lee el alumno.", "nivel": "2 · Docentes"}, {"nombre": "PR-AD-001 Cobranza de Ingresos V001.docx", "enlace": "https://drive.google.com/file/d/1wpLHIYrezFi3dd1L8hzdLI7IstnYMhpt/view", "tema": "Procedimiento de cobranza de cuotas y donativos: montos, pago, factura, registro y depósito", "nivel": "3 · Administración"}, {"nombre": "PR-AD-004 Proc. de Fondos V04  2023.docx", "enlace": "https://drive.google.com/file/d/1jlAy53hk5ubFMn3GR-lbS_UBx7FzHEio/view", "tema": "Procedimiento de procuración de fondos: plan anual, estrategias, seguimiento y cultivo de donantes, reportes", "nivel": "3 · Administración"}, {"nombre": "IN-AD-003 Reembolso Caja Chica V001.docx", "enlace": "https://drive.google.com/file/d/1E7rpK9WQhrStUUhvZqma5mYE56VccU7Y/view", "tema": "Instructivo de caja chica: vale provisional, reembolso, requisitos de factura, tope de $2,000", "nivel": "1 · Todo el personal"}, {"nombre": "PR-AD-002 Reclutamiento y Seleccion de Personal.docx", "enlace": "https://drive.google.com/file/d/1jJG52CY5YvEd-ljR78lbpANOB8uU2pc_/view", "tema": "Procedimiento de reclutamiento y selección: requerimiento, entrevista, contrato, inducción y periodo de prueba", "nivel": "4 · Coordinación y dirección"}, {"nombre": "PR-AD-003 Mercadotecnia V003.docx", "enlace": "https://drive.google.com/file/d/1CtNlrxv4OboWviMX06Umi6FikZHD-MAV/view", "tema": "Procedimiento de mercadotecnia: comunicación, eventos, posicionamiento, relaciones públicas y reportes", "nivel": "3 · Administración"}, {"nombre": "PR-AD-006 MENSAJERIA TRASLADOS Y SG.docx", "enlace": "https://drive.google.com/file/d/1_b6EY1FwK4EqVoefhEIcpOEZk8TbpVSM/view", "tema": "Procedimiento de mensajería, traslados y servicios generales", "nivel": "3 · Administración"}, {"nombre": "PR-AD-007 MTTO Y LIMPIEZA.docx", "enlace": "https://drive.google.com/file/d/1cKlBTr6CP-AjbzCvZjILp34mkUt2dCDN/view", "tema": "Procedimiento de mantenimiento y limpieza: plan de actividades diarias y rondines", "nivel": "3 · Administración"}, {"nombre": "PR-AD-008 Faltas y permisos.docx", "enlace": "https://drive.google.com/file/d/1v6Nt5PHiJsIOlYgMHZW9yuOuGFOEN_yS/view", "tema": "Procedimiento de faltas y permisos: notificación, revisión, aplicación en nómina", "nivel": "1 · Todo el personal"}, {"nombre": "PR-AD-013 Pagos .docx", "enlace": "https://drive.google.com/file/d/1oayjCfXa3otvozNCfjWRvNQ3drCink9H/view", "tema": "Procedimiento de pagos: solicitud, aprobación, registro y conciliación mensual", "nivel": "3 · Administración"}, {"nombre": "PR-AD-015 solicitud de materiales.docx", "enlace": "https://drive.google.com/file/d/1E9vP4_KbA7cx3AkTlqwCpYIh0yStGHGc/view", "tema": "Procedimiento de solicitud de materiales y políticas de compra", "nivel": "1 · Todo el personal"}, {"nombre": "PR-AD-005 Capacitación de Personal.docx", "enlace": "https://drive.google.com/file/d/1tP5HsT9tzb49xwjoyosGdOE64YQqvdAD/view", "tema": "Procedimiento de capacitación del personal: detección de necesidades, plan anual, constancias", "nivel": "1 · Todo el personal"}, {"nombre": "PR-AD-014 Evaluación al personal.docx", "enlace": "https://drive.google.com/file/d/1vyMWnqWb4Q1xuIlIktWjG-5tqA_WDkGa/view", "tema": "Procedimiento de evaluación al personal: una vez por ciclo, revisión en diciembre del plan anual", "nivel": "1 · Todo el personal"}, {"nombre": "Manual RH colaboradores julio 2025.docx", "enlace": "https://drive.google.com/file/d/1jB63nKBpvLr_lhFtnDoGzrwuJoDY_2jz/view", "tema": "Manual del colaborador: bienvenida, misión, visión, historia, políticas, derechos, beneficios, capacitación y canales", "nivel": "1 · Todo el personal"}, {"nombre": "Organigrama 26-27.jpg", "enlace": "https://drive.google.com/file/d/11FAIJx-6rM3b6OMIlun-HYy7rmnUyg4S/view", "tema": "Organigrama del ciclo 2026-2027 con puestos y equipos por coordinación", "nivel": "1 · Todo el personal"}];
+const LINKS = { propuesta: "https://claude.ai/artifact/FoxssQ8XnqAVaGocx5jhf4", inventario: "https://claude.ai/artifact/EgyoVnEsgrZt1ivvVkFzYp", laminas: "https://claude.ai/artifact/Q5sz1rCUKnSXThqtutPCHz" };
+const F = {
+  MAN: "1jB63nKBpvLr_lhFtnDoGzrwuJoDY_2jz", PRES: "1G9DeBsRDK-mJH9omP1JOElwd4xybE0W6", ORG: "11FAIJx-6rM3b6OMIlun-HYy7rmnUyg4S",
+  PRAD002: "1jJG52CY5YvEd-ljR78lbpANOB8uU2pc_", PRTEDI002: "1LlIYeTy2OOX9DNzdbq6dcpt0zjiUG71t", PRTEDI001: "10gNzDjzU5-JF4Abw5ICNNXS-HefhOnVR",
+  PRAD008: "1v6Nt5PHiJsIOlYgMHZW9yuOuGFOEN_yS", PRAD015: "1E9vP4_KbA7cx3AkTlqwCpYIh0yStGHGc", INAD003: "1E7rpK9WQhrStUUhvZqma5mYE56VccU7Y",
+  PRAD014: "1vyMWnqWb4Q1xuIlIktWjG-5tqA_WDkGa", PRAD005: "1tP5HsT9tzb49xwjoyosGdOE64YQqvdAD", 
+  PRAC001: "1pVKDvvCriv6vQV7L2oTXeJ2W-EtAdTzN", PRAC002: "1aLvabWnXGG915AFIGxDZoUYH7IHNmsr_", PRAC003: "1hL6N37xbL6oS0pbdfbZQe-Wkjf7Jpbr1", PRAC004: "1xPY1Bfz22idZnAc18tZ6tqJNqri1eYD8",
+  PRAC005: "1wRqn4r_mKzkkv1Yj91kgUJBqtLoru4CM", PRAC007: "1I2jFLlW1MPEZxQ5hWYIQOcUCjPAOqBWH", PRAC010: "1PUc32a1IViPh4biZ2s-O7tIuWtkPwkUu",
+  FOAC003: "1Evbd6KKOuRf0J0nsynMeuqJyfhKnlgOh",  FOAC009: "1hm9HSv56Tx-AcWYcEbneS6Z56PpPhLMD", FOAC011: "1flvfICLeGXoW6TNgvTgXVfI4LclIOGFG",
+  FOAC016: "14tabK6CPtLFMuya8EucYwmqapELMo1dL", FOAC021: "15bUszrRc05runc4Exm56w0-MUkf9-QRJ", FOAC026: "1uy38WqSRQxT9nyJ3svB51x1epMUFquw2", FOAC037: "1k1nkOwrD-QhLFnFfVlon5yA2UfpnDRHO",
+  FOAC017: "1v_bKrrpbszs25XmpqQ5eYDrKtRSWHl-s", FOAC039: "1lFmRNEL7ySfyJKSSXliWxSjPNKgzWBo2", FOAC041: "1ELxshYKtH96sSwb9toG5GxIMKJ6TDPi6", DSAC015: "1p2wSBdo29c-7VdB_nt_R4gE3KDAIIDWz",
+  DSAC005: "1eh0URnNkFrHXatpYdewVqnXrKLkvFyqH", FOAC024: "1BYDhklyE1YYY_80gImLfgYyrUzMhRwp8", FOAC025: "1Mn6uv1qMBI1_vKTQqYNU6nGeweGoMeuL", FOAC030: "1Y7oiYdtfAkTw14nLoWNYPea0g-Gwma6U",
+  MATE: "1rffZ2lhuvmm16t50gk1mS0uqipkzEW6p", CLYH: "1QmrnnGkgzuEASfsQLvPe96T5uiABslLa",
+  PRAD001: "1wpLHIYrezFi3dd1L8hzdLI7IstnYMhpt", PRAD004: "1jlAy53hk5ubFMn3GR-lbS_UBx7FzHEio",  PRAD013: "1oayjCfXa3otvozNCfjWRvNQ3drCink9H",
+  PRAD011: "1g4xHYINyZN1S6deOuRW7mQagRuaREjZO", PRAD003: "1CtNlrxv4OboWviMX06Umi6FikZHD-MAV", PRAD006: "1_b6EY1FwK4EqVoefhEIcpOEZk8TbpVSM", PRAD007: "1cKlBTr6CP-AjbzCvZjILp34mkUt2dCDN",
+  PF_JOV: "1R7BvsK6G7X0Jih1eWuiMXvDKELc0k_lG", PF_TRA: "1FmiAdO9Pg7B5gm5R4tkMWI2ndSTHHsiP", PF_AUX: "1h0X5fkbU9-7xGoDOgcny7ZZAVSUfYP36", PF_AE: "1m5Qghv03M95P1LV5_uqIOhXJ8HGJszkb",
+  PF_AT: "1vx951hEnzp16Mpg1Nk0xMO3-OmBnG5ND", PF_TL: "1Kfgu6s4NtitiJas6Y8BN5IhXAS9C-jKV", PF_REC: "1XmTyf5gpwLYGUO-_HUKuBxR5YOJMh27k", PF_ADM: "1oy_2Q4rIs42E41dPjfuDvt3FEat2spJ1"
+};
+const PERFILES = "https://drive.google.com/drive/folders/16Iygm0qrKYx36QX65ERi4LInXJLCSa02";
+const url = k => k.startsWith("http") ? k : `https://drive.google.com/file/d/${F[k]}/view`;
+const PROG = {
+  transitorio: { n: "Transitorio", proc: ["PR-AC-003 Transitorio", "PRAC003"], perfil: "PF_TRA", ev: [["FO-AC-016 Evaluación de inicio", "FOAC016"], ["FO-AC-037 Evaluación de escritura", "FOAC037"]], plan: ["FO-AC-021 Planeación quincenal", "FOAC021"] },
+  jovenes: { n: "Jóvenes", proc: ["PR-AC-004 Programa educativo Jóvenes", "PRAC004"], perfil: "PF_JOV", ev: [["FO-AC-016 Evaluación de inicio", "FOAC016"], ["FO-AC-011 Evaluación de jóvenes", "FOAC011"], ["FO-AC-037 Evaluación de escritura", "FOAC037"]], plan: ["FO-AC-021 Planeación quincenal", "FOAC021"] },
+  apoyo: { n: "Apoyo Escolar", proc: ["PR-AC-005 Apoyo Escolar", "PRAC005"], perfil: "PF_AE", ev: [["FO-AC-016 Evaluación de inicio", "FOAC016"], ["FO-AC-017 Evaluación preescolar", "FOAC017"], ["FO-AC-039 Evaluación primaria", "FOAC039"]], plan: ["FO-AC-021 Planeación quincenal", "FOAC021"] },
+  at: { n: "Atención Temprana", proc: ["PR-AC-002 Atención Temprana", "PRAC002"], perfil: "PF_AT", ev: [["DS-AC-015 Evaluación de Atención Temprana", "DSAC015"]], plan: ["FO-AC-003 Programa trimestral", "FOAC003"] },
+  lenguaje: { n: "Terapia de lenguaje", proc: ["PR-AC-007 Terapias de lenguaje", "PRAC007"], perfil: "PF_TL", ev: [["FO-AC-024 Habilidades preverbales", "FOAC024"], ["FO-AC-025 Articulación", "FOAC025"]], plan: ["FO-AC-030 Planeación quincenal de lenguaje", "FOAC030"] },
+  auxiliar: { n: "Auxiliar de grupo", proc: ["Procedimiento de tu grupo", "PRAC003"], perfil: "PF_AUX", ev: [], plan: ["FO-AC-021 Planeación de tu titular", "FOAC021"] }
+};
+const PUESTO = {
+  recepcion: { n: "Recepción", proc: ["PR-AD-001 Cobranza de ingresos", "PRAD001", "«Cuotas de recuperación», pasos 2 a 5"], perfil: "PF_REC", falta: "FO-AD-001 y DS-AD-001" },
+  fondos: { n: "Procuración de fondos", proc: ["PR-AD-004 Procuración de fondos", "PRAD004", "«Seguimiento de donativo»"], perfil: PERFILES, falta: "FO-AD-020 y FO-AD-057" },
+  mkt: { n: "Mercadotecnia", proc: ["PR-AD-003 Mercadotecnia", "PRAD003", "«Eventos»"], perfil: PERFILES, falta: "ninguno" },
+  mantenimiento: { n: "Mantenimiento y chofer", proc: ["PR-AD-006 Mensajería y traslados", "PRAD006", "«Mensajería y traslados»"], perfil: PERFILES, falta: "FO-AD-044 y FO-AD-030" },
+  intendencia: { n: "Intendencia", proc: ["PR-AD-007 Mantenimiento y limpieza", "PRAD007", "Desarrollo"], perfil: PERFILES, falta: "FO-AD-029 y FO-AD-040" }
+};
+const COMUN = [
+  { id: "c1", m: "antes", t: "Conoce la misión y los programas de TEDI", a: "Revisa la presentación institucional y lee el mensaje de la Dirección General y la misión.", w: "Administración", d: "Explicas en una frase la misión y nombras los tres campus.", r: [["Presentación institucional", "PRES", "láminas 3 a 10"], ["Manual del colaborador", "MAN", "Mensaje y Misión"]], s: "doc" },
+  { id: "c2", m: "antes", t: "Prepara tu documentación de ingreso", a: "Reúne tu papelería, confirma tu horario y vestimenta, y ten lista tu cuenta de Google.", w: "Administración", d: "Entregas tu papelería completa el día 1.", r: [["PR-AD-002 Reclutamiento y selección", "PRAD002", "Selección de candidatos"], ["Manual del colaborador", "MAN", "Uniforme y vestimenta"]], s: "val", n: "Ningún documento enlista la papelería. Material nuevo: mensaje de bienvenida con la lista." },
+  { id: "c3", m: "d1", t: "Formaliza tu ingreso", a: "Firmas tu contrato, recorres las instalaciones, registras tu huella en el reloj checador y ubicas el botiquín.", w: "Administración", d: "Registraste entrada y salida con tu huella.", r: [["PR-AD-002 Reclutamiento y selección", "PRAD002", "Integración e inducción"], ["Manual del colaborador", "MAN", "Asistencia y seguridad"]], s: "doc" },
+  { id: "c4", m: "d1", t: "Ubica tu puesto en el organigrama", a: "Identifica a tu jefa inmediata y a tu equipo, y lee de tu perfil solo las secciones A, B y C.", w: "Tu jefa inmediata", d: "Señalas a tu jefa, a tu equipo y tus tres primeras funciones.", r: [["Organigrama 26-27", "ORG", ""], ["Perfil de tu puesto", "PERFIL", "secciones A, B y C"]], s: "val", n: "Varios perfiles reportan a puestos que el organigrama no muestra." },
+  { id: "c5", m: "d1", t: "Integra los canales de comunicación", a: "Te agregan a tus grupos de WhatsApp institucionales y abres el Drive desde tu celular.", w: "Tu jefa inmediata", d: "Respondiste un aviso y abriste un documento del Drive.", r: [["Manual del colaborador", "MAN", "Comunicación"]], s: "doc" },
+  { id: "c6", m: "s1", t: "Conoce las políticas esenciales", a: "Lee tres apartados del manual y resuelve cinco casos prácticos: trato al alumno, fotos y redes, confidencialidad, uso del celular y relación con padres.", w: "Tu jefa inmediata", d: "Respondes correctamente los cinco casos.", r: [["Manual del colaborador", "MAN", "Código ético, Confidencialidad y Comunicación con alumnos y padres"]], s: "doc", n: "Material nuevo: formulario de cinco casos." },
+  { id: "c7", m: "s1", t: "Aprende a localizar documentos", a: "Aprende a leer los códigos de documento y localiza tres documentos de tu puesto.", w: "Calidad", d: "Encuentras los tres en menos de cinco minutos.", r: [["PR-TEDI-002 Asignación de códigos", "PRTEDI002", "tablas de tipo y área"]], s: "new", n: "Material nuevo: tarjeta de códigos y carpeta de vigentes.", codes: true },
+  { id: "c8", m: "s1", t: "Conoce el procedimiento de permisos", a: "Lee el procedimiento de faltas y permisos y ubica el formato correspondiente.", w: "Tu jefa inmediata", d: "Sabes a quién avisar y dónde está el formato.", r: [["PR-AD-008 Faltas y permisos", "PRAD008", "pasos 1 a 4"], ["Manual del colaborador", "MAN", "Puntualidad y asistencia"]], s: "val", n: "El formato FO-AD-033 no está en la carpeta." },
+  { id: "c9", m: "s2", t: "Solicita material y comprueba un gasto", a: "Llena una solicitud de material y revisa los datos que debe traer una factura.", w: "Administración", d: "Entregas una solicitud correctamente llenada.", r: [["PR-AD-015 Solicitud de materiales", "PRAD015", "pasos 1 a 4"], ["IN-AD-003 Caja chica", "INAD003", "Desarrollo"]], s: "val", n: "FO-AD-058, 059 y 038 no están en la carpeta." },
+  { id: "c10", m: "s2", t: "Conoce tus prestaciones", a: "Lee las fechas de pago, descansos y periodo vacacional.", w: "Administración", d: "Conoces tus días de pago y tu periodo vacacional.", r: [["Manual del colaborador", "MAN", "Beneficios"]], s: "doc" },
+  { id: "c11", m: "s2", t: "Reunión de seguimiento del día 15", a: "Conversación de 15 minutos con tu jefa: qué no encontraste y qué no quedó claro.", w: "Tu jefa inmediata", d: "Quedan registrados tus pendientes y quién los atiende.", r: [], s: "new", n: "Material nuevo: guion de cinco preguntas." },
+  { id: "c12", m: "d30", t: "Conoce cómo se evalúa tu desempeño", a: "Revisa la rúbrica de tu perfil y las secciones D y E de tu perfil de puesto. Se aplica la evaluación de periodo de prueba.", w: "Tu jefa y Administración", d: "Evaluación aplicada y encuesta de 30 días respondida.", r: [["PR-AD-014 Evaluación al personal", "PRAD014", "Desarrollo"], ["Rúbrica de evaluación", "RUBRICA", "12 competencias"], ["PR-AD-005 Capacitación", "PRAD005", ""]], s: "val", n: "FO-AD-005 no está y ningún documento indica cuánto dura el periodo de prueba." }
+];
+const DOCENTE = [
+  { id: "d1", m: "antes", t: "Conoce tu programa", a: "Lee solo Objetivo, Alcance y Glosario del procedimiento de tu programa.", w: "Tu coordinadora", d: "Describes la edad que atiende y el propósito del programa.", r: [["PROC", "PROC", "Objetivo, Alcance y Glosario"]], s: "doc" },
+  { id: "d2", m: "d1", t: "Conoce a tus alumnos y tu horario", a: "Recibe tu horario y tu lista; revisa el último programa y reporte de cada alumno.", w: "Tu coordinadora", d: "Tienes tu horario y revisaste cada expediente.", r: [["FO-AC-009 Horario de terapias", "FOAC009", ""], ["Manual del colaborador", "MAN", "Comunicación sobre un alumno"]], s: "val", n: "Los programas viven en el «Drive de maestros», fuera de esta carpeta." },
+  { id: "d3", m: "d1", t: "Revisa tus responsabilidades", a: "Lee la sección Responsabilidades de tu procedimiento y las reglas de guardia y salida.", w: "Tu coordinadora", d: "Enumeras tus cuatro entregables del semestre.", r: [["PROC", "PROC", "Responsabilidades"], ["Manual del colaborador", "MAN", "Personal docente"]], s: "doc" },
+  { id: "d4", m: "s1", t: "Observa dos sesiones", a: "Observa dos sesiones de un docente con experiencia, con una guía de observación.", w: "Tu docente par", d: "Entregas tus notas de observación.", r: [["FO-AC-041 Guía de observación", "FOAC041", ""]], s: "val", n: "El formato se diseñó para escuelas regulares; hay que validarlo aquí." },
+  { id: "d5", m: "s1", t: "Prepara tu primera sesión", a: "Elabora tu planeación a partir del programa de un alumno. Tu coordinadora la revisa.", w: "Tu coordinadora", d: "Tu planeación cuenta con visto bueno.", r: [["PLAN", "PLAN", ""], ["FO-AC-003 Programa semestral", "FOAC003", ""]], s: "new", n: "Material nuevo: un ejemplo llenado de cada formato." },
+  { id: "d6", m: "s1", key: true, t: "Imparte tu primera sesión", a: "Imparte tu sesión con tu docente par presente y registra la asistencia.", w: "Tu docente par", d: "Sesión impartida, asistencia registrada y 10 minutos de retroalimentación.", r: [["PROC", "PROC", "Ejecución del programa"], ["FO-AC-008 Registro de asistencia", "ENTREGA", ""]], s: "val", n: "La copia del Drive trae nombres de alumnos de un ciclo anterior." },
+  { id: "d7", m: "s2", t: "Aplica una evaluación de inicio", a: "Evalúa a un alumno con el instrumento de tu programa.", w: "Tu coordinadora", d: "Una evaluación aplicada y revisada.", r: [["EVAL", "EVAL", ""]], s: "new", n: "Material nuevo: guía de llenado; las siglas no están definidas." },
+  { id: "d8", m: "s2", t: "Recibe retroalimentación de tu práctica", a: "Tu coordinadora observa una de tus clases y acuerdan dos puntos de mejora.", w: "Tu coordinadora", d: "Retroalimentación por escrito con dos acuerdos.", r: [["Rúbrica docente", "RUBRICA", "competencia 9"]], s: "new", n: "Material nuevo: guía de observación de una página." },
+  { id: "d9", m: "s34", t: "Elabora un programa", a: "Redacta o ajusta el programa de un alumno con tu coordinadora y el terapeuta de lenguaje.", w: "Tu coordinadora", d: "Un programa aprobado.", r: [["FO-AC-003 Programa semestral", "FOAC003", ""], ["FO-AC-026 Registro de lectura", "FOAC026", ""], ["Capacitación de Matemáticas", "MATE", ""], ["Capacitación de CLyH", "CLYH", "diapositivas 4 a 12"]], s: "val", n: "Los programas curriculares no están en la carpeta." },
+  { id: "d10", m: "s34", t: "Participa en una reunión con familia", a: "Acompaña a la titular en una entrega de programa o junta con padres.", w: "Tu coordinadora", d: "Explicaste un objetivo a una familia.", r: [["PROC", "PROC", "Entrega de programa"], ["DS-AC-005 Reglamento a padres", "DSAC005", ""]], s: "doc" },
+  { id: "d11", m: "s34", t: "Registra tu trabajo en el Drive", a: "Sube asistencias, planeaciones y programas al Drive de maestros.", w: "Tu coordinadora", d: "Tu carpeta contiene la asistencia del mes y dos planeaciones.", r: [["PR-AC-010 Inclusión", "PRAC010", "Seguimiento"]], s: "val", n: "Solo un perfil lo pide por escrito." },
+  { id: "d12", m: "d30", t: "Segunda observación y cierre", a: "Tu coordinadora observa otra clase y cierran juntas tu primer mes.", w: "Tu coordinadora", d: "Dos observaciones registradas.", r: [["Rúbrica docente", "RUBRICA", "competencias 9 y 11"]], s: "val", n: "Depende del cierre de la evaluación de periodo de prueba." }
+];
+const ADMIN = [
+  { id: "a1", m: "antes", t: "Conoce cómo se financia TEDI", a: "Lee cómo ingresan las cuotas y los donativos.", w: "Administración", d: "Distingues cuota de recuperación, donativo y beca.", r: [["PR-AD-001 Cobranza de ingresos", "PRAD001", "Objetivo y Alcance"], ["PR-AD-004 Procuración de fondos", "PRAD004", "Fuentes de ingreso"]], s: "doc" },
+  { id: "a2", m: "d1", t: "Conoce el alcance de tu puesto", a: "Lee las secciones A, B y C de tu perfil y qué áreas dependen de Administración.", w: "Administración", d: "Identificas las áreas que te solicitarán apoyo.", r: [["Perfil de tu puesto", "PERFIL", "secciones A, B y C"], ["Perfil de Coordinación Administrativa", "PF_ADM", "sección C, punto 1"]], s: "val", n: "El jefe aparece como «Administración» y como «Coordinación Administrativa»." },
+  { id: "a3", m: "d1", t: "Recibe tus accesos", a: "Recibe tus usuarios: sistema contable, reloj checador y WhatsApp institucional, según tu puesto.", w: "Administración", d: "Ingresas a cada sistema que utilizarás.", r: [["PR-AD-001 Cobranza de ingresos", "PRAD001", "Glosario"]], s: "new", n: "Material nuevo: lista de accesos por puesto." },
+  { id: "a4", m: "s1", t: "Observa el proceso de tu puesto", a: "Observa dos veces cómo se realiza el proceso clave de tu puesto.", w: "Tu compañera de área", d: "Describes los pasos en orden.", r: [["PROCESO", "PROCESO", ""]], s: "doc" },
+  { id: "a5", m: "s1", key: true, t: "Realiza tu primer proceso", a: "Realiza el proceso con un caso real y tu compañera de área al lado. Administración lo revisa.", w: "Tu compañera de área", d: "Un caso completo y revisado sin correcciones de fondo.", r: [["PROCESO", "PROCESO", ""]], s: "val", n: "FALTA" },
+  { id: "a6", m: "s2", t: "Atiende una solicitud de informes", a: "Registra una solicitud de informes de una familia y agenda una cita de evaluación.", w: "Responsable de Admisiones", d: "Un registro y una cita realizados.", r: [["PR-AC-001 Ingreso", "PRAC001", "Solicitud, Beca e Ingreso"], ["PR-AD-011 Becas", "PRAD011", "pasos 1 y 4"]], s: "val", n: "Falta definir quién es Admisiones." },
+  { id: "a7", m: "s2", t: "Tramita caja chica y materiales", a: "Tramita una solicitud de material y un vale de caja.", w: "Administración", d: "Un trámite de cada tipo cerrado con comprobante.", r: [["IN-AD-003 Caja chica", "INAD003", "Desarrollo"], ["PR-AD-015 Solicitud de materiales", "PRAD015", "políticas de compra"]], s: "val", n: "IN-AD-003 es de 2021." },
+  { id: "a8", m: "s34", t: "Realiza el proceso de forma autónoma", a: "Repite tu proceso clave por tu cuenta; la revisión es posterior.", w: "Administración", d: "Segundo caso correcto a la primera.", r: [["PROCESO", "PROCESO", ""]], s: "doc" },
+  { id: "a9", m: "s34", t: "Elabora tu calendario mensual", a: "Registra lo que ocurre cada quincena y cada mes en tu puesto: pagos, conciliación y reportes.", w: "Administración", d: "Calendario revisado por tu jefa.", r: [["PR-AD-013 Pagos", "PRAD013", "Conciliación"]], s: "doc" },
+  { id: "a10", m: "d30", t: "Revisa tus indicadores y cierre", a: "Revisa las secciones D y E de tu perfil y la rúbrica; reunión de cierre.", w: "Administración", d: "Evaluación de periodo de prueba aplicada.", r: [["Perfil de tu puesto", "PERFIL", "secciones D y E"], ["Rúbrica administrativa", "RUBRICA", "competencias 11 y 12"]], s: "val", n: "Depende del cierre de la evaluación de periodo de prueba." }
+];
+Object.assign(F, { PF_CCLYH: "19osxj5sl2eIftLxGFyLkxfmhNAB2yGtu", PF_CACAD: "1HafRkENha5E8t0W8MLrrix0jXdIWPhGB", PF_CINC: "1IDJNgRXtjYvjFzXqdurKczpxm8vDLXOY", PF_CAPO: "1gPVMn7rj_WZhDZep4cvCg5RDN23WHrHh", PF_CSUR: "12DMMp6X3I1Q2RjrjDno16QzZdoIM8oCa", PF_CAL: "1KZzd4xB7rICQD_QOUNKyTEJaHd70Xjue", PF_DIRED: "1hx7U0Uoo9I9A6TRwVQaJxDZvpunO8B6H", PRDG002: "1fdhTdoRV4Neo6NSwwZJKhaVx2PsLrHKm", PRDG003: "1Jp4QZZx7Lrie1UPgTm-Kec48XYGVVU9r", PRTEDI003: "1vSj1VgtxCYxCzff6qfyeHMmxcYoNJ7Z_", FOTEDI002: "1i2nz2kC_mfKkrUqHAKkMVql9WMjsRhmf" });
+const COORDS = {
+  academica: { n: "Coordinación académica", proc: ["PR-AC-003 Transitorio", "PRAC003"], perfil: "PF_CACAD" },
+  inclusion: { n: "Inclusión educativa", proc: ["PR-AC-010 Inclusión", "PRAC010"], perfil: "PF_CINC" },
+  clyh: { n: "Comunicación, lenguaje y habla", proc: ["PR-AC-007 Terapias de lenguaje", "PRAC007"], perfil: "PF_CCLYH" },
+  apodaca: { n: "Coordinación Apodaca", proc: ["PR-AC-005 Apoyo Escolar", "PRAC005"], perfil: "PF_CAPO" },
+  sur: { n: "Coordinación Sur y Jóvenes", proc: ["PR-AC-004 Programa educativo Jóvenes", "PRAC004"], perfil: "PF_CSUR" },
+  calidad: { n: "Calidad e innovación", proc: ["PR-TEDI-003 Control de documentos", "PRTEDI003"], perfil: "PF_CAL" }
+};
+const COORD = [
+  { id: "k1", m: "antes", t: "Conoce los programas que coordinarás", a: "Lee el objetivo, las responsabilidades y el desarrollo del procedimiento principal de tu coordinación.", w: "Dirección Educativa", d: "Explicas el ciclo del programa: evaluación, programa, ejecución y resultados.", r: [["PROC", "PROC", "Objetivo, Responsabilidades y Desarrollo"]], s: "doc" },
+  { id: "k2", m: "d1", t: "Revisa el alcance de tu coordinación", a: "Lee tu perfil completo: a quién reportas, a quién supervisas, tus funciones e indicadores.", w: "Dirección Educativa", d: "Nombras a las personas que supervisas y tus tres indicadores principales.", r: [["Perfil de tu coordinación", "PERFIL", "secciones A a E"], ["Perfil de Dirección Educativa", "PF_DIRED", "sección C"]], s: "val", n: "Los perfiles de enero de 2026 reportan a Dirección Educativa; el organigrama no lo refleja." },
+  { id: "k3", m: "d1", t: "Conoce a tu equipo", a: "Reúnete con cada persona de tu equipo y revisa con ella su perfil y su programa actual.", w: "Dirección Educativa", d: "Te reuniste con todo tu equipo.", r: [["Organigrama 26-27", "ORG", ""]], s: "new", n: "Material nuevo: guía breve para la primera reunión con el equipo." },
+  { id: "k4", m: "s1", t: "Aprende a acompañar a una persona nueva", a: "Revisa cómo se incorpora al personal y cómo usar el panel de seguimiento con los reportes de WhatsApp.", w: "Administración", d: "Agregaste a una persona al panel de seguimiento.", r: [["PR-AD-002 Reclutamiento y selección", "PRAD002", "pasos 5 a 7"]], s: "new", n: "El panel de seguimiento es parte de esta propuesta." },
+  { id: "k5", m: "s1", key: true, t: "Observa una clase y da retroalimentación", a: "Observa una sesión de un docente de tu equipo con la guía y acuerda con él dos puntos de mejora.", w: "Dirección Educativa", d: "Retroalimentación por escrito entregada al docente.", r: [["FO-AC-041 Guía de observación", "FOAC041", ""]], s: "val", n: "El formato nació para observar en escuelas regulares; hay que validarlo." },
+  { id: "k6", m: "s2", t: "Revisa planeaciones y programas", a: "Revisa las planeaciones quincenales y los programas de tu equipo en el Drive de maestros.", w: "Dirección Educativa", d: "Revisaste las planeaciones del mes de todo tu equipo.", r: [["FO-AC-021 Planeación quincenal", "FOAC021", ""], ["FO-AC-003 Programa semestral", "FOAC003", ""]], s: "val", n: "El Drive de maestros no estaba en la carpeta revisada." },
+  { id: "k7", m: "s2", t: "Atiende los permisos de tu equipo", a: "Revisa tu papel al autorizar faltas y permisos, y cómo informar a Administración.", w: "Administración", d: "Sabes qué revisar y a quién informar en cada permiso.", r: [["PR-AD-008 Faltas y permisos", "PRAD008", "paso «Revisa permiso/falta»"]], s: "val", n: "El formato FO-AD-033 no está en la carpeta." },
+  { id: "k8", m: "s34", t: "Conoce el control de documentos", a: "Aprende cómo se aprueba, revisa y resguarda un documento, y localiza los formatos de tu área en la matriz.", w: "Calidad", d: "Ubicas en la matriz los formatos de tu área y su responsable.", r: [["PR-TEDI-003 Control de documentos", "PRTEDI003", "Desarrollo"], ["Matriz de registros académicos", "FOTEDI002", ""]], s: "doc" },
+  { id: "k9", m: "s34", t: "Prepárate para la revisión de resultados", a: "Revisa qué se presenta cada seis meses a Dirección y cómo son las auditorías internas.", w: "Calidad", d: "Sabes qué indicadores de tu área se revisan y cuándo.", r: [["PR-DG-002 Aseguramiento de calidad", "PRDG002", "Puntos a revisar"], ["PR-DG-003 Auditorías internas", "PRDG003", "Desarrollo"]], s: "doc" },
+  { id: "k10", m: "d30", t: "Conoce cómo evalúas a tu equipo", a: "Revisa cómo se reúne la información para evaluar al personal y cómo se detectan necesidades de capacitación.", w: "Dirección General", d: "Sabes qué información entregas y en qué fechas.", r: [["PR-AD-014 Evaluación al personal", "PRAD014", "Desarrollo"], ["PR-AD-005 Capacitación", "PRAD005", "Plan anual"]], s: "val", n: "FO-AD-055 no está en la carpeta." }
+];
+/* Preguntas para comprobar cada actividad. Todas salen de los documentos revisados del Drive.
+   Opcion multiple: { t, o: [...], a: indice correcto, why }.
+   Respuesta escrita: { t, type: "text", accept: [...], show: respuesta para mostrar, code: true si es un codigo, why }.
+   Si depende del programa o del puesto, la entrada es una funcion. */
+const Q = {
+  c1: [
+    { t: "¿A quién atiende TEDI?", o: ["A personas con síndrome de Down y a sus familias", "A cualquier niño en edad escolar", "Solo a adultos mayores"], a: 0, why: "La misión habla de la formación y educación de personas con síndrome de Down, apoyando a sus familias." },
+    { t: "¿Cuántos campus tiene TEDI? Escribe el número.", type: "text", accept: ["3", "tres"], show: "3", why: "San Pedro, Apodaca y Monterrey Sur." },
+    { t: "¿Cuál de estos NO es un valor institucional de TEDI?", o: ["Respeto", "Competencia", "Optimismo", "Mejora continua"], a: 1, why: "Los valores son respeto, compromiso, optimismo y mejora continua." }
+  ],
+  c2: [
+    { t: "Mientras te entregan la playera institucional, ¿qué ropa usas?", o: ["Ropa deportiva", "Blusa o polo con pantalón azul, negro o mezclilla oscura", "Cualquier ropa"], a: 1, why: "Así lo indica el Manual del colaborador para el personal de recién ingreso." }
+  ],
+  c3: [
+    { t: "¿Cómo registras tu entrada y tu salida?", o: ["Firmando una lista en recepción", "Con tu huella en el reloj checador", "Avisando por WhatsApp"], a: 1, why: "No registrarla se considera falta grave a la disciplina laboral." },
+    { t: "¿En qué lugar está el botiquín de primeros auxilios?", type: "text", accept: ["recepcion"], show: "En recepción", why: "Se puede llevar al lugar donde está la persona accidentada." }
+  ],
+  c4: [
+    { t: "¿Qué secciones de tu perfil de puesto lees el primer día?", o: ["Solo los requisitos", "A, B y C: a quién reportas, tu objetivo y tus funciones", "Únicamente la tabla de cambios"], a: 1, why: "Los indicadores y la frecuencia de control (D y E) se revisan al día 30." }
+  ],
+  c5: [
+    { t: "¿Cómo se llama el grupo de WhatsApp donde están todos los colaboradores?", type: "text", accept: ["oficial avisos tedi", "oficial avisos", "avisos tedi"], show: "Oficial Avisos TEDI", why: "Además hay grupos por sede, por programa y para reportar desperfectos." }
+  ],
+  c6: [
+    { t: "Caso 1. Quieres publicar en tus redes una foto bonita de tus alumnos. ¿Qué haces?", o: ["La publico sin poner nombres", "Solo con el consentimiento expreso de TEDI y de la familia", "La publico en historias, que se borran solas"], a: 1, why: "El manual prohíbe publicar fotos o videos de alumnos sin el consentimiento expreso de la institución y del padre de familia." },
+    { t: "Caso 2. Durante tu clase te llega un mensaje personal. ¿Qué haces?", o: ["Lo contesto rápido", "Lo reviso al terminar la clase", "Salgo del salón a contestar"], a: 1, why: "Tus alumnos requieren toda tu atención: se evita el celular durante clases y terapias." },
+    { t: "Caso 3. Un alumno tuvo una conducta difícil. ¿Cómo lo reportas?", o: ["Lo comento con mis compañeros en el pasillo", "Se lo cuento a otros padres", "Lo reporto discretamente a mi superior inmediato, con hechos objetivos"], a: 2, why: "El manual pide discreción y términos objetivos: qué hizo, cuánto duró y con qué frecuencia." },
+    { t: "Caso 4. Una amistad te pregunta por la situación de un alumno de TEDI. ¿Qué haces?", o: ["No comento asuntos de alumnos fuera de TEDI", "Le cuento sin decir el nombre", "Le enseño su reporte"], a: 0, why: "Está prohibido comentar asuntos de alumnos y maestros fuera de la institución." },
+    { t: "Caso 5. Un padre de familia te envía solicitud de amistad en Facebook. ¿Qué indica el manual?", o: ["Aceptarla para mejorar la relación", "Procurar no aceptar a padres de familia en tu Facebook personal", "Aceptarla solo si es de tu grupo"], a: 1, why: "La relación con las familias se cuida por los canales institucionales." }
+  ],
+  c7: [
+    { t: "¿Qué tipo de documento es un «FO»?", o: ["Un procedimiento", "Un formato para llenar", "Un documento de soporte"], a: 1, why: "PR es procedimiento, IN instructivo, DS documento de soporte y FO formato." },
+    { t: "¿Qué significa «AC» en el código PR-AC-003?", o: ["Administración", "Área académica", "Auditoría de calidad"], a: 1, why: "AC es académica, AD administración y DG dirección." },
+    { t: "Escribe el código del procedimiento académico número 5.", type: "text", code: true, accept: ["PR-AC-005"], show: "PR-AC-005", why: "Tipo PR, área AC y número 005." }
+  ],
+  c8: [
+    { t: "Escribe el código del formato para pedir permiso de ausentarte.", type: "text", code: true, accept: ["FO-AD-033", "FOAD33"], show: "FO-AD-033", why: "Lo encuentras en recepción o en el Drive de maestros, y lo autorizan Administración y Coordinación." },
+    { t: "Si faltas por enfermedad, ¿qué justifica tu ausencia?", o: ["Un mensaje a tu jefa", "La incapacidad del IMSS o un comprobante médico válido", "No necesita justificación"], a: 1, why: "Otro comprobante queda a criterio de la Dirección General." }
+  ],
+  c9: [
+    { t: "¿Cuál es el monto máximo de un gasto por caja chica?", o: ["$500", "$2,000", "$10,000"], a: 1, why: "Son gastos menores a $2,000 pesos, con vale provisional o reembolso." },
+    { t: "¿En cuántos días debes entregar la factura de un vale de caja provisional?", type: "text", accept: ["15", "quince"], show: "15 días", why: "Si no se entrega en ese plazo, se descuenta vía nómina." }
+  ],
+  c10: [
+    { t: "¿Qué días se paga la nómina?", o: ["El 1 y el 15 de cada mes", "El 15 y el 30 de cada mes", "Cada viernes"], a: 1, why: "El pago es por depósito bancario." },
+    { t: "¿Qué día puedes tomar libre por tu cumpleaños?", o: ["El día exacto de tu cumpleaños", "Un viernes, avisando con anticipación", "No hay día libre"], a: 1, why: "Avisas con anticipación a tu superior inmediato." }
+  ],
+  c12: [
+    { t: "¿Cuántas competencias evalúa la rúbrica de desempeño?", type: "text", accept: ["12", "doce"], show: "12", why: "Cada competencia tiene seis conductas que se califican de 1 (nunca) a 5 (siempre)." },
+    { t: "¿Cuántas veces por ciclo escolar se evalúa al personal, como mínimo?", o: ["Una", "Cuatro", "Doce"], a: 0, why: "En diciembre se revisan avances del plan anual, competencias y funciones." }
+  ],
+  d1: () => ({
+    transitorio: [{ t: "¿Qué edades atiende Transitorio?", o: ["De 30 días de nacido a 3 años", "De 2 a 5 años aproximadamente", "De 13 a 22 años"], a: 1, why: "Prepara al alumno para su inclusión a preescolar." }],
+    jovenes: [{ t: "¿Qué edades atiende el programa de Jóvenes?", o: ["De 2 a 5 años", "De 13 a 22 años aproximadamente", "A partir de 3 años"], a: 1, why: "Trabaja habilidades académicas, adaptativas, sociales y laborales." }],
+    apoyo: [{ t: "¿A partir de qué edad atiende Apoyo Escolar? Escribe el número de años.", type: "text", accept: ["3", "tres"], show: "3 años", why: "Apoya al alumno en edad escolar y su inclusión en la escuela regular." }],
+    at: [{ t: "¿Desde qué edad atiende Atención Temprana?", o: ["Desde 30 días de nacido", "Desde 2 años", "Desde 3 años"], a: 0, why: "Hasta que adquiere la marcha o cerca de los 3 años." }],
+    lenguaje: [{ t: "¿Cuántos minutos dura, como mínimo, el video con el que evalúas al alumno?", type: "text", accept: ["3", "tres"], show: "3 minutos", why: "Se toma al inicio y al final del semestre, y se revisa con el equipo de lenguaje." }],
+    auxiliar: [{ t: "¿A quién reportas como auxiliar de grupo?", o: ["A Administración", "A la titular del grupo", "A Calidad"], a: 1, why: "Así lo indica tu perfil de puesto." }]
+  })[S.prog],
+  d2: [
+    { t: "Si te asignan un alumno que ya estuvo en TEDI, ¿dónde consultas sus programas y reportes?", o: ["Se los pido a la familia", "En el Drive de maestros y con la maestra que trabajó con él", "No hace falta revisarlos"], a: 1, why: "El manual pide que la última maestra comparta su manejo y su trabajo." }
+  ],
+  d3: [
+    { t: "Si a la salida nadie recoge a un alumno, ¿cuántos minutos esperas antes de llevarlo a recepción?", type: "text", accept: ["20", "veinte"], show: "20 minutos", why: "Aplica en el turno matutino." },
+    { t: "Un alumno que no es de tu grupo necesita ir al baño mientras está a tu cargo. ¿Qué haces?", o: ["Busco a su maestra", "Lo apoyo yo, porque está a mi cargo", "Espero a que termine la clase"], a: 1, why: "El docente a cargo del alumno, sea o no su maestro, lo apoya." }
+  ],
+  d4: [
+    { t: "Escribe el código de la guía para observar una clase.", type: "text", code: true, accept: ["FO-AC-041", "FOAC41"], show: "FO-AC-041", why: "Se llama «Aspectos a considerar en una observación de clase»." }
+  ],
+  d5: () => S.prog === "at"
+    ? [{ t: "¿Cada cuánto se elabora el programa de Atención Temprana?", o: ["Cada mes", "Cada tres meses", "Cada año"], a: 1, why: "El reporte de resultados se entrega a los padres cada semestre." }]
+    : [{ t: "¿Con qué frecuencia se hace la planeación de clases?", o: ["Diaria", "Quincenal", "Anual"], a: 1, why: "Se basa en el programa semestral de cada alumno." }],
+  d6: [
+    { t: "Escribe el código del formato de registro de asistencia.", type: "text", code: true, accept: ["FO-AC-008", "FOAC8"], show: "FO-AC-008", why: "Se llena al terminar cada sesión." }
+  ],
+  d7: () => S.prog === "at"
+    ? [{ t: "¿Con qué instrumento evalúas a un bebé al ingresar?", o: ["DS-AC-015 Evaluación de Atención Temprana", "FO-AC-016 Evaluación de inicio", "FO-AC-039 Evaluación primaria"], a: 0, why: "Además, al inicio y al final del ciclo se aplica el inventario Brigance III." }]
+    : S.prog === "lenguaje"
+      ? [{ t: "¿Qué evaluaciones aplicas al inicio?", o: ["Habilidades preverbales y articulación", "Solo la evaluación de escritura", "La evaluación de periodo de prueba"], a: 0, why: "FO-AC-024 y FO-AC-025, que se complementan con el equipo de lenguaje." }]
+      : S.prog === "auxiliar" ? []
+        : [{ t: "¿Qué evaluación se aplica a un alumno de nuevo ingreso?", o: ["FO-AC-016 Evaluación de inicio", "FO-AD-033 Permisos", "FO-AC-008 Registro de asistencia"], a: 0, why: "Con ella se define su programa." }],
+  d8: [
+    { t: "¿Qué número de competencia de la rúbrica mide tus habilidades docentes?", type: "text", accept: ["9", "nueve"], show: "9", why: "Incluye planear, evaluar y conocer las necesidades de cada alumno." }
+  ],
+  d9: () => [{ t: "¿Cada cuánto se elabora el programa de cada alumno?", o: ["Cada semana", S.prog === "at" ? "Cada tres meses" : "Cada semestre", "Una sola vez al ingresar"], a: 1, why: "Al terminar se evalúan los resultados y se elabora el siguiente." }],
+  d10: [
+    { t: "Si no sabes cómo comentar algo difícil a una familia, ¿qué haces?", o: ["Lo resuelvo como pueda", "Pido apoyo a Coordinación", "Evito decírselo"], a: 1, why: "El manual pide informar siempre lo que el alumno sí logra y en qué necesita apoyo." }
+  ],
+  d11: [
+    { t: "¿Dónde subes asistencias, planeaciones y programas?", type: "text", accept: ["drive de maestros", "drive maestros"], show: "En el Drive de maestros", why: "Ahí los revisa tu coordinación." }
+  ],
+  d12: [
+    { t: "¿Qué número de competencia de la rúbrica mide el seguimiento de procedimientos?", type: "text", accept: ["11", "once"], show: "11", why: "Incluye registrar los documentos necesarios de tu área." }
+  ],
+  a1: [
+    { t: "¿En qué plazo pagan las familias su colegiatura?", o: ["Dentro de los primeros 10 días de cada mes", "Al final del mes", "Cada semestre"], a: 0, why: "Después se cobra un interés según el reglamento a padres." },
+    { t: "¿Quién decide si se otorga una beca?", o: ["Recepción", "El Comité de Becas", "La maestra del alumno"], a: 1, why: "Delibera según el fondo de becas disponible." }
+  ],
+  a2: [
+    { t: "¿A qué área reportan recepción, intendencia y mantenimiento?", type: "text", accept: ["administracion"], show: "Administración", why: "Administración también lleva asistencia, permisos y material." }
+  ],
+  a3: [
+    { t: "¿En qué sistema se registra la contabilidad?", type: "text", accept: ["contpaq", "contpaqi"], show: "CONTPAQi", why: "Ahí se capturan ingresos y gastos." }
+  ],
+  a4: () => ({
+    recepcion: [{ t: "Una familia paga su cuota. ¿Qué sigue después de recibir el pago?", o: ["Registrarlo en el control de pagos, facturar y capturarlo en CONTPAQi", "Guardar el efectivo hasta fin de mes", "Avisar a la maestra"], a: 0, why: "Luego se deposita y se verifica en el estado de cuenta." }],
+    fondos: [{ t: "Cuando un donativo se autoriza, ¿a qué área se informa para registrar el ingreso?", o: ["A Administración", "A Mercadotecnia", "A Calidad"], a: 0, why: "Después Procuración de Fondos envía la encuesta de satisfacción al donante." }],
+    mkt: [{ t: "Escribe el código del formato para pedir apoyo de difusión de un evento.", type: "text", code: true, accept: ["FO-AD-012", "FOAD12"], show: "FO-AD-012", why: "Es la solicitud de apoyo de difusión." }],
+    mantenimiento: [{ t: "Al terminar el recorrido de mensajería, ¿qué anotas en el listado?", o: ["Solo la hora de salida", "Horas, kilometraje inicial y final, y gasolina si cargaste", "Nada: solo entregas los documentos"], a: 1, why: "Se entrega con los comprobantes a Administración." }],
+    intendencia: [{ t: "¿En qué documento están tus actividades diarias?", o: ["Plan de actividades diarias FO-AD-029", "Registro de asistencia FO-AC-008", "Bitácora del auto"], a: 0, why: "Lo firmas de común acuerdo con Administración." }]
+  })[S.puesto],
+  a5: [
+    { t: "¿Quién revisa tu primer proceso?", o: ["Nadie", "Administración", "La familia"], a: 1, why: "Tu compañera de área te acompaña mientras lo haces." }
+  ],
+  a6: [
+    { t: "Una familia pide informes. ¿Dónde se registra la solicitud?", o: ["En el registro de alumno nuevo", "En el registro de asistencia", "En el control de becas"], a: 0, why: "Después se agenda la entrevista y la evaluación de inicio." }
+  ],
+  a7: [
+    { t: "¿Cuál es el tope en pesos de un gasto por caja chica? Escribe solo el número.", type: "text", accept: ["2000", "2 000", "dos mil"], show: "$2,000", why: "Para montos mayores se usa la solicitud de materiales y compras." }
+  ],
+  a9: [
+    { t: "¿Cada cuánto se concilian los pagos, como mínimo?", o: ["Una vez al mes", "Una vez al año", "Cada día"], a: 0, why: "Así se detectan diferencias entre lo registrado y lo pagado." }
+  ],
+  a10: [
+    { t: "¿Qué número de competencia de la rúbrica mide el uso adecuado de recursos?", type: "text", accept: ["12", "doce"], show: "12", why: "Incluye realizar tu inventario a tiempo." }
+  ],
+  k1: [
+    { t: "¿Qué cuatro momentos tiene el ciclo de cada programa?", o: ["Evaluación, programa, ejecución y resultados", "Inscripción, pago, clase y baja", "Plan anual, auditoría, informe y cierre"], a: 0, why: "Es el ciclo que se repite cada semestre en los procedimientos académicos." }
+  ],
+  k2: [
+    { t: "Según los perfiles de enero de 2026, ¿a qué área reportan las coordinaciones?", type: "text", accept: ["direccion educativa"], show: "Dirección Educativa", why: "El organigrama todavía no lo refleja; es una de las decisiones pendientes." }
+  ],
+  k4: [
+    { t: "¿Qué incluye la inducción según el procedimiento de contratación?", o: ["Recorrido, manual, lista de inducción al puesto y perfil", "Solo la firma del contrato", "Una capacitación externa"], a: 0, why: "Al final del periodo de prueba se aplica su evaluación." }
+  ],
+  k5: [
+    { t: "¿Cuántos puntos de mejora acuerdas con el docente en la retroalimentación?", type: "text", accept: ["2", "dos"], show: "2", why: "Pocos y concretos, para que se puedan cumplir antes de la siguiente observación." }
+  ],
+  k6: [
+    { t: "¿Con qué frecuencia hace planeación cada docente?", o: ["Quincenal", "Anual", "Diaria"], a: 0, why: "Se basa en el programa semestral de cada alumno." }
+  ],
+  k7: [
+    { t: "Al recibir un permiso, ¿con qué se decide si la falta es justificada?", o: ["Con las políticas de faltas y permisos", "A criterio de cada coordinación", "Con el reglamento a padres"], a: 0, why: "Administración aplica el resultado en la nómina." }
+  ],
+  k8: [
+    { t: "¿Cada cuánto se revisa un documento, como mínimo?", o: ["Una vez al año", "Cada cinco años", "Solo cuando hay auditoría"], a: 0, why: "Las versiones anteriores se marcan como «Documento obsoleto»." }
+  ],
+  k9: [
+    { t: "¿Cuántas auditorías internas hay por ciclo escolar?", type: "text", accept: ["2", "dos"], show: "2", why: "Una a medio ciclo y otra al final." }
+  ],
+  k10: [
+    { t: "¿En qué mes se revisan los avances del plan anual del personal?", type: "text", accept: ["diciembre"], show: "Diciembre", why: "Ahí también se evalúan competencias y funciones." }
+  ]
+};
+const LEVELS = [
+  { k: "antes", n: "Antes del ingreso", tip: "Conoce TEDI y prepara tu ingreso para llegar sin pendientes.", badge: "Preparación" },
+  { k: "d1", n: "Día 1", tip: "Formaliza tu ingreso, ubica a tu equipo y entra a los canales de comunicación.", badge: "Integración" },
+  { k: "s1", n: "Semana 1", tip: "Esta etapa incluye tu actividad clave del primer mes.", badge: "CLAVE" },
+  { k: "s2", n: "Semana 2", tip: "Practicas con acompañamiento y recibes retroalimentación.", badge: "Práctica guiada" },
+  { k: "s34", n: "Semanas 3 y 4", tip: "Trabajas con mayor autonomía y te relacionas con más áreas.", badge: "Autonomía" },
+  { k: "d30", n: "Día 30", tip: "Revisas cómo se evalúa tu desempeño y cierras tu primer mes.", badge: "Incorporación completa" }
+];
+const SLABEL = { doc: "Documentado", val: "Por validar", new: "Material nuevo" };
+/* Los codigos se guardan cifrados (SHA-256), no en texto. Es un filtro de entrada, no una proteccion de datos. */
+const HASH = { docente: "12de0e58b19fa17f8f3af6addf67b502ce8b74d835ae14f5da0874936493685d", administracion: "2a454dd33c18b0b368b9b8d09c2e54f228c1f52ddc556cd6fd5fb2de21318ae0", direccion: "d5efca506ccdfb1e23e8d54969521729525a4bc4911bd3c5200a5a5a02bc2443", coordinacion: "d5efca506ccdfb1e23e8d54969521729525a4bc4911bd3c5200a5a5a02bc2443" };
+const KEY = "tedi-incorporacion-v2";
+let S = { perfil: "", prog: "transitorio", puesto: "recepcion", done: {}, opened: {}, rev: false, unlock: false, ok: {}, dir: false, step: "", nombre: "", team: [], coord: "academica", quiz: {}, tipSeen: false };
+try { const raw = localStorage.getItem(KEY); if (raw) S = Object.assign(S, JSON.parse(raw)); } catch (e) {}
+S.step = "";
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(Object.assign({}, S, { step: "" }))); } catch (e) {} };
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const reduced = () => !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+const canon = v => String(v || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+async function sha(t) {
+  if (!(window.crypto && crypto.subtle)) return "";
+  const b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(t));
+  return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, "0")).join("");
+}
+
+const P = { book: '<path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/>', eye: '<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>', chat: '<path d="M4 5h16v11H9l-5 4z"/>', task: '<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 12l3 3 5-6"/>', star: '<path d="M12 3l2.8 5.8 6.2.9-4.5 4.4 1 6.2L12 17.3 6.5 20.3l1-6.2L3 9.7l6.2-.9z"/>', lock: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>', check: '<path pathLength="1" d="M5 12.5l4.5 4.5L19 7.5"/>', route: '<circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="6" r="2.5"/><path d="M8.5 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.5"/>', file: '<path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/>', medal: '<circle cx="12" cy="14" r="6"/><path d="M8 3l4 5 4-5"/>', gear: '<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/>', next: '<path d="M5 12h13M13 6l6 6-6 6"/>', close: '<path d="M6 6l12 12M18 6L6 18"/>', back: '<path d="M15 5l-7 7 7 7"/>', ext: '<path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/>', grad: '<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 3 9 3 12 0v-5"/>', brief: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/>', flag: '<path d="M5 21V4h11l-2 4 2 4H5"/>', people: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-4 3-6.5 6.5-6.5s6.5 2.5 6.5 6.5"/><circle cx="17" cy="9" r="2.5"/><path d="M16 13.5c3 0 5.5 2 5.5 5.5"/>', shield: '<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>', logout: '<path d="M10 4H5v16h5M15 8l4 4-4 4M19 12H9"/>', home: '<path d="M3 11l9-7 9 7"/><path d="M5 10v10h5v-6h4v6h5V10"/>' };
+const ic = (n, cls = "ic") => `<svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${P[n]}</svg>`;
+const typeOf = st => st.key ? "star" : /^(Observa|Segunda observación)/.test(st.t) ? "eye" : /familia|seguimiento|retroalimentación|informes/i.test(st.t) ? "chat" : /^(Conoce|Revisa|Aprende|Lee)/.test(st.t) ? "book" : /organigrama|canales/i.test(st.t) ? "people" : "task";
+const ptsOf = st => st.key ? 50 : 10;
+function sealSvg(i, on = true, cls = "") {
+  const c = on ? (i === LEVELS.length - 1 ? "#B8862A" : "#0F6E6A") : "#9AA9B8";
+  return `<svg class="${cls}" viewBox="0 0 80 80" aria-hidden="true"><path d="M28 52l-6 24 10-5 6 8 4-21zM52 52l6 24-10-5-6 8-4-21z" fill="${on ? "#12263A" : "#C5CFD9"}"/><circle cx="40" cy="34" r="27" fill="${c}"/><circle cx="40" cy="34" r="21" fill="none" stroke="#FFFFFF" stroke-opacity=".55" stroke-width="1.5"/><text x="40" y="43" text-anchor="middle" font-family="Space Grotesk, Inter, sans-serif" font-size="26" font-weight="700" fill="#FFFFFF">${i + 1}</text></svg>`;
+}
+function trailSvg() {
+  const pts = [[24, 70], [86, 34], [148, 66], [210, 30], [272, 62], [328, 26]];
+  const d = "M24 70C52 70 58 34 86 34S120 66 148 66 182 30 210 30 244 62 272 62 300 26 328 26";
+  return `<svg class="trail" viewBox="0 0 352 96" aria-hidden="true"><path class="line" pathLength="1" d="${d}" fill="none" stroke="#FFFFFF" stroke-opacity=".55" stroke-width="2.5" stroke-linecap="round"/>
+    ${pts.map(([x, y], i) => `<circle class="dot" cx="${x}" cy="${y}" r="${i === 5 ? 9 : 7}" fill="${i === 5 ? "#F1D08A" : "#FFFFFF"}" style="animation-delay:${300 + i * 200}ms"/>`).join("")}
+    <g class="flagp"><path d="M328 17V2h12l-3 4 3 4h-12" fill="#F1D08A"/></g></svg>`;
+}
+
+const route = () => S.perfil === "docente" ? DOCENTE : S.perfil === "administracion" ? ADMIN : S.perfil === "coordinacion" ? COORD : [];
+const acts = k => [...COMUN.filter(s => s.m === k), ...route().filter(s => s.m === k)];
+const all = () => LEVELS.flatMap(L => acts(L.k));
+const lvDone = k => acts(k).every(s => S.done[s.id]);
+const unlocked = i => (S.dir && S.unlock) || i === 0 || LEVELS.slice(0, i).every(L => lvDone(L.k));
+const ptsTotal = () => all().reduce((a, s) => a + (S.done[s.id] ? ptsOf(s) : 0), 0) + LEVELS.filter(L => lvDone(L.k)).length * 20;
+const ptsMax = () => all().reduce((a, s) => a + ptsOf(s), 0) + LEVELS.length * 20;
+const pct = () => Math.round(all().filter(s => S.done[s.id]).length / Math.max(1, all().length) * 100);
+const RANKS = [[0, "Inicio"], [25, "En integración"], [50, "En práctica"], [75, "Avanzado"], [100, "Incorporación completa"]];
+const rank = () => { let r = RANKS[0][1]; for (const [t, n] of RANKS) if (pct() >= t) r = n; return r; };
+const currentIdx = () => { for (let i = 0; i < LEVELS.length; i++) if (!lvDone(LEVELS[i].k)) return i; return LEVELS.length - 1; };
+const nextAct = () => { for (let i = 0; i < LEVELS.length; i++) { if (!unlocked(i)) return null; const m = acts(LEVELS[i].k).find(s => !S.done[s.id]); if (m) return m; } return null; };
+const badgeName = i => LEVELS[i].badge === "CLAVE" ? (S.perfil === "administracion" ? "Primer proceso" : "Primera sesión") : LEVELS[i].badge;
+const espKey = () => S.perfil === "docente" ? S.prog : S.perfil === "coordinacion" ? S.coord : S.puesto;
+const espTable = p => p === "docente" ? PROG : p === "coordinacion" ? COORDS : PUESTO;
+const espName = () => espTable(S.perfil)[espKey()].n;
+const perfilName = p => p === "docente" ? "Docente" : p === "coordinacion" ? "Coordinación" : "Administrativo";
+const lvOf = st => LEVELS.findIndex(L => L.k === st.m);
+const hasAccess = p => S.dir || !!S.ok[p];
+function refs(st) {
+  const out = [];
+  for (const [lab, key, sec] of st.r) {
+    if (key === "PROC") { const p = S.perfil === "coordinacion" ? COORDS[S.coord].proc : PROG[S.prog].proc; out.push([p[0], url(p[1]), sec]); }
+    else if (key === "PLAN") { const p = PROG[S.prog].plan; out.push([p[0], url(p[1]), sec]); }
+    else if (key === "EVAL") PROG[S.prog].ev.forEach(e => out.push([e[0], url(e[1]), ""]));
+    else if (key === "PROCESO") { const p = PUESTO[S.puesto].proc; out.push([p[0], url(p[1]), p[2]]); }
+    else if (key === "PERFIL") { const k = S.perfil === "docente" ? PROG[S.prog].perfil : S.perfil === "administracion" ? PUESTO[S.puesto].perfil : S.perfil === "coordinacion" ? COORDS[S.coord].perfil : PERFILES; out.push([lab, url(k), sec]); }
+    else if (key === "RUBRICA") out.push([S.perfil === "administracion" ? "Rúbrica de evaluación administrativa" : "Rúbrica de evaluación docente", "", `Te la muestra tu jefa inmediata, en blanco${sec ? ` · ${sec}` : ""}`]);
+    else if (key === "ENTREGA") out.push([lab, "", "Plantilla en blanco: te la entrega tu coordinadora"]);
+    else out.push([lab, url(key), sec]);
+  }
+  return out;
+}
+const callout = html => `<div class="callout"><span class="tile">${ic("flag")}</span><p>${html}</p></div>`;
+let lastPct = null, lastPts = null, justId = null, revealMap = true;
+
+const V = {
+  inicio() {
+    const pick = S.perfil;
+    const chips = pick === "docente" ? Object.entries(PROG).map(([k, v]) => `<button class="chip" data-prog="${k}" aria-pressed="${S.prog === k}">${esc(v.n)}</button>`).join("")
+      : pick === "administracion" ? Object.entries(PUESTO).map(([k, v]) => `<button class="chip" data-puesto="${k}" aria-pressed="${S.puesto === k}">${esc(v.n)}</button>`).join("")
+      : pick === "coordinacion" ? Object.entries(COORDS).map(([k, v]) => `<button class="chip" data-coord="${k}" aria-pressed="${S.coord === k}">${esc(v.n)}</button>`).join("") : "";
+    if (S.step === "code" || S.step === "dircode") return V.acceso();
+    return `<section class="cover"><div class="brandline"><span class="brandmark">TEDI</span><span class="tag">Prototipo</span></div>
+        <h1>Programa de incorporación</h1><p>Tu primer mes en TEDI, en seis etapas. Cada actividad indica qué hacer, quién te acompaña y dónde está la instrucción.</p>${trailSvg()}</section>
+      <div class="facts"><div><b>6</b><span>etapas</span></div><div><b>30</b><span>días</span></div><div><b>1</b><span>actividad clave</span></div></div>
+      <section class="panel"><h2>Selecciona tu perfil</h2>
+      <div class="chars">
+        <button class="char" data-perfil="docente" aria-pressed="${pick === "docente"}"><span class="tile">${ic("grad")}</span><b>Docente</b><span>Grupo, apoyo escolar, Atención Temprana, lenguaje o auxiliar</span></button>
+        <button class="char" data-perfil="administracion" aria-pressed="${pick === "administracion"}"><span class="tile">${ic("brief")}</span><b>Administrativo</b><span>Recepción, fondos, mercadotecnia, mantenimiento o intendencia</span></button>
+        <button class="char wide2" data-perfil="coordinacion" aria-pressed="${pick === "coordinacion"}"><span class="tile">${ic("people")}</span><span class="ctext"><b>Coordinación</b><span>Coordinaciones de programa, de sede y Calidad. Incluye el panel de seguimiento de tu equipo.</span></span></button>
+      </div></section>
+      ${pick ? `<section class="panel"><h2>${pick === "docente" ? "Selecciona tu programa" : pick === "coordinacion" ? "Selecciona tu coordinación" : "Selecciona tu puesto"}</h2><div class="chips">${chips}</div></section>
+      <button class="btn wide" data-start="1">${hasAccess(pick) ? "Entrar a mi ruta" : "Continuar"} ${ic("next")}</button>` : ""}
+      ${S.dir ? `<button class="btn ghost wide" data-go="equipo">Ir al panel de seguimiento</button>` : `<button class="linkbtn" data-dirgate="1">Acceso para coordinación y dirección</button>`}`;
+  },
+  acceso() {
+    const dir = S.step === "dircode";
+    return `<div class="lvhead"><button class="iconbtn" data-back-start="1" aria-label="Volver">${ic("back")}</button><p class="kicker">${dir ? "Coordinación y dirección" : `Perfil ${perfilName(S.perfil).toLowerCase()}`}</p></div>
+      <section class="panel gate" id="gate">
+        <span class="lockicon">${ic(dir ? "shield" : "lock")}</span>
+        <h1>${dir ? "Acceso para coordinación y dirección" : "Ingresa tu código de acceso"}</h1>
+        <p class="muted">${dir ? "Este código abre el panel de seguimiento de tu equipo y te deja recorrer las dos rutas." : `Administración te entrega este código el día de tu ingreso. Es distinto para cada perfil.`}</p>
+        <form class="codefield" id="codeform" novalidate>
+          ${dir ? "" : `<label for="nombre">Tu nombre completo</label><input id="nombre" name="nombre" class="namein" autocomplete="name" value="${esc(S.nombre)}" placeholder="Nombre y apellido">`}
+          <label for="code">Código</label>
+          <input id="code" name="code" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text" placeholder="TEDI-XXX-00" aria-describedby="codemsg codehint">
+          <p class="msg" id="codemsg" role="alert"></p>
+          <button class="btn wide" type="submit" id="codebtn">Entrar ${ic("next")}</button>
+          <p class="hint" id="codehint">Si no tienes tu código, solicítalo a ${dir ? "Calidad y Desarrollo Institucional" : "Administración"}.</p>
+        </form>
+      </section>`;
+  },
+  ruta() {
+    const cur = currentIdx(), rowH = 140, H = LEVELS.length * rowH, xs = [26, 74, 26, 74, 26, 74];
+    const pt = i => [xs[i], i * rowH + 70];
+    let segs = "";
+    for (let i = 0; i < LEVELS.length - 1; i++) {
+      const [x0, y0] = pt(i), [x1, y1] = pt(i + 1), d = `M${x0} ${y0}C${x0} ${y0 + 76} ${x1} ${y1 - 76} ${x1} ${y1}`;
+      const on = lvDone(LEVELS[i].k);
+      segs += `<path d="${d}" fill="none" stroke="${on ? "#B8862A" : "#C9D3DC"}" stroke-width="${on ? 4 : 3}" stroke-linecap="round" ${on ? "" : 'stroke-dasharray="1 10"'} vector-effect="non-scaling-stroke"/>`;
+    }
+    const nodes = LEVELS.map((L, i) => {
+      const [x, y] = pt(i), ms = acts(L.k), d = ms.filter(s => S.done[s.id]).length, ok = unlocked(i), done = lvDone(L.k), here = ok && i === cur && !done;
+      const lab = x < 50 ? `left:calc(${x}% + 48px)` : `right:calc(${100 - x}% + 48px)`;
+      return `${here ? `<span class="halo" style="left:${x}%;top:${y}px"></span><span class="here-tag" style="left:${x}%;top:${y - 44}px;--i:${i}">Estás aquí</span>` : ""}
+        <button class="node ${done ? "done" : ok ? "" : "locked"}" style="left:${x}%;top:${y}px;--i:${i}" data-level="${i}" aria-label="Etapa ${i + 1}, ${esc(L.n)}: ${d} de ${ms.length} actividades${ok ? "" : ", bloqueada"}">${done ? ic("check") : ok ? i + 1 : ic("lock")}</button>
+        <button class="label ${ok ? "" : "locked"}" style="${lab};top:${y}px;--i:${i}" data-level="${i}" tabindex="-1" aria-hidden="true"><b>${esc(L.n)}</b><span>${ok ? `${d} de ${ms.length} actividades` : "Bloqueada"}</span><span class="dots">${ms.map(s => `<i class="${S.done[s.id] ? "on" : ""}"></i>`).join("")}</span></button>`;
+    }).join("");
+    const nx = nextAct(), C = 2 * Math.PI * 34;
+    return `<section class="summary"><div class="ring"><svg viewBox="0 0 84 84" aria-hidden="true"><circle class="track" cx="42" cy="42" r="34" fill="none" stroke-width="8"/><circle class="val" cx="42" cy="42" r="34" fill="none" stroke-width="8" stroke-dasharray="${C.toFixed(1)}" data-ring="${pct()}" style="stroke-dashoffset:${(C * (1 - (lastPct ?? 0) / 100)).toFixed(1)}"/></svg><b>${pct()}%</b></div>
+        <div class="st"><p class="kicker">Etapa ${cur + 1} de 6 · ${esc(LEVELS[cur].n)}</p>${nx ? `<p>Siguiente: <b>${esc(nx.t)}</b></p>` : `<p><b>Concluiste tu primer mes.</b></p>`}</div></section>
+      ${nx ? `<button class="btn wide" data-act="${nx.id}">Continuar ${ic("next")}</button>` : `<button class="btn wide" data-go="avance">Ver mi avance</button>`}
+      <div class="map ${revealMap ? "reveal" : ""}" style="height:${H}px"><svg class="path" viewBox="0 0 100 ${H}" preserveAspectRatio="none" style="height:${H}px">${segs}</svg>${nodes}</div>`;
+  },
+  etapa(i) {
+    const L = LEVELS[i], ms = acts(L.k), d = ms.filter(s => S.done[s.id]).length;
+    if (!unlocked(i)) return `<div class="lvhead"><button class="iconbtn" data-go="ruta" aria-label="Volver a la ruta">${ic("back")}</button><h1>${esc(L.n)}</h1></div>
+      ${callout(`Esta etapa se habilita al concluir <b>${esc(LEVELS[i - 1].n)}</b>.`)}<button class="btn wide" data-level="${i - 1}">Ir a ${esc(LEVELS[i - 1].n)}</button>`;
+    const list = ms.map(s => `<button class="act ${S.done[s.id] ? "done" : ""} ${s.key ? "keyact" : ""} ${justId === s.id ? "just" : ""}" data-act="${s.id}">
+        <span class="ai">${S.done[s.id] ? ic("check") : ic(typeOf(s))}</span>
+        <span class="at">${s.key ? `<span class="keytag">Actividad clave</span>` : ""}<b>${esc(s.t)}</b><span>Te acompaña: ${esc(s.w)}</span></span>
+        <span class="ap">+${ptsOf(s)} pts</span></button>`).join("");
+    return `<div class="lvhead"><button class="iconbtn" data-go="ruta" aria-label="Volver a la ruta">${ic("back")}</button><span class="lvnum">${i + 1}</span><div><p class="kicker">Etapa ${i + 1} de 6</p><h1>${esc(L.n)}</h1></div></div>
+      ${callout(esc(L.tip))}
+      <div class="panel"><div class="toggle"><span>${d} de ${ms.length} actividades</span><span class="small muted">Reconocimiento: ${esc(badgeName(i))}</span></div><div class="bar"><i style="--p:${(d / ms.length).toFixed(3)}"></i></div></div>
+      <div class="stagger" style="display:flex;flex-direction:column;gap:10px">${list}</div>`;
+  },
+  documentos() {
+    const seen = new Map();
+    LEVELS.forEach((L, i) => acts(L.k).forEach(s => refs(s).forEach(([l, u]) => { if (u && !seen.has(u)) seen.set(u, { l, u, i }); })));
+    const items = [...seen.values()], got = items.filter(x => S.opened[x.u]).length;
+    const row = x => unlocked(x.i) ? `<a class="item ${S.opened[x.u] ? "opened" : ""}" href="${esc(x.u)}" target="_blank" rel="noopener" data-open="${esc(x.u)}"><span class="ii">${S.opened[x.u] ? ic("check") : ic("file")}</span><span class="it"><b>${esc(x.l)}</b><span>Etapa ${x.i + 1} · ${esc(LEVELS[x.i].n)}${S.opened[x.u] ? " · Consultado" : ""}</span></span>${ic("ext")}</a>`
+      : `<div class="item lockeditem"><span class="ii">${ic("lock")}</span><span class="it"><b>${esc(x.l)}</b><span>Disponible en la etapa ${x.i + 1}</span></span></div>`;
+    return `<div><p class="kicker">Documentos</p><h1>Documentos de tu ruta</h1></div>
+      ${callout(`Has consultado <b>${got} de ${items.length}</b> documentos de tu ruta.`)}
+      <div class="stagger" style="display:flex;flex-direction:column;gap:8px">${items.map(row).join("")}</div>
+      <section class="panel"><h2>Biblioteca institucional</h2><p class="small muted">Los ${DOCS.length} documentos vigentes que utilizan todas las rutas.</p><input type="search" id="bq" placeholder="Buscar por nombre o tema" aria-label="Buscar en la biblioteca"><div id="blist" style="display:flex;flex-direction:column;gap:8px"></div></section>`;
+  },
+  avance() {
+    const ms = all(), d = ms.filter(s => S.done[s.id]).length, open = Object.keys(S.opened).length;
+    return `<div><p class="kicker">Mi avance</p><h1>${esc(rank())}</h1></div>
+      <div class="panel"><div class="toggle"><span>${pct()} % de tu incorporación</span><span class="pts" data-count="${ptsTotal()}">${ptsTotal()} pts</span></div><div class="bar"><i style="--p:${(pct() / 100).toFixed(3)}"></i></div></div>
+      <div class="stats"><div class="stat"><b>${d}/${ms.length}</b><span>actividades concluidas</span></div><div class="stat"><b>${LEVELS.filter(L => lvDone(L.k)).length}/6</b><span>etapas concluidas</span></div><div class="stat"><b>${open}</b><span>documentos consultados</span></div><div class="stat"><b>${ms.filter(s => s.key && S.done[s.id]).length}/1</b><span>actividad clave</span></div></div>
+      ${reportPanel()}
+      <h2>Reconocimientos</h2><div class="badges stagger">${LEVELS.map((L, i) => { const on = lvDone(L.k); return `<div class="badge ${on ? "" : "off"}">${sealSvg(i, on)}<b>${esc(badgeName(i))}</b><span>${on ? "Obtenido" : esc(L.n)}</span></div>`; }).join("")}</div>`;
+  },
+  equipo() {
+    const team = (S.team || []).map((p, i) => ({ p, i, info: teamInfo(p) })).filter(x => x.info);
+    const late = team.filter(x => x.info.late).length, avg = team.length ? Math.round(team.reduce((a, x) => a + x.info.pct, 0) / team.length) : 0;
+    const order = [...team].sort((a, b) => (b.info.late - a.info.late) || (a.info.pct - b.info.pct));
+    const card = ({ p, i, info }) => `<button class="person" data-person="${i}">
+        <span class="pav">${esc(p.nombre.split(/\s+/).slice(0, 2).map(w => w[0] || "").join("").toUpperCase())}</span>
+        <span class="pt"><b>${esc(p.nombre)}</b><span>${esc(perfilName(info.perfil))} · ${esc(espOf(info.perfil, info.esp))}</span>
+          <span class="bar"><i style="--p:${(info.pct / 100).toFixed(3)}"></i></span>
+          <span class="pmeta">${info.finished ? "Incorporación concluida" : `Etapa ${info.cur + 1}: ${esc(LEVELS[info.cur].n)}`} · ${info.pct} % · reporte del ${esc(fday(info.reported))}</span>
+          <span class="pills">${info.late ? `<span class="pill s-late">Atrasado</span>` : info.expected !== null ? `<span class="pill s-doc">Al día</span>` : `<span class="pill s-none">Sin fecha de ingreso</span>`}${info.keyDone ? `<span class="pill s-doc">Actividad clave hecha</span>` : `<span class="pill s-val">Actividad clave pendiente</span>`}</span></span></button>`;
+    return `<div class="lvhead"><button class="iconbtn" data-change="1" aria-label="Salir al inicio y cambiar de perfil">${ic("home")}</button><div style="flex:1;min-width:0"><p class="kicker">Coordinación y dirección</p><h1>Panel de seguimiento</h1></div><button class="iconbtn" data-settings="1" aria-label="Ajustes">${ic("gear")}</button></div>
+      ${callout("Agrega a cada persona con el reporte que te envía por WhatsApp. Cada reporte nuevo actualiza su ficha.")}
+      <div class="stats"><div class="stat"><b>${team.length}</b><span>personas en incorporación</span></div><div class="stat"><b>${avg} %</b><span>avance promedio</span></div><div class="stat"><b>${late}</b><span>con atraso</span></div><div class="stat"><b>${team.filter(x => x.info.keyDone).length}/${team.length}</b><span>con actividad clave hecha</span></div></div>
+      ${team.length ? `<div class="stagger" style="display:flex;flex-direction:column;gap:10px">${order.map(card).join("")}</div>` : `<section class="panel"><h2>Aún no hay personas</h2><p class="muted">Cuando alguien de tu equipo te envíe su reporte por WhatsApp, pégalo abajo.</p></section>`}
+      <section class="panel"><h2>Agregar o actualizar</h2>
+        <form class="addform" id="addform" novalidate>
+          <label for="rep">Pega aquí el reporte de WhatsApp</label>
+          <textarea id="rep" rows="4" placeholder="Incorporación TEDI · Reporte de avance&#10;Nombre: …&#10;…&#10;Código de respaldo: …"></textarea>
+          <label for="ingreso">Fecha de ingreso (opcional, para detectar atrasos)</label>
+          <input type="date" id="ingreso" class="txt">
+          <p class="small" id="addmsg" role="alert" style="color:var(--red)"></p>
+          <button class="btn wide" type="submit">Agregar al panel</button>
+        </form>
+        <p class="small muted">El panel se guarda en este dispositivo. Usa siempre el mismo teléfono o computadora para dar seguimiento.</p></section>
+      <section class="panel"><h2>Ver las rutas</h2><p class="small muted">Recorre la ruta como la ve una persona nueva.</p><div class="row2"><button class="btn ghost" data-viewas="docente">Ruta docente</button><button class="btn ghost" data-viewas="administracion">Ruta administrativa</button><button class="btn ghost wide2" data-viewas="coordinacion">Mi ruta de coordinación</button></div><button class="linkbtn" data-go="direccion">Datos del diagnóstico del Drive</button></section>`;
+  },
+  direccion() {
+    if (!S.dir) return `<div class="lvhead"><button class="iconbtn" data-go="inicio" aria-label="Volver">${ic("back")}</button><h1>Datos del diagnóstico</h1></div>${callout("Esta vista requiere el código de coordinación y dirección.")}`;
+    return `<div class="lvhead"><button class="iconbtn" data-go="equipo" aria-label="Volver al panel">${ic("back")}</button><div><p class="kicker">Para la junta</p><h1>Datos del diagnóstico</h1></div></div>
+      <div class="stats"><div class="stat"><b>209</b><span>archivos revisados</span></div><div class="stat"><b>88</b><span>copias o versiones anteriores</span></div><div class="stat"><b>93/133</b><span>códigos citados sin archivo</span></div><div class="stat"><b>34</b><span>actividades en las rutas</span></div></div>
+      <section class="panel"><h2>Estado de las actividades</h2><p><span class="pill s-doc">12 documentadas</span> <span class="pill s-val">16 por validar</span> <span class="pill s-new">6 con material nuevo</span></p><p class="small muted">Active «Modo junta» en Ajustes para ver el estado y la nota de cada actividad.</p></section>
+      <section class="panel"><h2>Tres decisiones detienen el piloto</h2><ol class="plain"><li><b>Qué puestos están vigentes</b> y quién reporta a quién. Decide Dirección General.</li><li><b>Qué versión de cada documento es la válida.</b> Decide Calidad.</li><li><b>Dónde están los formatos faltantes</b> y el Drive de maestros. Deciden Administración y coordinaciones.</li></ol></section>
+      <section class="panel"><h2>Piloto</h2><p>Cinco semanas con una persona de cada perfil. Se mide si localiza la información por sí misma (4 de 5 búsquedas en menos de dos minutos) y si concluye su actividad clave el día 5.</p><p class="small muted">En este prototipo el avance se guarda solo en el dispositivo de quien lo usa, y los códigos son un filtro de entrada, no una protección de datos. En el piloto el acceso sería con las cuentas de Google de TEDI.</p></section>
+      <section class="panel"><h2>Riesgo por atender</h2><p>La carpeta del Drive abre sin iniciar sesión y contiene evaluaciones del personal y nombres de alumnos. Se recomienda restringirla a cuentas de la organización.</p></section>
+      <div style="display:flex;flex-direction:column;gap:10px"><a class="btn wide" href="${LINKS.propuesta}" target="_blank" rel="noopener">Propuesta completa</a><a class="btn ghost wide" href="${LINKS.laminas}" target="_blank" rel="noopener">Presentación</a><a class="btn ghost wide" href="${LINKS.inventario}" target="_blank" rel="noopener">Inventario de 209 archivos</a></div>`;
+  }
+};
+
+
+/* preguntas de comprobacion: una a la vez, con dos intentos antes de mostrar la respuesta */
+const qsFor = id => { const v = Q[id]; const r = typeof v === "function" ? v() : v; return Array.isArray(r) ? r : []; };
+const normTxt = v => " " + String(v || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, " ").trim() + " ";
+const normCode = v => String(v || "").toUpperCase().replace(/[^A-Z0-9]/g, "").replace(/\d+/g, n => String(+n));
+function isRight(q, ans) {
+  if (q.type === "text") {
+    if (q.code) return q.accept.some(a => normCode(a) === normCode(ans));
+    const n = normTxt(ans); return n.trim() !== "" && q.accept.some(a => n.includes(normTxt(a)));
+  }
+  return ans === q.a;
+}
+let QS = null;
+function quizHtml() {
+  if (!QS) return "";
+  const qs = qsFor(QS.id), n = qs.length;
+  if (S.quiz[QS.id]) return `<h3>Comprueba lo que aprendiste</h3><p class="qfb ok">${ic("check")} Respondiste ${n === 1 ? "la pregunta" : `las ${n} preguntas`} de esta actividad.</p><button class="linkbtn" data-qredo="1">Repasar las preguntas</button>`;
+  if (QS.i >= n) return "";
+  const q = qs[QS.i], ph = QS.phase, last = QS.i === n - 1;
+  const dots = qs.map((_, k) => `<i class="${k < QS.i ? "on" : k === QS.i ? "cur" : ""}"></i>`).join("");
+  const body = q.type === "text"
+    ? `<form id="qform" class="qform" novalidate><label class="sr" for="qin">Tu respuesta</label><input id="qin" class="txt qin ${ph === "right" ? "right" : ph === "reveal" || QS.err ? "wrong" : ""}" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Escribe tu respuesta" value="${esc(QS.typed)}" ${ph !== "ask" ? "readonly" : ""}></form>`
+    : `<div class="qopts" role="radiogroup" aria-label="Opciones">${q.o.map((x, k) => { const st = ph !== "ask" ? (k === q.a ? "right" : k === QS.sel ? "wrong" : "") : (k === QS.sel ? (QS.err ? "wrong" : "sel") : ""); return `<button type="button" class="qopt ${st}" role="radio" aria-checked="${k === QS.sel}" data-qopt="${k}" ${ph !== "ask" ? "disabled" : ""}><span class="qk">${String.fromCharCode(65 + k)}</span><span>${esc(x)}</span></button>`; }).join("")}</div>`;
+  const fb = ph === "right" ? `<p class="qfb ok" role="status">${ic("check")} <span><b>Correcto.</b> ${esc(q.why)}</span></p>`
+    : ph === "reveal" ? `<p class="qfb err" role="status"><span><b>La respuesta es: ${esc(q.type === "text" ? q.show : q.o[q.a])}.</b> ${esc(q.why)}</span></p>`
+    : QS.err ? `<p class="qfb err" role="status">No es correcto. Revisa el documento de apoyo e inténtalo otra vez.</p>` : `<p class="qfb" role="status"></p>`;
+  const btn = ph === "ask" ? `<button class="btn wide" data-qcheck="1">Comprobar</button>` : `<button class="btn wide" data-qnext="1">${last ? "Terminar" : "Siguiente pregunta"} ${ic("next")}</button>`;
+  return `<h3>Comprueba lo que aprendiste</h3><div class="qhead"><span>Pregunta ${QS.i + 1} de ${n}</span><span class="qdots" aria-hidden="true">${dots}</span></div><p class="qtext">${esc(q.t)}</p>${body}${fb}${btn}`;
+}
+function drawQuiz(focus) {
+  const box = $("quiz"); if (!box) return;
+  box.innerHTML = quizHtml();
+  const cb = $("completebtn");
+  if (cb && S.quiz[QS.id] && cb.disabled) { cb.disabled = false; cb.innerHTML = `${ic("check")} Marcar como completada`; }
+  if (focus) { const el = box.querySelector(focus); if (el) el.focus({ preventScroll: true }); }
+}
+function checkQ() {
+  const q = qsFor(QS.id)[QS.i]; if (!q || QS.phase !== "ask") return;
+  const ans = q.type === "text" ? ($("qin") ? $("qin").value : QS.typed) : QS.sel;
+  if (q.type === "text") QS.typed = ans;
+  if (ans === null || ans === undefined || (q.type === "text" && !String(ans).trim())) { QS.err = false; drawQuiz(q.type === "text" ? "#qin" : ".qopt"); const fb = $("quiz").querySelector(".qfb"); if (fb) { fb.className = "qfb err"; fb.textContent = q.type === "text" ? "Escribe tu respuesta para comprobarla." : "Elige una opción para comprobarla."; } return; }
+  if (isRight(q, ans)) { QS.phase = "right"; QS.err = false; drawQuiz("[data-qnext]"); return; }
+  QS.tries++; QS.err = true;
+  if (QS.tries >= 2) { QS.phase = "reveal"; drawQuiz("[data-qnext]"); return; }
+  drawQuiz(q.type === "text" ? "#qin" : null);
+  if (q.type === "text") $("qin").select();
+}
+function nextQ() {
+  const n = qsFor(QS.id).length;
+  QS.i++; QS.phase = "ask"; QS.sel = null; QS.typed = ""; QS.tries = 0; QS.err = false;
+  if (QS.i >= n) { S.quiz[QS.id] = true; save(); drawQuiz("#completebtn"); toast("Preguntas completadas"); return; }
+  drawQuiz(qsFor(QS.id)[QS.i].type === "text" ? "#qin" : ".qopt");
+}
+
+
+/* abrir fuera de WhatsApp para no perder el avance */
+const SITE_URL = "https://victoremiliano0210-blip.github.io/tedi-incorporacion/";
+const inApp = () => /WhatsApp|FBAN|FBAV|FB_IAB|Instagram|Line\/|; wv\)/i.test(navigator.userAgent || "");
+function openTip(view) {
+  if (inApp()) return `<div class="tipbox warn"><b>Ábrela en tu navegador para no perder tu avance.</b><span>Estás dentro de WhatsApp. Toca los tres puntos (⋮) o el ícono de compartir y elige «Abrir en el navegador» (Chrome o Safari).</span>${SITE_URL ? `<button class="btn ghost" data-copylink="1">Copiar el enlace</button>` : ""}</div>`;
+  if (view === "inicio" && !S.tipSeen) return `<div class="tipbox"><b>Consejo: úsala como app.</b><span>Agrégala a la pantalla de inicio de tu teléfono para abrirla siempre igual y conservar tu avance. En Android: menú ⋮ › «Agregar a pantalla principal». En iPhone: Compartir › «Agregar a inicio».</span><button class="linkbtn" data-tipok="1">Entendido</button></div>`;
+  return "";
+}
+
+/* cajones */
+const layer = $("layer");
+let lastFocus = null, closing = null;
+function openSheet(html, center = false) {
+  if (closing) { clearTimeout(closing); closing = null; }
+  lastFocus = document.activeElement;
+  layer.innerHTML = `<div class="scrim ${center ? "middle" : ""}" data-close="1"><div class="sheet ${center ? "center" : ""}" role="dialog" aria-modal="true" tabindex="-1">${center ? "" : '<span class="grab" aria-hidden="true"></span>'}${html}</div></div>`;
+  const scrim = layer.firstElementChild;
+  scrim.getBoundingClientRect();
+  requestAnimationFrame(() => scrim.classList.add("open"));
+  scrim.querySelector(".sheet").focus({ preventScroll: true });
+  document.body.style.overflow = "hidden";
+}
+function closeSheet(instant = false) {
+  const scrim = layer.firstElementChild;
+  document.body.style.overflow = "";
+  if (!scrim) return;
+  if (instant || reduced()) { layer.innerHTML = ""; restore(); return; }
+  scrim.classList.add("closing"); scrim.classList.remove("open");
+  closing = setTimeout(() => { layer.innerHTML = ""; closing = null; restore(); }, 260);
+}
+const restore = () => { if (lastFocus && lastFocus.isConnected && lastFocus.focus) lastFocus.focus({ preventScroll: true }); };
+function actSheet(id) {
+  const st = all().find(s => s.id === id); if (!st) return;
+  const i = lvOf(st), L = LEVELS[i], done = !!S.done[id], rs = refs(st);
+  let note = st.n || ""; if (note === "FALTA") note = `El formato del proceso no está en la carpeta (${PUESTO[S.puesto].falta}). Material nuevo: guía de una página.`;
+  const items = rs.length ? rs.map(([l, u, sec]) => !u ? `<div class="item"><span class="ii">${ic("people")}</span><span class="it"><b>${esc(l)}</b><span>${esc(sec)}</span></span></div>` : `<a class="item ${S.opened[u] ? "opened" : ""}" href="${esc(u)}" target="_blank" rel="noopener" data-open="${esc(u)}"><span class="ii">${S.opened[u] ? ic("check") : ic("file")}</span><span class="it"><b>${esc(l)}</b>${sec ? `<span>Sección: ${esc(sec)}</span>` : ""}</span>${ic("ext")}</a>`).join("") : `<p class="muted">Esta actividad es una reunión y no requiere documentos.</p>`;
+  const initials = st.w.replace(/^(Tu|Responsable de)\s+/i, "").split(/\s+/).filter(w => w.length > 2).slice(0, 2).map(w => w[0].toUpperCase()).join("");
+  const codes = st.codes ? `<div class="box"><h3>Cómo leer un código</h3><p><b>PR</b> procedimiento · <b>IN</b> instructivo · <b>FO</b> formato · <b>DS</b> documento de soporte</p><p><b>AC</b> académica · <b>AD</b> administración · <b>DG</b> dirección</p><p class="small muted">Ejemplo: PR-AC-003 es el procedimiento académico número 3.</p></div>` : "";
+  openSheet(`<div class="sheettop"><p class="kicker">Etapa ${i + 1} · ${esc(L.n)}</p><button class="iconbtn" data-close="1" aria-label="Cerrar">${ic("close")}</button></div>
+    ${st.key ? `<span class="keyline">${ic("star")} Actividad clave · 50 pts</span>` : ""}
+    <h2 style="font-size:24px">${esc(st.t)}</h2>
+    <div class="box"><h3>Qué hacer</h3><p>${esc(st.a)}</p></div>
+    <div class="box"><h3>Quién te acompaña</h3><div class="npc"><span class="av">${esc(initials || "?")}</span><b>${esc(st.w)}</b></div></div>
+    <div class="box"><h3>Se considera completa cuando</h3><p>${esc(st.d)}</p></div>
+    ${codes}
+    <div class="box"><h3>Documentos de apoyo</h3>${items}</div>
+    ${qsFor(id).length ? `<div class="box quiz" id="quiz"></div>` : ""}
+    ${S.rev && S.dir ? `<div class="box revbox"><h3>Nota de revisión</h3><p><span class="pill s-${st.s}">${SLABEL[st.s]}</span></p>${note ? `<p>${esc(note)}</p>` : ""}</div>` : ""}
+    ${done ? `<button class="btn ghost wide" data-undo="${id}">Marcar como pendiente</button>` : qsFor(id).length && !S.quiz[id] ? `<button class="btn wide" id="completebtn" data-complete="${id}" disabled>Responde las preguntas para completar</button>` : `<button class="btn wide" id="completebtn" data-complete="${id}">${ic("check")} Marcar como completada</button>`}`);
+  QS = qsFor(id).length ? { id, i: 0, phase: "ask", sel: null, typed: "", tries: 0, err: false } : null;
+  drawQuiz();
+}
+function settingsSheet() {
+  const esp = S.perfil ? `<label class="small" for="sel-esp"><b>${S.perfil === "docente" ? "Programa" : S.perfil === "coordinacion" ? "Coordinación" : "Puesto"}</b></label><select id="sel-esp">${Object.entries(espTable(S.perfil)).map(([k, v]) => `<option value="${k}" ${k === espKey() ? "selected" : ""}>${esc(v.n)}</option>`).join("")}</select>` : "";
+  openSheet(`<div class="sheettop"><h2>Ajustes</h2><button class="iconbtn" data-close="1" aria-label="Cerrar">${ic("close")}</button></div>
+    ${S.perfil ? `<div class="box"><label class="small" for="set-nombre"><b>Tu nombre</b></label><input id="set-nombre" class="txt" autocomplete="name" value="${esc(S.nombre)}" placeholder="Nombre y apellido">${esp}<button class="btn ghost wide" data-change="1">Cambiar de perfil</button></div>
+    <div class="box"><h3>Respaldo de mi avance</h3><p class="small muted">Si cambias de teléfono, escribe aquí tu código de respaldo para recuperar tu avance. También viene en cada reporte que envías.</p>
+      <p>Tu código actual: <b class="bcode">${esc(backupCode())}</b></p>
+      <input id="restore" class="txt" autocomplete="off" autocapitalize="characters" placeholder="Ejemplo: D0-3F" aria-label="Código de respaldo"><p class="small" id="restoremsg" role="alert" style="color:var(--red)"></p>
+      <button class="btn ghost wide" data-restore="1">Recuperar mi avance</button></div>` : ""}
+    ${S.dir ? `<div class="box"><h3>Coordinación y dirección</h3>
+      <label class="toggle" for="t-rev"><span>Modo junta: ver notas de revisión</span><input type="checkbox" id="t-rev" ${S.rev ? "checked" : ""}></label>
+      <label class="toggle" for="t-unl"><span>Habilitar todas las etapas</span><input type="checkbox" id="t-unl" ${S.unlock ? "checked" : ""}></label>
+      <button class="btn ghost wide" data-go="equipo">Panel de seguimiento</button><button class="btn ghost wide" data-go="direccion">Datos del diagnóstico</button></div>` : ""}
+    <div class="box"><h3>Usar como app</h3><p class="small muted">Para conservar tu avance, ábrela siempre en el mismo navegador (Chrome o Safari), no dentro de WhatsApp. En Android: menú ⋮ › «Agregar a pantalla principal». En iPhone: Compartir › «Agregar a inicio».</p></div>
+    <div class="box"><button class="btn ghost wide" data-reset="0">Reiniciar mi avance</button><button class="btn ghost wide" data-logout="1">${ic("logout")} Cerrar sesión en este dispositivo</button></div>`);
+}
+function personSheet(i) {
+  const p = S.team[i], info = p && teamInfo(p); if (!info) return;
+  const stages = LEVELS.map((L, k) => { const ms = info.list.filter(s => s.m === L.k), d = ms.filter(s => info.done.has(s.id)).length; return `<div><span>${k + 1}. ${esc(L.n)}</span><b>${d === ms.length ? "Concluida" : `${d} de ${ms.length}`}</b></div>`; }).join("");
+  const pend = info.finished ? [] : info.list.filter(s => s.m === LEVELS[info.cur].k && !info.done.has(s.id));
+  openSheet(`<div class="sheettop"><p class="kicker">Ficha de seguimiento</p><button class="iconbtn" data-close="1" aria-label="Cerrar">${ic("close")}</button></div>
+    <h2 style="font-size:24px">${esc(p.nombre)}</h2><p class="muted">${esc(perfilName(info.perfil))} · ${esc(espOf(info.perfil, info.esp))} · ${info.pct} % · reporte del ${esc(fday(info.reported))}</p>
+    ${info.late ? `<div class="box" style="border-color:var(--red);background:var(--red-l)"><p><b>Va atrasado.</b> Por su fecha de ingreso debería ir en ${esc(LEVELS[info.expected].n)} y va en ${esc(LEVELS[info.cur].n)}.</p></div>` : ""}
+    <div class="box"><h3>Avance por etapa</h3><div class="stagelist">${stages}</div></div>
+    ${pend.length ? `<div class="box"><h3>Pendientes de su etapa actual</h3><ul class="plain">${pend.map(s => `<li>${esc(s.t)}${s.key ? " <b>(actividad clave)</b>" : ""}</li>`).join("")}</ul></div>` : ""}
+    <div class="box"><label class="small" for="p-ingreso"><b>Fecha de ingreso</b></label><input type="date" id="p-ingreso" class="txt" data-i="${i}" value="${esc(p.ingreso || "")}"><p class="small muted">Con esta fecha el panel calcula en qué etapa debería ir.</p></div>
+    <button class="btn ghost wide" data-premove="${i}">Quitar del panel</button>`);
+}
+function addPerson(e) {
+  e.preventDefault();
+  const msg = $("addmsg"), r = parseReport($("rep").value), ing = $("ingreso").value;
+  if (!r.code || !decodeBackup(r.code)) { msg.textContent = "No encontré un código de respaldo válido. Copia el reporte completo, incluida la última línea."; return; }
+  if (!r.nombre) { msg.textContent = "No encontré el nombre. Verifica que el texto incluya la línea «Nombre:»."; return; }
+  S.team = S.team || [];
+  const i = S.team.findIndex(p => p.nombre.toLowerCase() === r.nombre.toLowerCase()), was = i >= 0;
+  if (was) { S.team[i].code = r.code; S.team[i].updated = Date.now(); if (ing) S.team[i].ingreso = ing; }
+  else S.team.push({ nombre: r.nombre, code: r.code, ingreso: ing || "", updated: Date.now() });
+  save(); render(false); toast(was ? `Ficha actualizada: ${r.nombre}` : `Agregado al panel: ${r.nombre}`);
+}
+function stageDone(i) {
+  const rays = Array.from({ length: 12 }, (_, k) => `<i style="--a:${k * 30}deg"></i>`).join("");
+  openSheet(`<div class="seal"><div class="rays" aria-hidden="true">${rays}</div>${sealSvg(i, true, "medal")}</div><p class="kicker">Etapa concluida</p><h2 style="font-size:26px">Reconocimiento: ${esc(badgeName(i))}</h2><p class="muted">Sumas 20 puntos adicionales. ${i < LEVELS.length - 1 ? `Se habilitó la etapa <b>${esc(LEVELS[i + 1].n)}</b>.` : "Concluiste tu primer mes en TEDI."}</p>
+    ${i < LEVELS.length - 1 ? `<button class="btn wide" data-level="${i + 1}">Continuar a la etapa ${i + 2}</button>` : `<button class="btn wide" data-go="avance">Ver mi avance</button>`}<a class="btn ghost wide" href="${esc(waLink())}" target="_blank" rel="noopener">${ic("chat")} Avisar a mi jefa por WhatsApp</a><button class="btn ghost wide" data-close="1">Cerrar</button>`, true);
+}
+function toast(t) {
+  document.querySelectorAll(".toast").forEach(x => x.remove());
+  const el = document.createElement("div"); el.className = "toast"; el.setAttribute("role", "status");
+  el.innerHTML = `${ic("check")}<span>${esc(t)}</span>`; document.body.appendChild(el);
+  setTimeout(() => { el.classList.add("out"); setTimeout(() => el.remove(), 420); }, 1700);
+}
+
+/* reporte por WhatsApp y respaldo */
+const fdate = ts => (typeof ts === "number" ? new Date(ts).toLocaleDateString("es-MX", { day: "numeric", month: "short" }) : "");
+function backupCode() {
+  let bits = 0;
+  all().forEach((s, k) => { if (S.done[s.id]) bits += Math.pow(2, k); });
+  const idx = Object.keys(espTable(S.perfil)).indexOf(espKey());
+  return (S.perfil === "docente" ? "D" : S.perfil === "coordinacion" ? "C" : "A") + idx + "-" + bits.toString(36).toUpperCase() + "-" + localDay().toString(36).toUpperCase();
+}
+const localDay = (ts = Date.now()) => Math.floor((ts - new Date(ts).getTimezoneOffset() * 60000) / 864e5);
+const routeFor = p => LEVELS.flatMap(L => [...COMUN.filter(s => s.m === L.k), ...(p === "docente" ? DOCENTE : p === "coordinacion" ? COORD : ADMIN).filter(s => s.m === L.k)]);
+const espOf = (p, k) => espTable(p)[k].n;
+/* codigo de respaldo: perfil + programa o puesto, actividades hechas (bits) y dia del reporte */
+function decodeBackup(raw) {
+  const m = String(raw || "").toUpperCase().replace(/\s/g, "").match(/^([DAC])(\d)-([0-9A-Z]{1,6})(?:-([0-9A-Z]{1,5}))?$/);
+  if (!m) return null;
+  const perfil = m[1] === "D" ? "docente" : m[1] === "C" ? "coordinacion" : "administracion";
+  const esp = Object.keys(espTable(perfil))[+m[2]];
+  const bits = parseInt(m[3], 36);
+  if (!esp || !Number.isFinite(bits)) return null;
+  const list = routeFor(perfil), done = new Set();
+  list.forEach((s, j) => { if (Math.floor(bits / Math.pow(2, j)) % 2 === 1) done.add(s.id); });
+  return { perfil, esp, list, done, day: m[4] ? parseInt(m[4], 36) : null };
+}
+function restoreCode(raw) {
+  const d = decodeBackup(raw);
+  if (!d) return "El código de respaldo no tiene el formato correcto. Ejemplo: D0-3F-K2A.";
+  if (d.perfil !== S.perfil) return `Este código es del perfil ${perfilName(d.perfil).toLowerCase()}. Cambia de perfil primero.`;
+  if (d.perfil === "docente") S.prog = d.esp; else if (d.perfil === "coordinacion") S.coord = d.esp; else S.puesto = d.esp;
+  const now = Date.now(), done = {};
+  d.done.forEach(id => { done[id] = typeof S.done[id] === "number" ? S.done[id] : now; });
+  S.done = done; save(); return "";
+}
+
+/* panel de seguimiento: lo que cada coordinadora recibe por WhatsApp, guardado en su dispositivo */
+function teamInfo(p) {
+  const d = decodeBackup(p.code); if (!d) return null;
+  const n = d.list.filter(s => d.done.has(s.id)).length;
+  let cur = LEVELS.findIndex(L => d.list.some(s => s.m === L.k && !d.done.has(s.id)));
+  const finished = cur === -1; if (finished) cur = LEVELS.length - 1;
+  const key = d.list.find(s => s.key);
+  let expected = null;
+  if (p.ingreso) { const days = Math.floor((Date.now() - Date.parse(p.ingreso + "T00:00:00")) / 864e5); expected = days < 0 ? 0 : days === 0 ? 1 : days <= 7 ? 2 : days <= 14 ? 3 : days <= 29 ? 4 : 5; }
+  const reported = (d.day !== null ? d.day : localDay(p.updated)) * 864e5;
+  return Object.assign(d, { n, pct: Math.round(n / d.list.length * 100), cur, finished, keyDone: !!(key && d.done.has(key.id)), expected, late: expected !== null && !finished && cur < expected, reported });
+}
+function parseReport(txt) {
+  const code = (String(txt).match(/\b([DAC]\d-[0-9A-Z]{1,6}(?:-[0-9A-Z]{1,5})?)\b/i) || [])[1];
+  const nm = (String(txt).match(/Nombre:\s*\**\s*([^\n*]+)/i) || [])[1];
+  return { code: code ? code.toUpperCase() : "", nombre: nm ? nm.trim().slice(0, 80) : "" };
+}
+const fday = ts => ts ? new Date(ts).toLocaleDateString("es-MX", { day: "numeric", month: "short", timeZone: "UTC" }) : "sin fecha";
+function summary() {
+  const ms = all(), d = ms.filter(s => S.done[s.id]).length, cur = currentIdx();
+  const closed = LEVELS.filter(L => lvDone(L.k)).map(L => L.n);
+  const recent = ms.filter(s => S.done[s.id]).sort((a, b) => (+S.done[b.id] || 0) - (+S.done[a.id] || 0)).slice(0, 3).map(s => `• ${s.t}${fdate(S.done[s.id]) ? ` (${fdate(S.done[s.id])})` : ""}`);
+  const pend = acts(LEVELS[cur].k).filter(s => !S.done[s.id]).map(s => `• ${s.t}`);
+  const lines = ["*Incorporación TEDI · Reporte de avance*", `Nombre: ${S.nombre || "Sin nombre"}`, `Perfil: ${perfilName(S.perfil)} · ${espName()}`, `Avance: ${pct()} % (${d} de ${ms.length} actividades)`, `Etapas concluidas: ${closed.length ? closed.join(", ") : "ninguna"}`, d === ms.length ? "Estado: incorporación concluida" : `Etapa actual: ${LEVELS[cur].n}`];
+  if (recent.length) lines.push("", "Últimas actividades completadas:", ...recent);
+  if (pend.length && d < ms.length) lines.push("", "Pendientes de esta etapa:", ...pend);
+  lines.push("", `Fecha del reporte: ${new Date().toLocaleDateString("es-MX", { day: "numeric", month: "long", year: "numeric" })}`, `Código de respaldo: ${backupCode()}`);
+  return lines.join("\n");
+}
+const waLink = () => "https://wa.me/?text=" + encodeURIComponent(summary());
+function reportPanel() {
+  return `<section class="panel"><h2>Informar a mi jefa</h2><p class="small muted">Envía tu reporte de avance por WhatsApp. Se abre la aplicación con el mensaje listo; solo eliges a tu jefa inmediata.</p>
+    <a class="btn wide" href="${esc(waLink())}" target="_blank" rel="noopener">${ic("chat")} Enviar mi avance por WhatsApp</a>
+    <button class="btn ghost wide" data-copy="1">Copiar el reporte</button>
+    <pre class="report" id="reporttext">${esc(summary())}</pre></section>`;
+}
+
+/* armado */
+function hud() {
+  const p = pct();
+  return `<header class="hud"><span class="tile">${ic(S.perfil === "docente" ? "grad" : S.perfil === "coordinacion" ? "people" : "brief")}</span><div class="who"><p class="name">${esc(S.nombre || espName())}</p><p class="meta">${esc(S.nombre ? espName() : perfilName(S.perfil))} · ${esc(rank())} · ${p} %</p><div class="bar"><i data-bar="${(p / 100).toFixed(3)}" style="--p:${((lastPct ?? p) / 100).toFixed(3)}"></i></div></div><span class="pts" data-count="${ptsTotal()}">${lastPts ?? ptsTotal()} pts</span><button class="iconbtn" data-settings="1" aria-label="Ajustes">${ic("gear")}</button></header>${S.rev && S.dir ? `<p class="junta">Modo junta activo: cada actividad muestra su nota de revisión.</p>` : ""}`;
+}
+function navHtml(view) {
+  const nx = nextAct();
+  const b = (go, label, icon, cur) => `<li><button data-go="${go}" ${cur ? 'aria-current="page"' : ""}>${ic(icon)}<span>${label}</span></button></li>`;
+  return `<ul><li><button data-change="1" aria-label="Salir al inicio y cambiar de perfil">${ic("home")}<span>Inicio</span></button></li>${b("ruta", "Ruta", "route", view === "ruta" || view === "etapa")}<li><button class="cont" ${nx ? `data-act="${nx.id}"` : 'data-go="avance"'}>${ic("next")}<span>Continuar</span></button></li>${b("documentos", "Documentos", "file", view === "documentos")}${b("avance", "Avance", "medal", view === "avance")}</ul>`;
+}
+function countUp(el, from, to) {
+  if (reduced() || from === to) { el.textContent = `${to} pts`; return; }
+  const t0 = performance.now(), dur = 700;
+  const tick = now => { const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3); el.textContent = `${Math.round(from + (to - from) * e)} pts`; if (k < 1) requestAnimationFrame(tick); };
+  requestAnimationFrame(tick);
+}
+function settle() {
+  const p = pct(), pts = ptsTotal();
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    document.querySelectorAll("[data-bar]").forEach(el => el.style.setProperty("--p", el.dataset.bar));
+    const C = 2 * Math.PI * 34;
+    document.querySelectorAll("[data-ring]").forEach(el => { el.style.strokeDashoffset = (C * (1 - +el.dataset.ring / 100)).toFixed(1); });
+    document.querySelectorAll(".hud [data-count]").forEach(el => countUp(el, lastPts ?? pts, pts));
+    lastPct = p; lastPts = pts;
+  }));
+}
+function render(animate = false) {
+  let h = (location.hash || "").slice(1);
+  if (!S.dir && (h === "equipo" || h === "direccion")) h = "ruta";
+  const dirView = S.dir && (h === "equipo" || h === "direccion");
+  if (!dirView && (!S.perfil || !hasAccess(S.perfil) || h === "inicio")) h = "inicio";
+  let view = h, arg = null;
+  const m = h.match(/^etapa-(\d)$/);
+  if (m) { view = "etapa"; arg = Math.min(+m[1], LEVELS.length - 1); }
+  if (!V[view]) view = "ruta";
+  const app = $("app");
+  const solo = ["inicio", "equipo", "direccion"].includes(view);
+  app.className = "app" + (solo ? " bare" : "") + (animate ? " view-in" : "");
+  if (!animate) { app.querySelectorAll(".stagger").forEach(x => x.classList.remove("stagger")); }
+  revealMap = animate;
+  app.innerHTML = openTip(view) + (solo ? "" : hud()) + (view === "etapa" ? V.etapa(arg) : V[view]());
+  if (!animate) app.querySelectorAll(".stagger").forEach(x => x.classList.remove("stagger"));
+  const nav = $("nav");
+  nav.hidden = solo;
+  nav.innerHTML = solo ? "" : navHtml(view);
+  if (view === "documentos") { drawLib(); $("bq").addEventListener("input", drawLib); }
+  if (view === "inicio" && (S.step === "code" || S.step === "dircode")) { const f = $("codeform"); f.addEventListener("submit", submitCode); setTimeout(() => ($("nombre") && !$("nombre").value ? $("nombre") : $("code")).focus(), 80); }
+  if (view === "equipo") $("addform").addEventListener("submit", addPerson);
+  if (!solo) settle(); else { lastPct = null; lastPts = null; }
+  justId = null;
+}
+async function submitCode(e) {
+  e.preventDefault();
+  const dir = S.step === "dircode", field = $("codeform"), msg = $("codemsg"), btn = $("codebtn");
+  const val = canon($("code").value);
+  const nm = dir ? "" : ($("nombre").value || "").trim().replace(/\s+/g, " ").slice(0, 80);
+  if (!dir && nm.length < 3) { msg.textContent = "Escribe tu nombre completo."; $("nombre").focus(); return; }
+  if (!val) { msg.textContent = "Escribe tu código."; return; }
+  if (!dir) S.nombre = nm;
+  const h = await sha(val);
+  if (!h) { msg.textContent = "Abre este enlace en un navegador actualizado para validar el código."; return; }
+  const target = dir ? HASH.direccion : HASH[S.perfil];
+  if (h === target || (!dir && h === HASH.direccion)) {
+    if (dir || h === HASH.direccion) S.dir = true; else S.ok[S.perfil] = true;
+    save();
+    field.classList.remove("err");
+    btn.disabled = true; btn.innerHTML = `${ic("check")} Acceso confirmado`;
+    $("gate").insertAdjacentHTML("afterbegin", `<div class="okmark">${ic("check")}</div>`);
+    $("gate").querySelector(".lockicon").remove();
+    setTimeout(() => {
+      S.step = "";
+      if (dir) { if (location.hash === "#equipo") render(true); else location.hash = "#equipo"; }
+      else { location.hash = "#ruta"; }
+    }, reduced() ? 150 : 720);
+  } else {
+    field.classList.remove("err"); void field.offsetWidth; field.classList.add("err");
+    msg.textContent = "El código no es válido. Revísalo o solicítalo a " + (dir ? "Calidad." : "Administración.");
+    $("code").select();
+  }
+}
+/* biblioteca: nivel 1 para todos, 2 o 3 segun el perfil, 4 solo con acceso de direccion; el nivel 5 no viaja en la pagina */
+const libDocs = () => DOCS.filter(x => x.nivel.startsWith("1") || (S.perfil === "docente" && x.nivel.startsWith("2")) || (S.perfil === "administracion" && x.nivel.startsWith("3")) || (S.dir && /^[1-4]/.test(x.nivel)));
+function drawLib() {
+  const q = ($("bq").value || "").trim().toLowerCase();
+  const mine = libDocs();
+  const rows = mine.filter(x => !q || (x.nombre + " " + x.tema).toLowerCase().includes(q)).slice(0, q ? 66 : 6);
+  $("blist").innerHTML = rows.map(x => `<a class="item ${S.opened[x.enlace] ? "opened" : ""}" href="${esc(x.enlace)}" target="_blank" rel="noopener" data-open="${esc(x.enlace)}"><span class="ii">${ic("file")}</span><span class="it"><b>${esc(x.nombre)}</b><span>${esc(x.tema)}</span></span>${ic("ext")}</a>`).join("") + (!q ? `<p class="small muted">Escribe para buscar entre los ${mine.length} documentos de tu perfil.</p>` : rows.length ? "" : `<p class="small muted">No hay documentos con esas palabras.</p>`);
+}
+const go = h => { closeSheet(true); if (location.hash === "#" + h) render(true); else location.hash = "#" + h; window.scrollTo(0, 0); };
+document.addEventListener("click", e => {
+  const t = e.target.closest("[data-perfil],[data-prog],[data-puesto],[data-go],[data-level],[data-act],[data-complete],[data-undo],[data-close],[data-settings],[data-change],[data-reset],[data-open],[data-start],[data-dirgate],[data-back-start],[data-logout],[data-copy],[data-restore],[data-person],[data-viewas],[data-premove],[data-coord],[data-qopt],[data-qcheck],[data-qnext],[data-qredo],[data-copylink],[data-tipok]");
+  if (!t) return;
+  const d = t.dataset;
+  if (d.copy) {
+    const txt = summary(), pre = $("reporttext");
+    const fallback = () => { if (pre) { const r = document.createRange(); r.selectNodeContents(pre); const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r); } toast("Texto seleccionado: cópialo con tu teléfono"); };
+    try { navigator.clipboard.writeText(txt).then(() => toast("Reporte copiado"), fallback); } catch (err) { fallback(); }
+    return;
+  }
+  if (d.qopt !== undefined) { if (QS && QS.phase === "ask") { QS.sel = +d.qopt; QS.err = false; drawQuiz(`[data-qopt="${d.qopt}"]`); } return; }
+  if (d.tipok) { S.tipSeen = true; save(); render(false); return; }
+  if (d.copylink) { try { navigator.clipboard.writeText(SITE_URL).then(() => toast("Enlace copiado: pégalo en Chrome o Safari"), () => toast(SITE_URL)); } catch (err) { toast(SITE_URL); } return; }
+  if (d.qcheck) { checkQ(); return; }
+  if (d.qnext) { nextQ(); return; }
+  if (d.qredo) { delete S.quiz[QS.id]; save(); QS = { id: QS.id, i: 0, phase: "ask", sel: null, typed: "", tries: 0, err: false }; drawQuiz(); return; }
+  if (d.person !== undefined) { personSheet(+d.person); return; }
+  if (d.viewas) { S.perfil = d.viewas; save(); go("ruta"); return; }
+  if (d.premove !== undefined) {
+    if (!d.confirm) { t.dataset.confirm = "1"; t.textContent = "Confirmar: quitar del panel"; return; }
+    const gone = S.team.splice(+d.premove, 1)[0]; save(); closeSheet(true); render(false); if (gone) toast(`Se quitó a ${gone.nombre}`); return;
+  }
+  if (d.restore) {
+    const err = restoreCode($("restore").value);
+    if (err) { $("restoremsg").textContent = err; return; }
+    closeSheet(true); lastPct = null; lastPts = null; render(true); toast("Avance recuperado"); return;
+  }
+  if (d.close && t.classList.contains("scrim") && e.target !== t) return;
+  if (d.open !== undefined) { S.opened[d.open] = true; save(); t.classList.add("opened"); return; }
+  if (d.perfil) { S.perfil = d.perfil; save(); if (location.hash !== "#inicio") history.replaceState(null, "", "#inicio"); render(false); return; }
+  if (d.prog) { S.prog = d.prog; save(); render(false); return; }
+  if (d.puesto) { S.puesto = d.puesto; save(); render(false); return; }
+  if (d.coord) { S.coord = d.coord; save(); render(false); return; }
+  if (d.start) { if (hasAccess(S.perfil)) { location.hash = "#ruta"; } else { S.step = "code"; render(true); window.scrollTo(0, 0); } return; }
+  if (d.dirgate) { if (S.dir) { toast("Acceso de dirección activo"); return; } S.step = "dircode"; render(true); window.scrollTo(0, 0); return; }
+  if (d.backStart) { S.step = ""; render(true); return; }
+  if (d.close) { closeSheet(); return; }
+  if (d.settings) { settingsSheet(); return; }
+  if (d.change) { closeSheet(true); S.step = ""; location.hash = "#inicio"; render(true); return; }
+  if (d.logout) { S.ok = {}; S.dir = false; S.rev = false; S.unlock = false; save(); closeSheet(true); location.hash = "#inicio"; render(true); toast("Sesión cerrada"); return; }
+  if (d.reset !== undefined) { if (d.reset === "0") { t.dataset.reset = "1"; t.textContent = "Confirmar: borrar mi avance"; return; } S.done = {}; S.opened = {}; S.quiz = {}; save(); lastPct = 0; lastPts = 0; go("ruta"); toast("Avance reiniciado"); return; }
+  if (d.go) { go(d.go); return; }
+  if (d.level !== undefined) { go("etapa-" + d.level); return; }
+  if (d.act) { actSheet(d.act); return; }
+  if (d.complete) {
+    const st = all().find(s => s.id === d.complete), i = lvOf(st), was = lvDone(LEVELS[i].k);
+    t.disabled = true; t.innerHTML = `<span class="draw">${ic("check")}</span> Completada`;
+    setTimeout(() => {
+      S.done[st.id] = Date.now(); justId = st.id; save(); closeSheet(); render(false); toast(`Actividad completada · +${ptsOf(st)} pts`);
+      if (!was && lvDone(LEVELS[i].k)) setTimeout(() => stageDone(i), 700);
+    }, reduced() ? 60 : 380);
+    return;
+  }
+  if (d.undo) { delete S.done[d.undo]; save(); closeSheet(); render(false); return; }
+});
+document.addEventListener("change", e => {
+  const el = e.target;
+  if (el.id === "t-rev") { S.rev = el.checked; save(); render(false); }
+  else if (el.id === "t-unl") { S.unlock = el.checked; save(); render(false); }
+  else if (el.id === "sel-esp") { if (S.perfil === "docente") S.prog = el.value; else if (S.perfil === "coordinacion") S.coord = el.value; else S.puesto = el.value; save(); render(false); }
+  else if (el.id === "p-ingreso") { const p = S.team[+el.dataset.i]; if (p) { p.ingreso = el.value; save(); render(false); } }
+  else if (el.id === "set-nombre") { const v = el.value.trim().replace(/\s+/g, " ").slice(0, 80); if (v.length >= 3) { S.nombre = v; save(); render(false); } }
+});
+document.addEventListener("submit", e => { if (e.target.id === "qform") { e.preventDefault(); checkQ(); } });
+document.addEventListener("input", e => { if (e.target.id === "qin" && QS) { QS.typed = e.target.value; if (QS.err) { QS.err = false; e.target.classList.remove("wrong"); } } });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && layer.firstElementChild) closeSheet(); });
+window.addEventListener("hashchange", () => { render(true); window.scrollTo(0, 0); });
+render(true);
+
+</script>
+</body></html>

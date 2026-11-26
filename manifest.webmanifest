@@ -1,0 +1,18 @@
+{
+ "name": "Incorporación TEDI",
+ "short_name": "TEDI",
+ "start_url": "./",
+ "scope": "./",
+ "display": "standalone",
+ "background_color": "#F3F5F7",
+ "theme_color": "#0F6E6A",
+ "lang": "es",
+ "icons": [
+  {
+   "src": "icon.svg",
+   "sizes": "any",
+   "type": "image/svg+xml",
+   "purpose": "any"
+  }
+ ]
+}
